@@ -488,6 +488,182 @@
         }
 
         /* ========================================
+           DOCUMENTATION SECTIONS (Stripe-inspired)
+           ======================================== */
+        .doc-section {
+            background: var(--color-bg-elevated);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            scroll-margin-top: 80px;
+        }
+
+        .doc-section:nth-child(even) {
+            background: var(--color-bg);
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .doc-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .doc-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        .doc-content {
+            max-width: 780px;
+        }
+
+        .doc-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .doc-content p {
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .doc-content ul,
+        .doc-content ol {
+            color: var(--color-text-muted);
+            padding-left: 24px;
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+
+        .doc-content li {
+            margin-bottom: 8px;
+        }
+
+        .doc-content a {
+            color: var(--color-link);
+        }
+
+        .doc-content code {
+            background: var(--color-surface);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            color: var(--color-accent-light);
+        }
+
+        .code-block {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .doc-table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .doc-table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .doc-table-wrap th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--color-surface);
+            border-bottom: 2px solid var(--color-border);
+            color: var(--color-text);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .doc-table-wrap td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        .doc-table-wrap tr:hover td {
+            background: var(--color-bg-card);
+        }
+
+        .doc-note {
+            background: var(--color-bg-card);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .doc-note strong {
+            color: var(--color-text);
+        }
+
+        /* FAQ */
+        .faq-list details {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .faq-list details:hover {
+            border-color: var(--color-border-hover);
+        }
+
+        .faq-list summary {
+            padding: 16px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--color-text);
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-list summary:hover {
+            background: var(--color-surface);
+        }
+
+        .faq-list summary::-webkit-details-marker {
+            color: var(--color-accent);
+        }
+
+        .faq-list details p {
+            padding: 0 20px 16px;
+            margin: 0;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-list details a {
+            color: var(--color-link);
+        }
+
+        /* ========================================
            FOOTER
            ======================================== */
         .footer {
@@ -717,45 +893,350 @@
     </section>
 
     <!-- ==========================================
-         DOCS SECTION
+         DOCS SECTION — Navigation Cards
          ========================================== -->
-    <section id="docs" class="screenshots">
+    <section id="docs">
         <div class="container">
             <div class="section-header">
                 <h2>Documentation</h2>
-                <p>Quick start guides and feature references</p>
+                <p>Complete guides for every feature</p>
             </div>
             <div class="features-grid">
-                <a href="#docs-installation" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-installation" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">📦</div>
                     <h3>Installation Guide</h3>
                     <p>How to install and enable the addon in Blender 4.2+</p>
                 </a>
-                <a href="#docs-dimensions" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-dimensions" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">📐</div>
                     <h3>Dimensions Guide</h3>
                     <p>Using truth dimensions, scaling, and group bounds</p>
                 </a>
-                <a href="#docs-origin" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-origin" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">🎯</div>
                     <h3>Origin Alignment</h3>
                     <p>Snapping origins to geometry, cursor, and bounding box points</p>
                 </a>
-                <a href="#docs-naming" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-naming" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">🏷️</div>
                     <h3>Naming Engine</h3>
                     <p>Creating presets and batch-naming assets</p>
                 </a>
-                <a href="#docs-cleanup" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-cleanup" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">🧹</div>
                     <h3>Scene Hygiene</h3>
                     <p>Material cleanup and orphan purging</p>
                 </a>
-                <a href="#docs-faq" class="feature-card" style="text-decoration:none;color:inherit;">
+                <a href="#doc-faq" class="feature-card" style="text-decoration:none;color:inherit;">
                     <div class="feature-icon">❓</div>
                     <h3>FAQ</h3>
                     <p>Common questions and troubleshooting</p>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FULL DOCUMENTATION
+         ========================================== -->
+    <section id="doc-installation" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>📦 Installation Guide</h2>
+                <p>Get up and running in under 2 minutes</p>
+            </div>
+            <div class="doc-content">
+                <h3>Requirements</h3>
+                <ul>
+                    <li><strong>Blender 4.2.0</strong> or later</li>
+                    <li>Windows, macOS, or Linux</li>
+                </ul>
+                <h3>Steps</h3>
+                <ol>
+                    <li><strong>Download</strong> the addon from <a
+                            href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank"
+                            rel="noopener">Gumroad</a> or <a
+                            href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank"
+                            rel="noopener">FairMarket</a></li>
+                    <li>Open Blender → <strong>Edit → Preferences → Add-ons</strong></li>
+                    <li>Click <strong>Install...</strong> → select the downloaded <code>.zip</code> file</li>
+                    <li>Enable the checkbox next to <strong>"Eternal Utility Toolbox ◈"</strong></li>
+                    <li>Press <code>N</code> in the 3D Viewport → open the <strong>ETERNAL</strong> tab</li>
+                </ol>
+                <div class="doc-note">
+                    <strong>First Launch:</strong> The addon creates a preferences file in your Blender config
+                    directory. You can customize this path in addon preferences (gear icon in the panel header).
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doc-dimensions" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>📐 Dimensions Guide</h2>
+                <p>See the truth behind your modifiers</p>
+            </div>
+            <div class="doc-content">
+                <h3>What Are "Truth" Dimensions?</h3>
+                <p>Blender's native <code>dimensions</code> property shows the bounding box of the object's
+                    <strong>cage</strong> (original mesh), not what you actually see. When you have modifiers like
+                    <strong>Subdivision Surface</strong>, <strong>Solidify</strong>, or <strong>Geometry Nodes</strong>,
+                    the visual size differs from the cage size.
+                </p>
+                <p><strong>Truth Dimensions</strong> evaluates the actual result of your entire modifier stack and shows
+                    you the real-world size of what you see.</p>
+
+                <h3>Panel Features</h3>
+                <div class="doc-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Dimension Sliders (X/Y/Z)</strong></td>
+                                <td>Type or drag to set absolute dimensions. Objects scale proportionally.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Uniform Scale</strong></td>
+                                <td>When enabled, all three axes scale together — maintains proportions.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Truth Mode Toggle</strong></td>
+                                <td>Switch between evaluated "Truth" math and raw "Cage" fallback for selections.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pivot Point Selector</strong></td>
+                                <td>Respects Blender's transform pivot: 3D Cursor, Median Point, Active Element, etc.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Group Bounds Pinning</strong></td>
+                                <td>Pin the live bounding box of 2+ selected objects and monitor across selection
+                                    changes.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Apply Scale</strong></td>
+                                <td>Safely applies object scale — handles multi-user mesh data.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Snap to Round Values</strong></td>
+                                <td>Rounds dimensions to the nearest 5cm increment.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Edit Mode Selection Dimensions</h3>
+                <p>When in Edit Mode with geometry selected, an additional <strong>Local Dimensions</strong> section
+                    appears. This shows the footprint of your current selection — and when <strong>Truth Mode</strong>
+                    is active, it passes through the modifier stack to show the evaluated size of just the selected
+                    geometry.</p>
+
+                <h3>Smart Sync &amp; Performance</h3>
+                <p>For dense meshes (above the threshold in preferences), the addon uses <strong>debouncing</strong> to
+                    avoid lag. Dimensions update in real-time for light meshes and intelligently cache for heavy ones.
+                    The <strong>Shield Active</strong> indicator tells you when caching is engaged.</p>
+
+                <div class="doc-note">
+                    <strong>Tip:</strong> Adjust the Real-time Threshold in Addon Preferences to control when debouncing
+                    kicks in. Default is 100,000 vertices.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doc-origin" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>🎯 Smart Origin Alignment</h2>
+                <p>Snap origins with mathematical precision</p>
+            </div>
+            <div class="doc-content">
+                <h3>Geometry Median</h3>
+                <p>Snaps the origin to the geometric center (mean) of all vertices. Fast and accurate for any mesh
+                    density.</p>
+
+                <h3>Cursor Position</h3>
+                <p>Snaps the origin to the 3D cursor's world location.</p>
+
+                <h3>9-Point Compass Grid</h3>
+                <p>A 3×3 compass grid lets you snap the origin to any combination of:</p>
+                <ul>
+                    <li><strong>Top / Center / Bottom</strong> (Z-axis)</li>
+                    <li><strong>Left / Center / Right</strong> (Y-axis)</li>
+                    <li><strong>Front / Center / Back</strong> (X-axis)</li>
+                </ul>
+                <div class="code-block">↖ ↑ ↗ (Top row: min/center/max X, max Y)
+                    ← • → (Middle: min/center/max X, center Y)
+                    ↙ ↓ ↘ (Bottom: min/center/max X, min Y)</div>
+
+                <h3>Selection-Based Origin</h3>
+                <p>In Edit Mode, snap the origin to the center of your current vertex/edge/face selection.</p>
+
+                <div class="doc-note">
+                    <strong>How It Works:</strong> For bounding box calculations on heavy meshes, the addon uses a
+                    <strong>Geometry Nodes trick</strong> — temporarily creating a GN modifier that outputs only the 8
+                    bounding box vertices. This makes even 10M+ vertex meshes compute instantly, then the modifier is
+                    destroyed cleanly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doc-naming" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>🏷️ Naming Engine</h2>
+                <p>Systematic asset naming with presets</p>
+            </div>
+            <div class="doc-content">
+                <h3>Configuration</h3>
+                <div class="doc-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Toggle</th>
+                                <th>Effect</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Include Date</strong></td>
+                                <td>Prepends <code>YYYY MM</code> to the name (e.g., <code>2026 04</code>)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Category</strong></td>
+                                <td>Adds a category tag (e.g., <code>SCENE</code>, <code>PRODUCT</code>)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Type</strong></td>
+                                <td>Adds a type tag (e.g., <code>CATEGORY</code>, <code>PROJECT</code>)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td>Adds a specific name tag (e.g., <code>ASSET_NAME</code>)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Preview &amp; Apply</h3>
+                <div class="code-block">Preview: 2026 04 — SCENE — PRODUCT — ASSET_NAME.001</div>
+                <ul>
+                    <li><strong>Rename Objects</strong> — Applies the generated name to all selected objects (with
+                        sequential indexing)</li>
+                    <li><strong>Rename Collection</strong> — Applies the generated name to the active collection</li>
+                </ul>
+
+                <h3>Preset Management</h3>
+                <ul>
+                    <li><strong>+</strong> button — Add a new category/type/name preset</li>
+                    <li><strong>✏️</strong> button — Edit the currently selected preset</li>
+                    <li><strong>−</strong> button — Remove the currently selected preset</li>
+                </ul>
+                <p>Presets are saved as a JSON file. The path is configurable in addon preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="doc-cleanup" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>🧹 Scene Hygiene</h2>
+                <p>Keep scenes clean and professional</p>
+            </div>
+            <div class="doc-content">
+                <h3>Material Tools</h3>
+                <div class="doc-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Obj Name → Mat</strong></td>
+                                <td>Renames the active material to match the object name</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mat Name → Obj</strong></td>
+                                <td>Renames the object to match its active material</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Clean .001 Materials</strong></td>
+                                <td>Merges duplicate materials (e.g., <code>Material.001</code> → <code>Material</code>)
+                                    and remaps all users</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Purge Orphans</strong></td>
+                                <td>Removes all orphaned data blocks (unused materials, meshes, etc.) recursively</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="doc-note">
+                    <strong>Why This Matters:</strong> Blender accumulates orphan data blocks over time, increasing file
+                    size and causing confusion. Regular cleanup keeps scenes performant and organized.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doc-faq" class="doc-section">
+        <div class="container doc-container">
+            <div class="doc-header">
+                <h2>❓ FAQ</h2>
+                <p>Common questions and answers</p>
+            </div>
+            <div class="doc-content">
+                <div class="faq-list">
+                    <details>
+                        <summary>Why do the dimensions differ from Blender's native display?</summary>
+                        <p>Blender shows the <strong>cage</strong> dimensions (original mesh). This addon evaluates the
+                            <strong>modified</strong> mesh through the entire modifier stack, giving you the real-world
+                            size of what you actually see.
+                        </p>
+                    </details>
+                    <details>
+                        <summary>The dimensions aren't updating instantly on heavy meshes. Is it broken?</summary>
+                        <p>No — this is intentional. For meshes above the <strong>Real-time Threshold</strong> (default:
+                            100,000 verts), the addon debounces updates to prevent lag. Wait ~0.25 seconds after changes
+                            for the sync to kick in. You can adjust the threshold in preferences.</p>
+                    </details>
+                    <details>
+                        <summary>Can I use this in Blender 4.1 or earlier?</summary>
+                        <p>No. The addon requires Blender 4.2.0+ due to the new extension system
+                            (<code>blender_manifest.toml</code>) and API changes.</p>
+                    </details>
+                    <details>
+                        <summary>Does it work with Geometry Nodes?</summary>
+                        <p>Yes! Truth Dimensions evaluates the full GN output, giving you the actual size of whatever
+                            your node tree generates.</p>
+                    </details>
+                    <details>
+                        <summary>Where are my naming presets saved?</summary>
+                        <p>By default, in your Blender config directory as <code>eternal_naming_data.json</code>. You
+                            can change this path in addon preferences.</p>
+                    </details>
+                    <details>
+                        <summary>Is my purchase tied to one machine?</summary>
+                        <p>Check the license terms on your purchase platform. Generally, personal use on multiple
+                            machines is fine — redistribution is not permitted.</p>
+                    </details>
+                    <details>
+                        <summary>I found a bug or have a feature request.</summary>
+                        <p>Reach out via <a href="https://www.instagram.com/eternal.shade3d/" target="_blank"
+                                rel="noopener">Instagram</a> or the support options in the addon's Socials panel.</p>
+                    </details>
+                </div>
             </div>
         </div>
     </section>
