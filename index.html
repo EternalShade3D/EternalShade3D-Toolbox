@@ -390,12 +390,18 @@
             padding: 28px;
             transition: all 0.25s ease;
             box-shadow: var(--shadow-ambient);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
         }
 
         .feature-card:hover {
             border-color: var(--color-accent-border);
             transform: translateY(-2px);
             box-shadow: var(--shadow-elevated);
+            text-decoration: none;
+            color: inherit;
         }
 
         .feature-icon {
@@ -424,6 +430,284 @@
             font-size: 0.9rem;
             line-height: 1.6;
             font-weight: 300;
+        }
+
+        /* Core features — Truth Dimensions + Edit Mode */
+        .core-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .core-card {
+            background: var(--color-bg-card);
+            border: 2px solid var(--color-accent-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+        }
+
+        .core-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hero);
+            border-color: var(--color-accent);
+        }
+
+        .core-card .feature-icon {
+            width: 52px;
+            height: 52px;
+            font-size: 24px;
+            background: var(--color-accent-subtle);
+            border: 1px solid var(--color-accent-border);
+            margin-bottom: 20px;
+        }
+
+        .core-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            color: var(--color-heading);
+        }
+
+        .core-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .core-card .core-card-tag {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 4px 10px;
+            background: var(--color-accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Also Included section */
+        .also-included {
+            margin-top: 24px;
+        }
+
+        .also-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-dim);
+            margin: 0 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .also-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+
+        .also-card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-ambient);
+        }
+
+        .also-card:hover {
+            border-color: var(--color-accent-border);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .also-card .feature-icon {
+            margin-bottom: 14px;
+        }
+
+        .also-card h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.15px;
+            margin-bottom: 8px;
+            color: var(--color-heading);
+        }
+
+        .also-card p {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            line-height: 1.55;
+            font-weight: 300;
+        }
+
+        /* ========================================
+           CORE FEATURES (2-column hero cards)
+           ======================================== */
+        .core-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .core-card {
+            display: block;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-accent-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-elevated);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+        }
+
+        .core-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hero);
+            border-color: var(--color-accent);
+        }
+
+        .core-card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-accent-subtle);
+            border-radius: var(--radius-md);
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .core-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            color: var(--color-heading);
+        }
+
+        .core-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .core-card-tag {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 3px 10px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ========================================
+           ALSO INCLUDED (secondary features)
+           ======================================== */
+        .also-included {
+            margin-top: 16px;
+        }
+
+        .also-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-dim);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .also-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .also-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 18px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .also-card:hover {
+            border-color: var(--color-accent-border);
+            background: var(--color-surface);
+        }
+
+        .also-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-surface);
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .also-card h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0 0 3px;
+            color: var(--color-heading);
+        }
+
+        .also-card p {
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.4;
         }
 
         /* ========================================
@@ -677,13 +961,18 @@
             background: var(--color-bg);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .doc-topic-content .code-block pre {
             padding: 16px 20px;
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--color-text-muted);
             line-height: 1.6;
-            margin: 16px 0;
-            overflow-x: auto;
+            margin: 0;
+            white-space: pre;
         }
 
         .doc-topic-content .doc-table-wrap {
@@ -858,7 +1147,7 @@
     </section>
 
     <!-- ==========================================
-         FEATURES
+         CORE FEATURES (2 hero features)
          ========================================== -->
     <section id="features">
         <div class="container">
@@ -866,42 +1155,62 @@
                 <h2>What's Inside</h2>
                 <p>Everything you need for mathematical precision in Blender</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📐</div>
+
+            <!-- Core: Truth Dimensions + Edit Mode -->
+            <div class="core-features">
+                <a href="#doc-dimensions" class="core-card">
+                    <div class="core-card-icon">📐</div>
                     <h3>Evaluated Truth Dimensions</h3>
-                    <p>Real-time monitoring of object size accounting for the entire modifier stack — including Geometry
-                        Nodes, Subdivision Surface, and more. No more guessing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✏️</div>
+                    <p>Blender lies to you about object dimensions. It shows the <strong>cage</strong> size, ignoring
+                        all modifiers. Truth Dimensions reads through <strong>Subdivision, Bevel, Geometry
+                            Nodes</strong> — the entire modifier stack — and shows you what you <em>actually</em> see.
+                        Real-time. Zero lag. Tested on millions of vertices.</p>
+                    <div class="core-card-tag">Object Mode</div>
+                </a>
+                <a href="#doc-dimensions" class="core-card">
+                    <div class="core-card-icon">✏️</div>
                     <h3>Edit Mode Precision</h3>
-                    <p>Direct dimension input and scaling for vertex, edge, and face selections. Type exact values and
-                        watch your geometry respond with mathematical accuracy.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Smart Origin Alignment</h3>
-                    <p>Mathematical snapping of origins to bounding box coordinates, geometry medians, or the 3D cursor.
-                        9-point compass grid for precise placement.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏷️</div>
-                    <h3>Dynamic Naming Engine</h3>
-                    <p>Systematic asset management with customizable naming presets. Category, type, and name tags with
-                        automatic date prefixing and sequential indexing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧹</div>
-                    <h3>Scene Hygiene</h3>
-                    <p>Clean up .001 materials, purge orphaned data blocks, and maintain professional production scenes
-                        with one-click material and data cleanup.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Color Utilities</h3>
-                    <p>Random material assignment to loose parts and UV islands for quick visualization. Restore base
-                        materials instantly when done.</p>
+                    <p>Select any faces, edges, or vertices in Edit Mode and see their exact dimensions. Type a value —
+                        30 cm, 200 cm, 4.5 cm — and your selection scales to match. Respects your <strong>Transform
+                            Pivot Point</strong>: 3D Cursor, Median Point, Active Element. Something Blender doesn't do
+                        by default.</p>
+                    <div class="core-card-tag">Edit Mode</div>
+                </a>
+            </div>
+
+            <!-- Also included -->
+            <div class="also-included">
+                <h3 class="also-title">Also Included</h3>
+                <div class="also-grid">
+                    <a href="#doc-origin" class="also-card">
+                        <div class="also-icon">🎯</div>
+                        <div>
+                            <h4>Smart Origin Alignment</h4>
+                            <p>9-point compass grid, geometry median, cursor snap — snap origins with mathematical
+                                precision</p>
+                        </div>
+                    </a>
+                    <a href="#doc-naming" class="also-card">
+                        <div class="also-icon">🏷️</div>
+                        <div>
+                            <h4>Naming Engine</h4>
+                            <p>Preset-based asset naming with date prefixing and batch rename</p>
+                        </div>
+                    </a>
+                    <a href="#doc-cleanup" class="also-card">
+                        <div class="also-icon">🧹</div>
+                        <div>
+                            <h4>Scene Hygiene</h4>
+                            <p>One-click .001 material cleanup and orphan data purging</p>
+                        </div>
+                    </a>
+                    <a href="#doc-faq" class="also-card">
+                        <div class="also-icon">🎨</div>
+                        <div>
+                            <h4>Color Utilities</h4>
+                            <p>Random colors for loose parts and UV islands — visual debugging</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1155,9 +1464,11 @@
                                 <li><strong>Left / Center / Right</strong> (Y-axis)</li>
                                 <li><strong>Front / Center / Back</strong> (X-axis)</li>
                             </ul>
-                            <div class="code-block">↖ ↑ ↗ (Top row: min/center/max X, max Y)
-                                ← • → (Middle: min/center/max X, center Y)
-                                ↙ ↓ ↘ (Bottom: min/center/max X, min Y)</div>
+                            <div class="code-block">
+                                <pre>↖  ↑  ↗     (Top row: min/center/max X, max Y)
+←  •  →     (Middle: min/center/max X, center Y)
+↙  ↓  ↘     (Bottom: min/center/max X, min Y)</pre>
+                            </div>
 
                             <h4>Selection-Based Origin</h4>
                             <p>In Edit Mode, snap the origin to the center of your current vertex/edge/face selection.
