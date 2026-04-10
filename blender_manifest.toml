@@ -1,11 +1,12 @@
 schema_version = "1.0.0"
 id = "EternalShade3D_Utility_Toolbox"
-version = "1.22.0"
+version = "1.28.2"
 name = "Eternal Utility Toolbox ◈"
 tagline = "Precision Scaling and Evaluated Truth Dimensions for Objects"
 maintainer = "EternalShade3D <eternal.shadeon@gmail.com>"
 type = "add-on"
 blender_version_min = "4.2.0"
+website = "https://eternalshade3d.github.io/EternalShade3D-Toolbox/"
 
 license = [
   "SPDX:GPL-3.0-or-later",

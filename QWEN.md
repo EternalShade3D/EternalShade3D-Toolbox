@@ -86,7 +86,7 @@ Six N-panel sub-panels under the "ETERNAL" category:
 ### `blender_manifest.toml`
 
 Blender 4.2+ extension manifest. Key metadata:
-- Version: `1.22.0`
+- Version: `1.28.2`
 - License: GPL-3.0-or-later
 - Tags: Modeling, Object, System
 - Permission: File access for naming preset JSON
