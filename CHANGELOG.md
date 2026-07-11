@@ -109,6 +109,7 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Mar 4–14** — 22 checkpoints of iterative development: dimension evaluation engine, Origin alignment, Naming Engine, Scene Hygiene, Color Utilities, and performance optimizations.
 - **Mar 15** — First public release (`v1.22.0`) with the complete feature set.
 
+[1.28.4]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4
 [1.28.3]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3
 [1.28.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2
 [1.28.1]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.1
