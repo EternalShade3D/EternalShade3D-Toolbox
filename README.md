@@ -1,6 +1,6 @@
 # Eternal Utility Toolbox ◈
 
-> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.3**
+> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
 
 <div align="center">
 

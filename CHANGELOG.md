@@ -4,6 +4,24 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 
 ---
 
+## [1.28.4] — 2026-05-29
+
+### Added
+- **Keyboard Shortcuts** — Apply Scale (`Ctrl+Shift+A`) and Round Dimensions (`Ctrl+Shift+R`) for faster, menu-free workflows.
+- **Destructive-action Confirmations** — Merge Materials and Purge Orphans now show a confirmation dialog before running, preventing accidental material loss.
+- **Context-Aware Operators** — All operators expose `poll()` methods and auto-disable their buttons when not applicable, for a cleaner, less confusing UI.
+
+### Changed
+- **Reverted Viewport-Aware Compass** — The experimental viewport-aware smart origin compass has been removed; Smart Origin reverts to the stable 9-point compass grid. The compass feature will be revisited in a future version.
+
+### Fixed
+- **Edit Mode viewport lag** — A depsgraph dirty-flag fix eliminates dimension-recalculation lag on heavy meshes while editing.
+- **Addon stability** — Restored stable UI after compass experiments broke panel rendering; defensive `register()` / `unregister()` prevents add-on breakage on Blender reload.
+- **Internal cleanup** — `debug.info()` → `debug.log()` consistency, deduplicated preferences handling, and reliable debug logging across modules.
+- **File organization** — Moved graphify output files into `graphify-out/`.
+
+---
+
 ## [1.28.3] — 2026-04-10
 
 ### Added
