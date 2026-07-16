@@ -147,7 +147,7 @@ This public repository contains **only** marketing and documentation materials:
 | `blender_manifest.toml` | Extension metadata (no code) |
 | `LICENSE` | Proprietary software license |
 
-The actual addon source code is **not** included.
+The actual addon source code is **not** included in this repository as you can see.
 
 ---
 
