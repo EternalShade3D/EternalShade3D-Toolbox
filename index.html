@@ -25,7 +25,7 @@
   <meta content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/1.jpg" name="twitter:image"/>
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
-   {      "@context": "https://schema.org",      "@type": "SoftwareApplication",      "name": "Eternal Utility Toolbox",      "operatingSystem": "Windows, macOS, Linux",      "applicationCategory": "MultimediaApplication",      "applicationSubCategory": "3D Modeling Software",      "softwareVersion": "1.28.3",      "description": "High-precision utility toolkit for Blender providing evaluated truth dimensions, Edit Mode precision scaling, smart origin alignment, dynamic naming engine, and scene hygiene.",      "url": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/",      "image": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/1.jpg",      "author": {        "@type": "Person",        "name": "EternalShade3D",        "url": "https://www.instagram.com/eternal.shade3d/"      },      "offers": [        {          "@type": "Offer",          "name": "Gumroad",          "url": "https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox",          "category": "Digital Download"        },        {          "@type": "Offer",          "name": "FairMarket",          "url": "https://www.fairmarket.land/product/eternal-utility-toolbox",          "category": "Digital Download"        }      ],      "softwareRequirements": {        "@type": "SoftwareApplication",        "name": "Blender",        "softwareVersion": "4.2.0"      },      "featureList": [        "Evaluated Truth Dimensions through modifiers",        "Edit Mode selection dimensions and scaling",        "Smart Origin Alignment with 9-point compass grid",        "Dynamic Naming Engine with presets",        "Scene Hygiene and material cleanup",        "Color Utilities for loose parts and UV islands"      ]    }
+   {      "@context": "https://schema.org",      "@type": "SoftwareApplication",      "name": "Eternal Utility Toolbox",      "operatingSystem": "Windows, macOS, Linux",      "applicationCategory": "MultimediaApplication",      "applicationSubCategory": "3D Modeling Software",      "softwareVersion": "1.28.6",      "description": "High-precision utility toolkit for Blender providing evaluated truth dimensions, Edit Mode precision scaling, smart origin alignment, dynamic naming engine, and scene hygiene.",      "url": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/",      "image": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/1.jpg",      "author": {        "@type": "Person",        "name": "EternalShade3D",        "url": "https://www.instagram.com/eternal.shade3d/"      },      "offers": [        {          "@type": "Offer",          "name": "Gumroad",          "url": "https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox",          "category": "Digital Download"        },        {          "@type": "Offer",          "name": "FairMarket",          "url": "https://www.fairmarket.land/product/eternal-utility-toolbox",          "category": "Digital Download"        }      ],      "softwareRequirements": {        "@type": "SoftwareApplication",        "name": "Blender",        "softwareVersion": "4.2.0"      },      "featureList": [        "Evaluated Truth Dimensions through modifiers",        "Edit Mode selection dimensions and scaling",        "Smart Origin Alignment with 9-point compass grid",        "Dynamic Naming Engine with presets",        "Scene Hygiene and material cleanup",        "Color Utilities for loose parts and UV islands",        "Camera Screenshots — batch capture every camera in your scene"      ]    }
   </script>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -74,7 +74,7 @@
     <div class="hero-badge">
      Blender 4.2+ Addon •
      <span>
-      v1.28.3
+      v1.28.6
      </span>
     </div>
     <h1>
@@ -211,6 +211,19 @@
         </h4>
         <p>
          Random colors for loose parts and UV islands — visual debugging
+        </p>
+       </div>
+      </a>
+      <a class="also-card" href="#doc-camera">
+       <div class="also-icon">
+        📸
+       </div>
+       <div>
+        <h4>
+         Camera Screenshots
+        </h4>
+        <p>
+         Batch-capture every camera — clean shots, ESC to stop, AUTO/SOLID/MATERIAL/RENDERED
         </p>
        </div>
       </a>
@@ -884,6 +897,69 @@
           Why This Matters:
          </strong>
          Blender accumulates orphan data blocks over time,                                increasing file size and causing confusion. Regular cleanup keeps scenes performant and                                organized.
+        </div>
+       </div>
+      </div>
+     </details>
+     <!-- Camera Screenshots -->
+     <details class="doc-topic" id="doc-camera">
+      <summary>
+       <div class="doc-topic-icon">
+        📸
+       </div>
+       <div class="doc-topic-text">
+        <h3>
+         Camera Screenshots
+        </h3>
+        <p>
+         Batch-capture every camera with clean shots
+        </p>
+       </div>
+      </summary>
+      <div class="doc-topic-content">
+       <div class="doc-topic-inner">
+        <h4>
+         One-Click Multi-Camera Capture
+        </h4>
+        <p>
+         Render screenshots of every camera in your scene from a single panel — no more manual viewport hopping. Pick a shading mode (
+         <strong>
+          AUTO, SOLID, MATERIAL,
+         </strong>
+         or
+         <strong>
+          RENDERED
+         </strong>
+         ) and let it run.
+        </p>
+        <h4>
+         Clean Shots &amp; Control
+        </h4>
+        <ul>
+         <li>
+          <strong>
+           Clean-shot toggle
+          </strong>
+          — hide viewport overlays and gizmos for presentation-ready frames.
+         </li>
+         <li>
+          <strong>
+           ESC to stop
+          </strong>
+          — abort a long capture run at any time.
+         </li>
+         <li>
+          <strong>
+           Per-camera list
+          </strong>
+          — look through any camera directly from the panel.
+         </li>
+        </ul>
+        <div class="doc-note">
+         <strong>
+          Compatibility:
+         </strong>
+         Camera Screenshots is tested and supported in Blender 5.2.
         </div>
        </div>
       </div>

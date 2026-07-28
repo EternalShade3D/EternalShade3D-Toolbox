@@ -1,6 +1,6 @@
 # Eternal Utility Toolbox ◈
 
-> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
+> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.6**
 
 <div align="center">
 
@@ -62,6 +62,15 @@ Visual debugging for complex meshes:
 - **Random Loose Parts** — assign distinct colors to separate mesh islands
 - **Random UV Islands** — color-code separate UV clusters
 - **Restore Base Material** — reset to original materials
+
+### 📸 Camera Screenshots
+
+Capture every camera in your scene in one pass:
+- **Batch capture** — render screenshots of all cameras (or a selected list) without manual viewport hopping
+- **Clean-shot toggle** — hide viewport overlays and gizmos for presentation-ready frames
+- **ESC to stop** — abort a long capture run at any time
+- **Shading modes** — AUTO / SOLID / MATERIAL / RENDERED per your needs
+- **Per-camera list** — look through any camera directly from the panel. Works in Blender 5.2.
 
 ---
 

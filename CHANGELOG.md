@@ -4,6 +4,25 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 
 ---
 
+## [1.28.6] — 2026-07-25
+
+### Added
+- **Camera Screenshots** — Batch-capture screenshots of all cameras in the scene from a single panel: clean-shot UI toggle (hide viewport overlays/gizmos), ESC-to-stop, shading modes (AUTO / SOLID / MATERIAL / RENDERED), and a per-camera list with look-through. Works in Blender 5.2.
+
+### Fixed
+- **Blender 5.2 capture pipeline** — `screen.screenshot` no longer accepts the `full=` kwarg in 5.2 (gated behind an RNA presence check so it still works on <5.2); `template_list` no longer rejects a `None` active data pointer; the `hide_ui` capture flag is restored to the run dict (was raising `KeyError` and blocking every shot); the clean-shot toggle now also gates `hide_props_region`; reverted a window-maximize clean-shot regression that produced zero captures.
+
+---
+
+## [1.28.5] — 2026-07-22
+
+### Fixed
+- **Edit Mode selection readout freeze (B1)** — Replacing a selected loop with another loop of identical element counts no longer freezes the local Truth/Cage dimensions at the prior selection's size; a real per-vertex-set signature now forces a fresh re-evaluation.
+- **Multi-axis burst edit (B2)** — Cluster-selecting several dimension axes and typing one value now applies all axes atomically instead of fighting per-axis callbacks.
+- **Truth-Mode local dims (B3)** — Evaluated size is correctly driven on type/snap and a truth_cache `hash` crash is guarded.
+
+---
+
 ## [1.28.4] — 2026-05-29
 
 ### Added
@@ -109,6 +128,8 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Mar 4–14** — 22 checkpoints of iterative development: dimension evaluation engine, Origin alignment, Naming Engine, Scene Hygiene, Color Utilities, and performance optimizations.
 - **Mar 15** — First public release (`v1.22.0`) with the complete feature set.
 
+[1.28.6]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.6
+[1.28.5]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.5
 [1.28.4]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4
 [1.28.3]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3
 [1.28.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2

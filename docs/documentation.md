@@ -8,6 +8,7 @@
 - [Naming Engine](#naming-engine)
 - [Scene Hygiene](#scene-hygiene)
 - [Color Utilities](#color-utilities)
+- [Camera Screenshots](#camera-screenshots)
 - [FAQ](#faq)
 
 ---
@@ -181,6 +182,20 @@ Detects UV islands (separate UV clusters) and assigns each a random material.
 
 ### Restore Base Material
 Removes all auto-generated materials (prefixed with `Eternal_Part_` or `Eternal_UV_`) and resets everything to the first material slot.
+
+---
+
+## Camera Screenshots
+
+Batch-capture screenshots of every camera in your scene from a single panel.
+
+- **Batch capture** — Render screenshots of all cameras (or a selected list) without manual viewport hopping.
+- **Clean-shot toggle** — Hide viewport overlays and gizmos for presentation-ready frames.
+- **ESC to stop** — Abort a long capture run at any time.
+- **Shading modes** — AUTO / SOLID / MATERIAL / RENDERED.
+- **Per-camera list** — Look through any camera directly from the panel.
+
+> **Compatibility:** Camera Screenshots is tested and supported in Blender 5.2.
 
 ---
 
