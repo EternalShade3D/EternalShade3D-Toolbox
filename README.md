@@ -88,7 +88,7 @@ Visual debugging for complex meshes:
 
 ## Requirements
 
-- **Blender 4.2.0** or later
+- **Blender 4.2 through 5.2** (all versions in between)
 - Windows, macOS, or Linux
 
 ---

@@ -4,6 +4,32 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 
 ---
 
+## [1.29.1] — 2026-07-22
+
+### Added
+- **Camera Screenshots** — Capture clean product shots straight from Blender: full-window capture, adjustable pre-screenshot delay, ESC to stop, live status readout, and captured PNGs appended to Blender's image list. Ships as a built-in feature (no optional loader).
+
+### Changed
+- Release build now bundles `camera_capture.py`; code comments humanized.
+
+---
+
+## [1.28.6] — 2026-07-22
+
+### Changed
+- Maintenance release. Code is identical to v1.28.5; only the manifest version string was bumped. Camera Capture was held back from this release and ships in v1.29.1.
+
+---
+
+## [1.28.5] — 2026-07-22
+
+### Fixed
+- **Edit Mode selection readout freeze (B1)** — Replacing a selected loop with another loop of identical element counts no longer freezes the local Truth/Cage dimensions at the prior selection's size; a real per-vertex-set signature now forces a fresh re-evaluation.
+- **Multi-axis burst edit (B2)** — Cluster-selecting several dimension axes and typing one value now applies all axes atomically instead of fighting per-axis callbacks.
+- **Truth-Mode local dims (B3)** — Evaluated size is correctly driven on type/snap and a truth_cache `hash` crash is guarded.
+
+---
+
 ## [1.28.4] — 2026-05-29
 
 ### Added
@@ -19,6 +45,7 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Addon stability** — Restored stable UI after compass experiments broke panel rendering; defensive `register()` / `unregister()` prevents add-on breakage on Blender reload.
 - **Internal cleanup** — `debug.info()` → `debug.log()` consistency, deduplicated preferences handling, and reliable debug logging across modules.
 - **File organization** — Moved graphify output files into `graphify-out/`.
+- **Release build script** — Added `_build_release.py` for versioned zip packaging.
 
 ---
 
@@ -109,11 +136,14 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Mar 4–14** — 22 checkpoints of iterative development: dimension evaluation engine, Origin alignment, Naming Engine, Scene Hygiene, Color Utilities, and performance optimizations.
 - **Mar 15** — First public release (`v1.22.0`) with the complete feature set.
 
-[1.28.4]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4
-[1.28.3]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3
-[1.28.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2
-[1.28.1]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.1
-[1.27.x]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases
-[1.26.x]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases
-[1.22.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.2
-[1.22.0]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.0
+[1.29.1]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.29.1`
+[1.28.6]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.6`
+[1.28.5]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.5`
+[1.28.4]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4`
+[1.28.3]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3`
+[1.28.2]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2`
+[1.28.1]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.1`
+[1.27.x]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases`
+[1.26.x]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases`
+[1.22.2]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.2`
+[1.22.0]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.0`
