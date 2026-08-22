@@ -15,7 +15,7 @@
 ## Installation
 
 ### Requirements
-- **Blender 4.2.0** or later
+- **Blender**
 - Windows, macOS, or Linux
 
 ### Steps
@@ -192,8 +192,8 @@ A: Blender shows the **cage** dimensions (original mesh). This addon evaluates t
 ### Q: The dimensions aren't updating instantly on heavy meshes. Is it broken?
 A: No — this is intentional. For meshes above the **Real-time Threshold** (default: 100,000 verts), the addon debounces updates to prevent lag. Wait ~0.25 seconds after changes for the sync to kick in. You can adjust the threshold in preferences.
 
-### Q: Can I use this in Blender 4.1 or earlier?
-A: No. The addon requires Blender 4.2.0+ due to the new extension system (`blender_manifest.toml`) and API changes.
+### Q: Which Blender versions does this work with?
+A: The addon requires Blender's new extension system (`blender_manifest.toml`), so it works on Blender 4.2 and later.
 
 ### Q: Does it work with Geometry Nodes?
 A: Yes! Truth Dimensions evaluates the full GN output, giving you the actual size of whatever your node tree generates.
