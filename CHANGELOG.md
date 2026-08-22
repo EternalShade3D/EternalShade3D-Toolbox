@@ -9,15 +9,12 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 ### Added
 - **Camera Screenshots** — Capture clean product shots straight from Blender: full-window capture, adjustable pre-screenshot delay, ESC to stop, live status readout, and captured PNGs appended to Blender's image list. Ships as a built-in feature (no optional loader).
 
-### Changed
-- Release build now bundles `camera_capture.py`; code comments humanized.
-
 ---
 
 ## [1.28.6] — 2026-07-22
 
 ### Changed
-- Maintenance release. Code is identical to v1.28.5; only the manifest version string was bumped. Camera Capture was held back from this release and ships in v1.29.1.
+- Maintenance release. Code is identical to v1.28.5; only the manifest version string was bumped.
 
 ---
 
