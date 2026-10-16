@@ -1,5 +1,8 @@
 # Eternal Utility Toolbox ◈
 
+![Blender](https://img.shields.io/badge/Blender-addon-ED8F33?logo=blender)
+![License](https://img.shields.io/badge/License-Proprietary-red)
+
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
 
 <div align="center">
