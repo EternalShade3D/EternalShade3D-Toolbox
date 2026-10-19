@@ -1,7 +1,11 @@
 # Eternal Utility Toolbox ◈
 
-![Blender](https://img.shields.io/badge/Blender-addon-ED8F33?logo=blender)
-![License](https://img.shields.io/badge/License-Proprietary-red)
+<p align="center">
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Store-landing%20page-FFD700?style=for-the-badge&labelColor=26282e" alt="Landing page"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/actions/workflows/deploy-pages.yml"><img src="https://img.shields.io/github/actions/workflow/status/EternalShade3D/EternalShade3D-Toolbox/deploy-pages.yml?style=for-the-badge&labelColor=26282e&label=Pages%20build&color=FFD700" alt="Pages build"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox-Private"><img src="https://img.shields.io/badge/Code-private%20repo-ED8F33?style=for-the-badge&labelColor=26282e&logo=blender&logoColor=white" alt="Add-on code lives in the private repo"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Proprietary%20(brand)-red?style=for-the-badge&labelColor=26282e" alt="License: Proprietary (brand and marketing)"></a>
+</p>
 
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
 
