@@ -4,6 +4,29 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 
 ---
 
+## [1.30.0] — 2026-11-03
+
+### Added
+- **Edge Readout** — New collapsible sub-panel inside **Local Dimensions**. Measures the selected edges and reports only what applies: `Perimeter Length` for closed loops, `Edge Segment Length` for open selections — never both for the same loop. Multiple independent loops list as `LOOP 01`, `LOOP 02` (cap 3 rows + `+N more`). Values are read-only text in an aligned two-column layout; the edge-count field was removed. Collapsed = nothing is computed and the cached readout is dropped. Edit mode only.
+- **Curve and Text support** — Edit-mode selection now measures selected points (consecutive points in the same spline, closing link on cyclic splines). Reported as the polyline of the selection, not true arc length.
+- **Camera-Frame Crop** — Captures clip to what the camera actually sees, cutting the letterbox bands outside the camera frame (`capture_crop_camera_frame`, on by default).
+
+### Changed
+- **Truth renamed to `More Accurate`** across the panel and tooltips.
+- `More Accurate` + `Nearest Step` now sit on one full-width row below the X/Y/Z sliders.
+- Local Dimensions: X/Y/Z fields stay visible with nothing selected (zeros instead of a hidden panel).
+
+### Fixed
+- **First-open readout** — Opening Edge Readout with a loop already selected showed `Select edges` until a deselect/reselect; the panel now computes on the same draw.
+- **Edge-only selection** — Selecting edges without verts now registers as a selection (previously the readout stayed empty).
+- **Edit-mode-only panels** — Edge Readout no longer remains visible after returning to Object mode.
+- **Clipboard colour** — Values were clamped straight from scene-linear, crushing highlights; the scene colour management (view transform/look/exposure/gamma) is now applied before the image is built.
+- **Stale paste** — A second capture pasted the previous view because the image datablock was cached; now force-reloaded from disk, with a timestamped temp filename instead of a PID name.
+- **Orientation** — Paste was upside down and mirrored (bottom-up pixel storage, wrong channel reversal); fixed.
+- **Build** — `checkpoints/` was being included in the release zip.
+
+---
+
 ## [1.29.1] — 2026-07-22
 
 ### Added
@@ -133,6 +156,7 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Mar 4–14** — 22 checkpoints of iterative development: dimension evaluation engine, Origin alignment, Naming Engine, Scene Hygiene, Color Utilities, and performance optimizations.
 - **Mar 15** — First public release (`v1.22.0`) with the complete feature set.
 
+[1.30.0]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.30.0`
 [1.29.1]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.29.1`
 [1.28.6]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.6`
 [1.28.5]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.5`

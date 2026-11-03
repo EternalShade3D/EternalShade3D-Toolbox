@@ -7,7 +7,7 @@
   <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Proprietary%20(brand)-red?style=for-the-badge&labelColor=26282e" alt="License: Proprietary (brand and marketing)"></a>
 </p>
 
-> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
+> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.30.0**
 
 <div align="center">
 
