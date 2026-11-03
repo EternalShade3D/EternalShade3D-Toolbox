@@ -1,6 +1,13 @@
 # Eternal Utility Toolbox ◈
 
-> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.6**
+<p align="center">
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Store-landing%20page-FFD700?style=for-the-badge&labelColor=26282e" alt="Landing page"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/actions/workflows/deploy-pages.yml"><img src="https://img.shields.io/github/actions/workflow/status/EternalShade3D/EternalShade3D-Toolbox/deploy-pages.yml?style=for-the-badge&labelColor=26282e&label=Pages%20build&color=FFD700" alt="Pages build"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox-Private"><img src="https://img.shields.io/badge/Code-private%20repo-ED8F33?style=for-the-badge&labelColor=26282e&logo=blender&logoColor=white" alt="Add-on code lives in the private repo"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Proprietary%20(brand)-red?style=for-the-badge&labelColor=26282e" alt="License: Proprietary (brand and marketing)"></a>
+</p>
+
+> **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.28.4**
 
 <div align="center">
 
@@ -97,7 +104,7 @@ Capture every camera in your scene in one pass:
 
 ## Requirements
 
-- **Blender 4.2.0** or later
+- **Blender 4.2 through 5.2** (all versions in between)
 - Windows, macOS, or Linux
 
 ---
@@ -156,7 +163,7 @@ This public repository contains **only** marketing and documentation materials:
 | `blender_manifest.toml` | Extension metadata (no code) |
 | `LICENSE` | Proprietary software license |
 
-The actual addon source code is **not** included.
+The actual addon source code is **not** included in this repository as you can see.
 
 ---
 

@@ -4,13 +4,17 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 
 ---
 
-## [1.28.6] — 2026-07-25
+## [1.29.1] — 2026-07-22
 
 ### Added
-- **Camera Screenshots** — Batch-capture screenshots of all cameras in the scene from a single panel: clean-shot UI toggle (hide viewport overlays/gizmos), ESC-to-stop, shading modes (AUTO / SOLID / MATERIAL / RENDERED), and a per-camera list with look-through. Works in Blender 5.2.
+- **Camera Screenshots** — Capture clean product shots straight from Blender: full-window capture, adjustable pre-screenshot delay, ESC to stop, live status readout, and captured PNGs appended to Blender's image list. Ships as a built-in feature (no optional loader).
 
-### Fixed
-- **Blender 5.2 capture pipeline** — `screen.screenshot` no longer accepts the `full=` kwarg in 5.2 (gated behind an RNA presence check so it still works on <5.2); `template_list` no longer rejects a `None` active data pointer; the `hide_ui` capture flag is restored to the run dict (was raising `KeyError` and blocking every shot); the clean-shot toggle now also gates `hide_props_region`; reverted a window-maximize clean-shot regression that produced zero captures.
+---
+
+## [1.28.6] — 2026-07-22
+
+### Changed
+- Maintenance release. Code is identical to v1.28.5; only the manifest version string was bumped.
 
 ---
 
@@ -38,6 +42,7 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Addon stability** — Restored stable UI after compass experiments broke panel rendering; defensive `register()` / `unregister()` prevents add-on breakage on Blender reload.
 - **Internal cleanup** — `debug.info()` → `debug.log()` consistency, deduplicated preferences handling, and reliable debug logging across modules.
 - **File organization** — Moved graphify output files into `graphify-out/`.
+- **Release build script** — Added `_build_release.py` for versioned zip packaging.
 
 ---
 
@@ -128,13 +133,14 @@ All notable changes to **EternalShade3D Utility Toolbox** are documented here.
 - **Mar 4–14** — 22 checkpoints of iterative development: dimension evaluation engine, Origin alignment, Naming Engine, Scene Hygiene, Color Utilities, and performance optimizations.
 - **Mar 15** — First public release (`v1.22.0`) with the complete feature set.
 
-[1.28.6]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.6
-[1.28.5]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.5
-[1.28.4]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4
-[1.28.3]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3
-[1.28.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2
-[1.28.1]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.1
-[1.27.x]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases
-[1.26.x]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases
-[1.22.2]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.2
-[1.22.0]: https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.0
+[1.29.1]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.29.1`
+[1.28.6]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.6`
+[1.28.5]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.5`
+[1.28.4]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.4`
+[1.28.3]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.3`
+[1.28.2]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.2`
+[1.28.1]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.28.1`
+[1.27.x]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases`
+[1.26.x]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases`
+[1.22.2]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.2`
+[1.22.0]: @url:`https://github.com/EternalShade3D/EternalShade3D-Toolbox/releases/tag/v1.22.0`
