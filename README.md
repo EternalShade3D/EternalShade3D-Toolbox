@@ -6,7 +6,7 @@
 
 **A high-precision utility toolkit for 3D artists, ArchViz professionals, and Hard-Surface modelers who demand mathematical accuracy.**
 
-[🛒 Get on Gumroad](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox) &nbsp;|&nbsp; [🛒 Get on FairMarket](https://www.fairmarket.land/product/eternal-utility-toolbox) &nbsp;|&nbsp; [📷 Instagram](https://www.instagram.com/eternal.shade3d/) &nbsp;|&nbsp; [💬 Discord](https://discord.gg/3uh4gn5K) &nbsp;|&nbsp; [📖 Documentation](https://eternalshade3d.github.io/EternalShade3D-Toolbox/)
+[🛒 Get on Gumroad](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox) &nbsp;|&nbsp; [🛒 Get on FairMarket](https://www.fairmarket.land/product/eternal-utility-toolbox) &nbsp;|&nbsp; [📷 Instagram](https://www.instagram.com/eternal.shade3d/) &nbsp;|&nbsp; [💬 Discord](https://discord.gg/YUtnsA3pnp) &nbsp;|&nbsp; [📖 Documentation](https://eternalshade3d.github.io/EternalShade3D-Toolbox/)
 
 </div>
 
