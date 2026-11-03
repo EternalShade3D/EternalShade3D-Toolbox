@@ -1,16 +1,19 @@
 # Eternal Utility Toolbox ◈
 
 <p align="center">
-  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Buy-FFD700?style=for-the-badge&labelColor=26282e&logo=gumroad&logoColor=FFD700" alt="Buy on Gumroad"></a>
-  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Buy-FFD700?style=for-the-badge&labelColor=26282e" alt="Buy on FairMarket"></a>
-  <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-9D85FD?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="Instagram"></a>
-  <a href="https://discord.gg/YUtnsA3pnp"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Documentation"></a>
-  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Proprietary%20(purchase%20to%20use)-F0C040?style=for-the-badge&labelColor=26282e" alt="Proprietary license — purchase required to use"></a>
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Eternal Utility Toolbox documentation guide"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox"><img src="https://img.shields.io/badge/Repo-About-F0C040?style=for-the-badge&labelColor=26282e&logo=github&logoColor=white" alt="Eternal Utility Toolbox repository"></a>
+  <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-9D85FD?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="EternalShade3D Blender addon showcase on Instagram"></a>
+  <a href="https://discord.gg/YUtnsA3pnp"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
 </p>
 
 <p align="center">
   <img src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Utility Toolbox banner" width="880"/>
+</p>
+
+<p align="center">
+  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-FFD700?style=for-the-badge&labelColor=26282e&logo=gumroad&logoColor=FFD700" alt="Get Eternal Utility Toolbox on Gumroad"></a>
+  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-FFD700?style=for-the-badge&labelColor=26282e" alt="Get Eternal Utility Toolbox on FairMarket"></a>
 </p>
 
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.30.0**
