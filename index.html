@@ -405,6 +405,24 @@
                     </p>
                 </div>
 
+                <!-- Showcase 01: standard YouTube embed with native thumbnail + controls -->
+                <figure class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden mb-8 hover:border-brand-accentBorder">
+                    <div class="aspect-video relative overflow-hidden bg-brand-card">
+                        <iframe
+                            src="https://www.youtube.com/embed/nP42ajGU4c4"
+                            width="600" height="338" loading="lazy"
+                            title="Eternal Toolbox showcase 01: Type a Size Get That Size"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            class="w-full h-full border-0"/>
+                    </div>
+                    <figcaption class="p-5 border-t border-brand-border">
+                        <h4 class="text-base font-semibold text-brand-heading mb-1">Showcase 01: Type a Size, Get That Size</h4>
+                        <p class="text-xs text-brand-muted leading-relaxed">Global and local dimensions in one pass, captured inside Blender. <a href="https://youtu.be/nP42ajGU4c4" class="text-brand-accent hover:underline">Open on YouTube</a></p>
+                    </figcaption>
+                </figure>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/1.zoom.webp" data-zoom-fallback="assets/1.jpg" data-zoom-alt="Accurate Object &amp; Edit Mode Overview" tabindex="0" role="button" aria-label="Zoom: Accurate Object &amp; Edit Mode Overview">
@@ -544,6 +562,10 @@
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Global Truth Dimensions &amp; Uniform Scaling.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_local_dimensions.png" alt="Local dimensions panel for the current Edit Mode selection" width="600" height="442" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Local dimensions for the active selection, type a size and the selection scales to it.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
                             <img src="assets/panel_smart_origin.png" alt="Smart origin panel" width="600" height="440" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Origin alignment by compass, median, or 3D cursor.</figcaption>
                         </figure>
@@ -567,6 +589,10 @@
 
                     <!-- Column 3 -->
                     <div class="flex flex-col gap-6">
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_local_dimensions_edge_readout.png" alt="Local dimensions and edge readout panel" width="600" height="703" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Edge readout: closed loop total length, open line segment length.</figcaption>
+                        </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
                             <img src="assets/panel_color_utilities.png" alt="Color utilities panel" width="600" height="240" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Random colors for loose parts &amp; UV island debugging.</figcaption>
