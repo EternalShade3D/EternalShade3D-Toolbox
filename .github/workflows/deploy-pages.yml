@@ -15,16 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  enable-pages:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Enable GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
   deploy:
-    needs: enable-pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
