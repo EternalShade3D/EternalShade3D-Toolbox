@@ -1,26 +1,28 @@
-# Eternal Utility Toolbox ◈
+# Eternal Toolbox ◈
 
 <p align="center">
-  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Eternal Utility Toolbox documentation guide"></a>
-  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox"><img src="https://img.shields.io/badge/Repo-About-F0C040?style=for-the-badge&labelColor=26282e&logo=github&logoColor=white" alt="Eternal Utility Toolbox repository"></a>
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Eternal Toolbox documentation guide"></a>
+  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox"><img src="https://img.shields.io/badge/Repo-About-F0C040?style=for-the-badge&labelColor=26282e&logo=github&logoColor=white" alt="Eternal Toolbox repository"></a>
   <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-9D85FD?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="EternalShade3D Blender addon showcase on Instagram"></a>
   <a href="https://discord.gg/YUtnsA3pnp"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
 </p>
 
 <p align="center">
-  <img src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Utility Toolbox banner" width="880"/>
+  <img src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Toolbox banner" width="880"/>
 </p>
 
 <p align="center">
-  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-FFD700?style=for-the-badge&labelColor=26282e&logo=gumroad&logoColor=FFD700" alt="Get Eternal Utility Toolbox on Gumroad"></a>
-  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-FFD700?style=for-the-badge&labelColor=26282e" alt="Get Eternal Utility Toolbox on FairMarket"></a>
+  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-FFD700?style=for-the-badge&labelColor=26282e&logo=gumroad&logoColor=FFD700" alt="Get Eternal Toolbox on Gumroad"></a>
+  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-FFD700?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on FairMarket"></a>
 </p>
 
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.30.0**
 
 <div align="center">
 
-**A high-precision utility toolkit for 3D artists, ArchViz professionals, and Hard-Surface modelers who demand mathematical accuracy.**
+**A modular high-precision toolkit for 3D artists, ArchViz professionals, and Hard-Surface modelers who demand mathematical accuracy.**
+
+Built as independent modules — each panel works on its own, and more drop in over time. Dimensions, Edge Readout and Camera Capture are the mature ones; Naming Engine and Scene Hygiene are still early and will grow.
 
 </div>
 
@@ -30,7 +32,7 @@
 
 Blender is fantastic, but it leaves you blind to exact dimensions in **Edit Mode** — and in **Object Mode**, it misleads you. Modifiers like Subdivision Surface change your mesh size, but the default transform panel ignores them. You see cage dimensions, not reality.
 
-**The Eternal Utility Toolbox fixes this.**
+**The Eternal Toolbox fixes this.**
 
 ---
 

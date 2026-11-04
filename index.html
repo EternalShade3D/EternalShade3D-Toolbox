@@ -22,52 +22,9 @@
     <meta property="og:image" content="assets/eternal_toolbox_banner_clean.png"/>
     <meta name="twitter:card" content="summary_large_image"/>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            bg: '#0a0a0f',
-                            elevated: '#0e0e16',
-                            card: '#141420',
-                            surface: '#1a1a2b',
-                            border: '#202032',
-                            borderMedium: '#2a2a45',
-                            borderHover: '#33334e',
-                            text: '#f0f0f8',
-                            muted: '#8b8ba7',
-                            dim: '#545470',
-                            heading: '#ffffff',
-                            accent: '#7c5cfc',
-                            accentHover: '#6945f9',
-                            accentLight: '#a48eff',
-                            accentSubtle: 'rgba(124, 92, 252, 0.1)',
-                            accentBorder: 'rgba(124, 92, 252, 0.3)',
-                            gold: '#f0c040',
-                            goldHover: '#e0b030',
-                            goldGlow: 'rgba(240, 192, 64, 0.25)',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    boxShadow: {
-                        'glow-gold': '0 0 32px rgba(240, 192, 64, 0.25), 0 8px 24px rgba(0, 0, 0, 0.5)',
-                        'glow-purple': '0 0 32px rgba(124, 92, 252, 0.2), 0 8px 24px rgba(0, 0, 0, 0.5)',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+        <!-- Local styles (built from Tailwind, no CDN) -->
+        <link rel="stylesheet" href="assets/fonts.css"/>
+        <link rel="stylesheet" href="assets/style.css"/>
 
     <style>
         /* Ambient Grid Background FX from Copy 1 */
@@ -166,8 +123,8 @@
     <div id="announcement-bar" class="bg-gradient-to-r from-brand-accent/30 via-brand-accent/40 to-brand-accent/30 border-b border-brand-accentBorder text-xs sm:text-sm text-brand-heading py-2 px-4 transition-all duration-300">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
             <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
-                <span class="inline-block bg-brand-accent text-white text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full">New Release</span>
-                <span class="font-medium text-brand-heading">v1.30.0 introduces evaluated Truth Dimensions &amp; Edit Mode selection scaling!</span>
+                <span class="inline-block bg-brand-accent text-black text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full">New Release</span>
+                <span class="font-medium text-brand-heading">v1.30.0 — Edge Readout, Curve &amp; Text support, Camera-Frame Crop &amp; more accurate readouts</span>
             </div>
             <div class="flex items-center gap-3 shrink-0">
                 <a href="#docs" class="text-brand-accentLight hover:underline font-medium text-xs">Learn more &rarr;</a>
@@ -184,18 +141,18 @@
     <header class="sticky top-0 z-50 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-brand-border">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-2 text-brand-heading font-bold text-lg tracking-tight hover:opacity-90 transition-opacity">
-                <img src="assets/favicon.svg" alt="EternalShade3D" class="mark" width="32" height="32"/>
+            <a href="#" class="flex items-center gap-2 text-brand-heading font-bold text-lg tracking-tight hover:opacity-90 transition-opacity whitespace-nowrap">
+                <img src="assets/favicon.svg" alt="" class="mark" width="32" height="32"/>
                 <span>Eternal<span class="text-brand-accent font-normal">Shade3D</span></span>
             </a>
 
             <!-- Desktop Nav Links -->
-            <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-muted">
+            <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-brand-muted whitespace-nowrap">
                 <li><a href="#features" class="hover:text-brand-heading transition-colors">Features</a></li>
                 <li><a href="#screenshots" class="hover:text-brand-heading transition-colors">Screenshots</a></li>
                 <li><a href="#panels" class="hover:text-brand-heading transition-colors">Panels</a></li>
-                <li><a href="#docs" class="hover:text-brand-heading transition-colors">Documentation</a></li>
                 <li><a href="#pricing" class="hover:text-brand-heading transition-colors">Pricing</a></li>
+                <li><a href="#docs" class="hover:text-brand-heading transition-colors">Documentation</a></li>
             </ul>
 
             <!-- Navigation Actions -->
@@ -206,10 +163,9 @@
                 </a>
                 <a href="#pricing" class="inline-flex items-center gap-1.5 bg-brand-gold hover:bg-brand-goldHover text-black font-semibold text-xs px-4 py-2 rounded-md shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
                     <span>Get Addon</span>
-                    <span class="font-mono text-[11px] opacity-80">€19</span>
                 </a>
                 <!-- Mobile hamburger -->
-                <button class="menu-btn md:hidden" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
+                <button class="menu-btn lg:hidden" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
                     <span class="menu-bar"></span>
                 </button>
             </div>
@@ -220,7 +176,7 @@
     <div id="mobile-menu">
         <div class="menu-header flex items-center justify-between pb-2 border-b border-brand-borderMedium mb-4">
             <div class="flex items-center gap-2">
-                <img src="assets/favicon.svg" alt="EternalShade3D" class="mark" width="32" height="32"/>
+                <img src="assets/favicon.svg" alt="" class="mark" width="32" height="32"/>
                 <span>Eternal<span class="text-brand-accent font-normal">Shade3D</span></span>
             </div>
             <button class="menu-close" aria-label="Close menu" onclick="toggleMenu()">
@@ -240,7 +196,7 @@
             <div class="menu-section-label">Get it</div>
             <a href="#pricing" class="menu-item">💎 Pricing</a>
             <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="menu-item">🐙 GitHub Repository</a>
-            <a href="#pricing" class="menu-item btn-gold" style="margin-top:0.5rem;">Get Addon — €19</a>
+            <a href="#pricing" class="menu-item btn-gold" style="margin-top:0.5rem;">Get Addon</a>
         </div>
 
         <div class="menu-footer mt-auto pt-4 border-t border-brand-borderMedium">
@@ -274,9 +230,9 @@
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
                     <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-goldHover text-black font-semibold text-sm px-6 py-3 rounded-md shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
-                        <span>💎 Get on Gumroad (€19)</span>
+                        <span>💎 Get on Gumroad</span>
                     </a>
-                    <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accentHover text-white font-medium text-sm px-6 py-3 rounded-md shadow-[0_0_16px_rgba(124,92,252,0.2)] transition-all transform hover:-translate-y-0.5">
+                    <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accentHover text-black font-medium text-sm px-6 py-3 rounded-md shadow-[0_0_16px_rgba(124,92,252,0.2)] transition-all transform hover:-translate-y-0.5">
                         <span>🛒 Get on FairMarket</span>
                     </a>
                     <a href="#docs" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-surface text-brand-text hover:bg-brand-surface/80 border border-brand-borderMedium hover:border-brand-muted text-sm px-6 py-3 rounded-md transition-all">
@@ -286,10 +242,15 @@
 
                 <!-- Banner Preview -->
                 <div class="max-w-5xl mx-auto rounded-2xl p-2 bg-gradient-to-b from-brand-accent/30 to-white/5 border border-brand-border shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_32px_rgba(124,92,252,0.2)]">
-                    <img src="assets/eternal_toolbox_banner_clean.png"
-                         alt="Eternal Toolbox Banner"
-                         width="2048" height="1024"
-                         class="w-full h-auto rounded-xl border border-brand-border"/>
+                    <picture>
+                        <source srcset="assets/eternal_toolbox_banner_clean.webp" type="image/webp"/>
+                        <img src="assets/eternal_toolbox_banner_clean.png"
+                             alt="Eternal Toolbox Banner"
+                             width="2048" height="1024"
+                             fetchpriority="high"
+                             loading="eager"
+                             class="w-full h-auto rounded-xl border border-brand-border"/>
+                    </picture>
                 </div>
 
             </div>
@@ -349,7 +310,7 @@
 
                 <!-- "Also Included in Eternal Toolbox" Grid (FULL 6 CARDS) -->
                 <div class="rounded-2xl bg-brand-elevated border border-brand-border p-8">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-brand-dim mb-6">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-brand-muted mb-6">
                         Also Included in Eternal Toolbox
                     </h3>
                     
@@ -599,11 +560,10 @@
 
                         <div>
                             <div class="flex items-center gap-2 mb-2">
-                                <span class="text-2xl">💎</span>
+                                <img src="assets/logo_white_gumroad.png" alt="Gumroad" width="28" height="28" class="w-7 h-7"/>
                                 <h3 class="text-xl font-bold text-brand-heading">Gumroad Store</h3>
                             </div>
                             <div class="flex items-baseline gap-2 my-4">
-                                <span class="text-4xl font-extrabold text-brand-gold">€19</span>
                                 <span class="text-xs text-brand-muted font-normal">one-time payment</span>
                             </div>
                             <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
@@ -615,7 +575,7 @@
                         </div>
 
                         <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-goldHover text-black font-bold text-sm py-3.5 px-5 rounded-xl shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
-                            Buy on Gumroad →
+                            Get on Gumroad →
                         </a>
                     </div>
 
@@ -623,7 +583,7 @@
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium p-8 flex flex-col justify-between hover:border-brand-accentBorder transition-all">
                         <div>
                             <div class="flex items-center gap-2 mb-2">
-                                <span class="text-2xl">🛒</span>
+                                <img src="assets/logo_white_fairmarket.png" alt="FairMarket" width="28" height="28" class="w-7 h-7"/>
                                 <h3 class="text-xl font-bold text-brand-heading">FairMarket Store</h3>
                             </div>
                             <div class="flex items-baseline gap-2 my-4">
@@ -638,7 +598,7 @@
                         </div>
 
                         <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-brand-surface hover:bg-brand-surface/80 border border-brand-borderMedium hover:border-brand-accentBorder text-brand-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition-all">
-                            Buy on FairMarket →
+                            Get on FairMarket →
                         </a>
                     </div>
 
@@ -671,14 +631,14 @@
                         </summary>
                         <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-4">
                             <div>
-                                <h4 class="font-bold text-brand-heading mb-1">Requirements</h4>
+                                <h3 class="font-bold text-brand-heading mb-1">Requirements</h3>
                                 <ul class="list-disc pl-5 space-y-1">
                                     <li><strong>Blender 4.2+</strong> or later (Full support for Blender 5.2 Extension Manifest)</li>
                                     <li>Compatible with Windows, macOS, and Linux</li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="font-bold text-brand-heading mb-1">Installation Steps</h4>
+                                <h3 class="font-bold text-brand-heading mb-1">Installation Steps</h3>
                                 <ol class="list-decimal pl-5 space-y-1.5">
                                     <li>Download the <code>.zip</code> file after purchase.</li>
                                     <li>In Blender, navigate to <strong>Edit &rarr; Preferences &rarr; Add-ons</strong>.</li>
@@ -726,11 +686,11 @@
                         </summary>
                         <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-3">
                             <div>
-                                <h5 class="font-bold text-brand-heading">Which Blender versions are supported?</h5>
+                                <h4 class="font-bold text-brand-heading">Which Blender versions are supported?</h4>
                                 <p>Blender 4.2 LTS through Blender 5.2. Supported via extension manifest standards.</p>
                             </div>
                             <div>
-                                <h5 class="font-bold text-brand-heading">Is my purchase valid for multiple workstations?</h5>
+                                <h4 class="font-bold text-brand-heading">Is my purchase valid for multiple workstations?</h4>
                                 <p>Yes, standard individual licenses allow usage on your personal workstations.</p>
                             </div>
                         </div>
@@ -745,7 +705,7 @@
     <!-- ==========================================
          FOOTER (FROM INDEX - COPY2.HTML)
          ========================================== -->
-    <footer class="bg-brand-bg border-t border-brand-border py-12 text-center text-xs text-brand-dim">
+    <footer class="bg-brand-bg border-t border-brand-border py-12 text-center text-xs text-brand-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
             <div class="flex items-center justify-center gap-2 text-brand-heading font-semibold text-base">
                 <span class="text-brand-accent">◈</span> Eternal Toolbox

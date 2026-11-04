@@ -1,4 +1,4 @@
-# Eternal Utility Toolbox ◈ — Documentation
+# Eternal Toolbox ◈ — Documentation
 
 ## Table of Contents
 

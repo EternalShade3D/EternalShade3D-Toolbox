@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom page CSS (moved from inline <style>) */
+body {
+  background-color: #0a0a0f;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(124, 92, 252, 0.12) 0%, transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #202032;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a45;
+}
+
+.glow-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-card-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* Mobile menu */
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  color: var(--brand-muted);
+  cursor: pointer;
+}
+.menu-btn[aria-expanded="true"] {
+  color: var(--brand-heading);
+}
+.menu-bar {
+  width: 1.25rem;
+  height: 1px;
+  background: currentColor;
+  position: relative;
+}
+.menu-bar::before,
+.menu-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 1.25rem;
+  height: 1px;
+  background: currentColor;
+}
+.menu-bar::before { top: -6px; }
+.menu-bar::after { top: 6px; }
+
+#mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: #0a0a0f;
+  border-bottom: 1px solid var(--brand-border);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  opacity: 1;
+}
+#mobile-menu.open {
+  transform: translateX(0);
+}
+#mobile-menu a {
+  display: none;
+}
+#mobile-menu .menu-item {
+  display: block;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #8b8ba7;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+  position: relative;
+}
+#mobile-menu .menu-item:hover {
+  color: #ffffff;
+  background: #1a1a2b;
+}
+#mobile-menu .menu-item.btn-gold {
+  color: #000;
+  background: #f0c040;
+  box-shadow: 0 0 16px rgba(240, 192, 64, 0.2);
+}
+#mobile-menu .menu-item.btn-gold:hover {
+  background: #e0b030;
+}
+
+.menu-header {
+  padding: 0 0 1rem 0;
+  border-bottom: 1px solid #2a2a45;
+  margin-bottom: 1.5rem;
+}
+.menu-section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #545470;
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+.menu-footer {
+  font-size: 0.7rem;
+  color: #545470;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #2a2a45;
+}
+
+.menu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 70;
+  background: transparent;
+  border: none;
+  color: #8b8ba7;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-close:hover {
+  color: #ffffff;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background: #f0c040;
+  color: #000;
+  z-index: 100;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* Custom property fallbacks for mobile menu (hardcoded hex used in HTML already) */
+:root {
+  --radius-md: 0.5rem;
+  --brand-bg: #0a0a0f;
+  --brand-elevated: #0e0e16;
+  --brand-card: #141420;
+  --brand-surface: #1a1a2b;
+  --brand-border: #202032;
+  --brand-borderMedium: #2a2a45;
+  --brand-borderHover: #33334e;
+  --brand-text: #f0f0f8;
+  --brand-muted: #8b8ba7;
+  --brand-dim: #545470;
+  --brand-heading: #ffffff;
+  --brand-accent: #7c5cfc;
+  --brand-accentHover: #6945f9;
+  --brand-accentLight: #a48eff;
+  --brand-accentSubtle: rgba(124, 92, 252, 0.1);
+  --brand-accentBorder: rgba(124, 92, 252, 0.3);
+  --brand-gold: #f0c040;
+  --brand-goldHover: #e0b030;
+  --brand-goldGlow: rgba(240, 192, 64, 0.25);
+}
+
+/* Responsive: hide hamburger on desktop (>=1024px), show desktop nav */
+@media (min-width: 1024px) {
+  .menu-btn {
+    display: none !important;
+  }
+  #mobile-menu {
+    display: none !important;
+  }
+}

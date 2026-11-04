@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to **EternalShade3D Utility Toolbox** are documented here.
+All notable changes to **Eternal Toolbox** are documented here.
 
 ---
 
