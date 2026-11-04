@@ -1,1126 +1,799 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Eternal Utility Toolbox ◈ | Precision Dimensions for Blender
-  </title>
-  <meta content="Blender addon for Edit Mode dimensions, Truth Dimensions through modifiers, precision scaling with pivot points, smart origin alignment, and scene hygiene. Built for hard-surface modelers and ArchViz professionals." name="description"/>
-  <meta content="Blender addon, edit mode dimensions, Blender dimensions, truth dimensions, precision scaling, origin alignment, Blender extension, 3D modeling tools, ArchViz Blender, hard surface modeling" name="keywords"/>
-  <meta content="EternalShade3D" name="author"/>
-  <meta content="index, follow" name="robots"/>
-  <link href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/" rel="canonical"/>
-  <!-- Open Graph -->
-  <meta content="Eternal Utility Toolbox ◈ — Precision Dimensions for Blender" property="og:title"/>
-  <meta content="See real dimensions in Edit Mode. Scale selections to exact values. Truth Dimensions through all modifiers. Built for hard-surface modelers, ArchViz, and product design." property="og:description"/>
-  <meta content="website" property="og:type"/>
-  <meta content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/" property="og:url"/>
-  <meta content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/eternal_toolbox_banner_clean.png" property="og:image"/>
-  <meta content="Eternal Utility Toolbox - Blender addon for precision scaling and evaluated truth dimensions" property="og:image:alt"/>
-  <!-- Twitter Card -->
-  <meta content="summary_large_image" name="twitter:card"/>
-  <meta content="Eternal Utility Toolbox ◈ — Blender Addon" name="twitter:title"/>
-  <meta content="Real dimensions in Edit Mode. Truth Dimensions through modifiers. Precision scaling with pivot points." name="twitter:description"/>
-  <meta content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/eternal_toolbox_banner_clean.png" name="twitter:image"/>
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-   {      "@context": "https://schema.org",      "@type": "SoftwareApplication",      "name": "Eternal Utility Toolbox",      "operatingSystem": "Windows, macOS, Linux",      "applicationCategory": "MultimediaApplication",      "applicationSubCategory": "3D Modeling Software",       "softwareVersion": "1.30.0",      "description": "High-precision utility toolkit for Blender providing evaluated truth dimensions, Edit Mode precision scaling, smart origin alignment, dynamic naming engine, and scene hygiene.",      "url": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/",      "image": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/eternal_toolbox_banner_clean.png",      "author": {        "@type": "Person",        "name": "EternalShade3D",        "url": "https://www.instagram.com/eternal.shade3d/"      },      "offers": [        {          "@type": "Offer",          "name": "Gumroad",          "url": "https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox",          "category": "Digital Download"        },        {          "@type": "Offer",          "name": "FairMarket",          "url": "https://www.fairmarket.land/product/eternal-utility-toolbox",          "category": "Digital Download"        }      ],      "softwareRequirements": {        "@type": "SoftwareApplication",        "name": "Blender",        "softwareVersion": "Blender"      },      "featureList": [        "Evaluated Truth Dimensions through modifiers",        "Edit Mode selection dimensions and scaling",        "Smart Origin Alignment with 9-point compass grid",        "Dynamic Naming Engine with presets",        "Scene Hygiene and material cleanup",        "Color Utilities for loose parts and UV islands",        "Edge Readout - closed-loop perimeter and open-segment lengths (LOOP 01 / SEGMENT 01)",        "Curve and Text edit-mode point measurement",        "Camera Screenshots with camera-frame crop"      ]    }
-  </script>
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-  <style>
-   /* ========================================           CSS RESET & BASE           ======================================== */        *,        *::before,        *::after {            margin: 0;            padding: 0;            box-sizing: border-box;        }        :root {            /* Stripe-inspired dark mode palette */            --color-bg: #0a0a0f;            --color-bg-elevated: #0e0e16;            --color-bg-card: #14141f;            --color-surface: #1a1a28;            --color-border: #222233;            --color-border-hover: #2e2e45;            --color-text: #e0e0ec;            --color-text-muted: #7a7a95;            --color-text-dim: #4a4a60;            --color-heading: #f0f0f8;            /* Stripe Purple, adapted for dark */            --color-accent: #7c5cfc;            --color-accent-hover: #6a4ae8;            --color-accent-light: #9d85fd;            --color-accent-subtle: rgba(124, 92, 252, 0.08);            --color-accent-border: rgba(124, 92, 252, 0.25);            /* Gold accent for CTAs */            --color-gold: #f0c040;            --color-gold-hover: #e0b030;            --color-gold-glow: rgba(240, 192, 64, 0.15);            /* Stripe-inspired blue-tinted shadows */            --color-accent-glow: rgba(124, 92, 252, 0.25);            --shadow-ambient: 0 4px 12px rgba(23, 23, 23, 0.06);            --shadow-card: 0 4px 16px rgba(23, 23, 23, 0.08);            --shadow-elevated: rgba(50, 50, 93, 0.20) 0px 16px 24px -8px,                rgba(0, 0, 0, 0.08) 0px 10px 16px -10px;            --shadow-hero: rgba(50, 50, 93, 0.15) 0px 30px 45px -30px,                rgba(0, 0, 0, 0.08) 0px 18px 36px -18px;            --shadow-glow: 0 0 40px rgba(124, 92, 252, 0.15);            /* Stripe: conservative border-radius 4-8px */            --radius-sm: 4px;            --radius-md: 6px;            --radius-lg: 8px;            --radius-xl: 10px;            /* Typography */            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;            --font-mono: 'JetBrains Mono', monospace;        }        html {            scroll-behavior: smooth;        }        body {            font-family: var(--font-sans);            background: var(--color-bg);            color: var(--color-text);            line-height: 1.6;            overflow-x: hidden;        }        a {            color: var(--color-link);            text-decoration: none;            transition: color 0.2s ease;        }        a:hover {            color: var(--color-accent-light);        }        /* ========================================           LAYOUT           ======================================== */        .container {            max-width: 1100px;            margin: 0 auto;            padding: 0 24px;        }        section {            padding: 80px 0;        }        /* ========================================           HERO           ======================================== */        .hero {            min-height: 100vh;            display: flex;            align-items: center;            justify-content: center;            text-align: center;            position: relative;            background: radial-gradient(ellipse at 50% 0%, var(--color-accent-glow) 0%, transparent 60%);        }        .hero::before {            content: '';            position: absolute;            inset: 0;            background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff08' stroke-width='0.5'/%3E%3C/svg%3E");            opacity: 0.3;        }        .hero-content {            position: relative;            z-index: 1;        }        .hero-badge {            display: inline-block;            padding: 4px 12px;            background: var(--color-surface);            border: 1px solid var(--color-border);            border-radius: var(--radius-sm);            font-size: 13px;            font-weight: 400;            color: var(--color-text-muted);            margin-bottom: 24px;            letter-spacing: 0;        }        .hero-badge span {            color: var(--color-gold);        }        .hero h1 {            /* Stripe: light weight + tight tracking for display */            font-size: clamp(2.2rem, 5.5vw, 4rem);            font-weight: 300;            letter-spacing: -1.5px;            line-height: 1.05;            margin-bottom: 24px;            color: var(--color-heading);        }        .hero p {            /* Stripe: light body weight, relaxed line-height */            font-size: 1.125rem;            font-weight: 300;            line-height: 1.6;            color: var(--color-text-muted);            max-width: 560px;            margin: 0 auto 40px;        }        .hero-actions {            display: flex;            gap: 16px;            justify-content: center;            flex-wrap: wrap;        }        .hero-banner {            max-width: 880px;            width: 100%;            display: block;            margin: 0 auto 32px;            border-radius: var(--radius-lg);            border: 1px solid var(--color-border);            box-shadow: var(--shadow-hero);        }        /* ========================================           BUTTONS           ======================================== */        .btn {            display: inline-flex;            align-items: center;            gap: 8px;            /* Stripe: 4px radius, measured padding */            padding: 10px 20px;            border-radius: var(--radius-sm);            font-weight: 500;            font-size: 14px;            transition: all 0.2s ease;            border: none;            cursor: pointer;        }        .btn-primary {            background: var(--color-accent);            color: #fff;            box-shadow: var(--shadow-card);        }        .btn-primary:hover {            background: var(--color-accent-hover);            transform: translateY(-1px);            box-shadow: var(--shadow-elevated);            color: #fff;        }        .btn-secondary {            background: transparent;            color: var(--color-text);            /* Stripe: subtle border, not pill-shaped */            border: 1px solid var(--color-border);        }        .btn-secondary:hover {            border-color: var(--color-border-hover);            background: var(--color-accent-subtle);            color: var(--color-text);        }        .btn-gold {            background: var(--color-gold);            color: #000;            font-weight: 600;            box-shadow: 0 2px 8px var(--color-gold-glow);        }        .btn-gold:hover {            background: var(--color-gold-hover);            transform: translateY(-1px);            box-shadow: 0 4px 16px var(--color-gold-glow);            color: #000;        }        /* ========================================           NAVIGATION           ======================================== */        .nav {            position: fixed;            top: 0;            left: 0;            right: 0;            z-index: 100;            padding: 14px 0;            background: rgba(10, 10, 15, 0.85);            backdrop-filter: blur(12px);            border-bottom: 1px solid var(--color-border);        }        .nav-inner {            display: flex;            align-items: center;            justify-content: space-between;        }        .nav-brand {            font-weight: 500;            font-size: 16px;            letter-spacing: -0.2px;            color: var(--color-text);        }        .nav-brand span {            color: var(--color-accent);        }        .nav-links {            display: flex;            gap: 24px;            list-style: none;        }        .nav-links a {            color: var(--color-text-muted);            font-size: 14px;            font-weight: 400;            letter-spacing: 0;        }        .nav-links a:hover {            color: var(--color-text);        }        /* ========================================           FEATURES           ======================================== */        .section-header {            text-align: center;            margin-bottom: 60px;        }        .section-header h2 {            /* Stripe: light weight, tight tracking */            font-size: 2.5rem;            font-weight: 300;            letter-spacing: -0.8px;            line-height: 1.1;            margin-bottom: 12px;            color: var(--color-heading);        }        .section-header p {            color: var(--color-text-muted);            font-size: 1rem;            font-weight: 300;            line-height: 1.6;        }        .features-grid {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));            gap: 24px;        }        .feature-card {            /* Stripe: conservative radius, blue-tinted shadow */            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-lg);            padding: 28px;            transition: all 0.25s ease;            box-shadow: var(--shadow-ambient);            text-decoration: none;            color: inherit;            display: block;            cursor: pointer;        }        .feature-card:hover {            border-color: var(--color-accent-border);            transform: translateY(-2px);            box-shadow: var(--shadow-elevated);            text-decoration: none;            color: inherit;        }        .feature-icon {            width: 44px;            height: 44px;            display: flex;            align-items: center;            justify-content: center;            background: var(--color-surface);            border-radius: var(--radius-md);            margin-bottom: 18px;            font-size: 20px;        }        .feature-card h3 {            /* Stripe: tight tracking subheadings */            font-size: 1.1rem;            font-weight: 500;            letter-spacing: -0.2px;            margin-bottom: 8px;            color: var(--color-heading);        }        .feature-card p {            color: var(--color-text-muted);            font-size: 0.9rem;            line-height: 1.6;            font-weight: 300;        }        /* Core features — Truth Dimensions + Edit Mode */        .core-features {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));            gap: 24px;            margin-bottom: 40px;        }        .core-card {            background: var(--color-bg-card);            border: 2px solid var(--color-accent-border);            border-radius: var(--radius-lg);            padding: 32px;            position: relative;            overflow: hidden;            transition: all 0.25s ease;            box-shadow: var(--shadow-elevated);        }        .core-card::before {            content: '';            position: absolute;            top: 0;            left: 0;            right: 0;            height: 3px;            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));        }        .core-card:hover {            transform: translateY(-3px);            box-shadow: var(--shadow-hero);            border-color: var(--color-accent);        }        .core-card .feature-icon {            width: 52px;            height: 52px;            font-size: 24px;            background: var(--color-accent-subtle);            border: 1px solid var(--color-accent-border);            margin-bottom: 20px;        }        .core-card h3 {            font-size: 1.25rem;            font-weight: 500;            letter-spacing: -0.3px;            margin-bottom: 12px;            color: var(--color-heading);        }        .core-card p {            color: var(--color-text-muted);            font-size: 0.95rem;            line-height: 1.7;            font-weight: 300;        }        .core-card .core-card-tag {            display: inline-block;            margin-top: 16px;            padding: 4px 10px;            background: var(--color-accent);            color: #fff;            font-size: 11px;            font-weight: 600;            letter-spacing: 0.5px;            text-transform: uppercase;            border-radius: var(--radius-sm);        }        /* Also Included section */        .also-included {            margin-top: 24px;        }        .also-title {            font-size: 0.85rem;            font-weight: 500;            text-transform: uppercase;            letter-spacing: 1px;            color: var(--color-text-dim);            margin: 0 0 16px;            padding-bottom: 10px;            border-bottom: 1px solid var(--color-border);        }        .also-grid {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));            gap: 14px;        }        .also-card {            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-lg);            padding: 22px;            transition: all 0.25s ease;            box-shadow: var(--shadow-ambient);        }        .also-card:hover {            border-color: var(--color-accent-border);            transform: translateY(-2px);            box-shadow: var(--shadow-elevated);        }        .also-card .feature-icon {            margin-bottom: 14px;        }        .also-card h3 {            font-size: 1rem;            font-weight: 500;            letter-spacing: -0.15px;            margin-bottom: 8px;            color: var(--color-heading);        }        .also-card p {            color: var(--color-text-muted);            font-size: 0.85rem;            line-height: 1.55;            font-weight: 300;        }        /* ========================================           CORE FEATURES (2-column hero cards)           ======================================== */        .core-features {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));            gap: 20px;            margin-bottom: 48px;        }        .core-card {            display: block;            background: var(--color-bg-card);            border: 1px solid var(--color-accent-border);            border-radius: var(--radius-lg);            padding: 32px;            text-decoration: none;            color: inherit;            transition: all 0.25s ease;            box-shadow: var(--shadow-elevated);            position: relative;            overflow: hidden;        }        .core-card::before {            content: '';            position: absolute;            top: 0;            left: 0;            right: 0;            height: 3px;            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));        }        .core-card:hover {            transform: translateY(-3px);            box-shadow: var(--shadow-hero);            border-color: var(--color-accent);        }        .core-card-icon {            width: 48px;            height: 48px;            display: flex;            align-items: center;            justify-content: center;            background: var(--color-accent-subtle);            border-radius: var(--radius-md);            font-size: 22px;            margin-bottom: 20px;        }        .core-card h3 {            font-size: 1.3rem;            font-weight: 500;            letter-spacing: -0.3px;            margin-bottom: 12px;            color: var(--color-heading);        }        .core-card p {            color: var(--color-text-muted);            font-size: 0.95rem;            font-weight: 300;            line-height: 1.7;        }        .core-card-tag {            display: inline-block;            margin-top: 16px;            padding: 3px 10px;            background: var(--color-surface);            border: 1px solid var(--color-border);            border-radius: var(--radius-sm);            font-size: 12px;            font-weight: 500;            color: var(--color-text-muted);            letter-spacing: 0.5px;            text-transform: uppercase;        }        /* ========================================           ALSO INCLUDED (secondary features)           ======================================== */        .also-included {            margin-top: 16px;        }        .also-title {            font-size: 0.85rem;            font-weight: 500;            text-transform: uppercase;            letter-spacing: 1px;            color: var(--color-text-dim);            margin-bottom: 16px;            padding-bottom: 12px;            border-bottom: 1px solid var(--color-border);        }        .also-grid {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));            gap: 12px;        }        .also-card {            display: flex;            align-items: flex-start;            gap: 14px;            padding: 16px 18px;            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-md);            text-decoration: none;            color: inherit;            transition: all 0.2s ease;        }        .also-card:hover {            border-color: var(--color-accent-border);            background: var(--color-surface);        }        .also-icon {            width: 36px;            height: 36px;            display: flex;            align-items: center;            justify-content: center;            background: var(--color-surface);            border-radius: var(--radius-sm);            font-size: 16px;            flex-shrink: 0;        }        .also-card h4 {            font-size: 0.95rem;            font-weight: 500;            margin: 0 0 3px;            color: var(--color-heading);        }        .also-card p {            font-size: 0.82rem;            font-weight: 300;            color: var(--color-text-muted);            margin: 0;            line-height: 1.4;        }        /* ========================================           SCREENSHOTS           ======================================== */        .screenshots {            background: var(--color-bg-elevated);        }        .screenshot-grid {            display: grid;            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));            gap: 24px;        }        .screenshot-card {            /* Stripe: conservative radius, blue-tinted shadow */            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-lg);            overflow: hidden;            transition: all 0.25s ease;            box-shadow: var(--shadow-ambient);        }        .screenshot-card:hover {            border-color: var(--color-accent-border);            transform: translateY(-2px);            box-shadow: var(--shadow-elevated);        }        .screenshot-placeholder {            aspect-ratio: 16/9;            background: var(--color-surface);            display: flex;            align-items: center;            justify-content: center;            color: var(--color-text-dim);            font-size: 14px;        }        .screenshot-card figcaption {            padding: 16px 20px;            font-size: 14px;            color: var(--color-text-muted);        }        /* ========================================           PRICING           ======================================== */        .pricing-cards {            display: flex;            gap: 24px;            justify-content: center;            flex-wrap: wrap;        }        .pricing-card {            /* Stripe: conservative radius, blue-tinted shadow */            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-lg);            padding: 36px;            text-align: center;            min-width: 280px;            max-width: 380px;            transition: all 0.25s ease;            box-shadow: var(--shadow-ambient);        }        .pricing-card:hover {            border-color: var(--color-accent-border);            box-shadow: var(--shadow-elevated);        }        .pricing-card h3 {            font-size: 1.25rem;            font-weight: 500;            letter-spacing: -0.2px;            margin-bottom: 8px;            color: var(--color-heading);        }        .pricing-card .price {            font-size: 1.5rem;            font-weight: 300;            letter-spacing: -0.5px;            color: var(--color-accent-light);            margin: 16px 0;        }        .pricing-card ul {            list-style: none;            text-align: left;            margin: 20px 0;        }        .pricing-card li {            padding: 6px 0;            color: var(--color-text-muted);            font-size: 14px;            font-weight: 300;        }        .pricing-card li::before {            content: '✓';            color: var(--color-accent-light);            margin-right: 10px;            font-weight: 500;        }        /* ========================================           DOCUMENTATION — Accordion (Stripe-style)           ======================================== */        .doc-section {            background: var(--color-bg-elevated);            border-top: 1px solid var(--color-border);            scroll-margin-top: 80px;        }        .doc-accordion {            max-width: 800px;            margin: 0 auto;        }        .doc-topic {            background: var(--color-bg-card);            border: 1px solid var(--color-border);            border-radius: var(--radius-lg);            margin-bottom: 12px;            overflow: hidden;            transition: border-color 0.25s ease, box-shadow 0.25s ease;            box-shadow: var(--shadow-ambient);        }        .doc-topic:hover {            border-color: var(--color-accent-border);            box-shadow: var(--shadow-card);        }        .doc-topic[open] {            border-color: var(--color-accent-border);            box-shadow: var(--shadow-elevated);        }        .doc-topic>summary {            display: flex;            align-items: center;            gap: 16px;            padding: 18px 22px;            font-weight: 500;            cursor: pointer;            color: var(--color-text);            user-select: none;            transition: background 0.2s ease;            list-style: none;        }        .doc-topic>summary::-webkit-details-marker {            display: none;        }        .doc-topic>summary:hover {            background: var(--color-surface);        }        .doc-topic-icon {            width: 40px;            height: 40px;            display: flex;            align-items: center;            justify-content: center;            background: var(--color-surface);            border-radius: var(--radius-md);            font-size: 18px;            flex-shrink: 0;        }        .doc-topic-text {            flex: 1;        }        .doc-topic-text h3 {            font-size: 1.05rem;            font-weight: 500;            letter-spacing: -0.15px;            margin: 0 0 2px;            color: var(--color-heading);        }        .doc-topic-text p {            font-size: 0.85rem;            font-weight: 300;            color: var(--color-text-muted);            margin: 0;            line-height: 1.4;        }        .doc-topic-content {            padding: 0 22px 24px;        }        .doc-topic-inner {            max-width: 720px;        }        .doc-topic-content h4 {            font-size: 1.1rem;            font-weight: 500;            letter-spacing: -0.15px;            margin-top: 28px;            margin-bottom: 10px;            color: var(--color-heading);        }        .doc-topic-content p {            color: var(--color-text-muted);            font-size: 0.95rem;            font-weight: 300;            line-height: 1.75;            margin-bottom: 14px;        }        .doc-topic-content ul,        .doc-topic-content ol {            color: var(--color-text-muted);            padding-left: 22px;            margin-bottom: 14px;            line-height: 1.7;            font-weight: 300;        }        .doc-topic-content li {            margin-bottom: 6px;        }        .doc-topic-content a {            color: var(--color-link);        }        .doc-topic-content code {            background: var(--color-surface);            padding: 2px 7px;            border-radius: var(--radius-sm);            font-family: var(--font-mono);            font-size: 0.85em;            color: var(--color-accent-light);        }        .doc-topic-content .code-block {            background: var(--color-bg);            border: 1px solid var(--color-border);            border-radius: var(--radius-md);            margin: 16px 0;            overflow-x: auto;        }        .doc-topic-content .code-block pre {            padding: 16px 20px;            font-family: var(--font-mono);            font-size: 0.85rem;            color: var(--color-text-muted);            line-height: 1.6;            margin: 0;            white-space: pre;        }        .doc-topic-content .doc-table-wrap {            overflow-x: auto;            margin: 16px 0;        }        .doc-topic-content .doc-table-wrap table {            width: 100%;            border-collapse: collapse;            font-size: 0.9rem;        }        .doc-topic-content .doc-table-wrap th {            text-align: left;            padding: 10px 14px;            background: var(--color-surface);            border-bottom: 2px solid var(--color-border);            color: var(--color-heading);            font-weight: 500;            white-space: nowrap;        }        .doc-topic-content .doc-table-wrap td {            padding: 10px 14px;            border-bottom: 1px solid var(--color-border);            color: var(--color-text-muted);            line-height: 1.5;            font-weight: 300;        }        .doc-topic-content .doc-table-wrap tr:hover td {            background: var(--color-bg-elevated);        }        .doc-topic-content .doc-note {            background: var(--color-surface);            border-left: 3px solid var(--color-accent);            border-radius: 0 var(--radius-md);            padding: 16px 18px;            margin: 20px 0;            color: var(--color-text-muted);            line-height: 1.6;            font-weight: 300;        }        .doc-topic-content .doc-note strong {            color: var(--color-heading);            font-weight: 500;        }        /* Nested FAQ inside doc topics */        .doc-topic-content .faq-list details {            background: var(--color-surface);            border: 1px solid var(--color-border);            border-radius: var(--radius-md);            margin-bottom: 10px;            overflow: hidden;        }        .doc-topic-content .faq-list details:hover {            border-color: var(--color-border-hover);        }        .doc-topic-content .faq-list summary {            padding: 14px 16px;            font-weight: 500;            cursor: pointer;            color: var(--color-text);            user-select: none;        }        .doc-topic-content .faq-list summary::-webkit-details-marker {            color: var(--color-accent);        }        .doc-topic-content .faq-list details p {            padding: 0 16px 14px;            margin: 0;            color: var(--color-text-muted);            line-height: 1.7;        }        /* ========================================           FOOTER           ======================================== */        .footer {            padding: 40px 0;            border-top: 1px solid var(--color-border);            text-align: center;        }        .footer p {            color: var(--color-text-dim);            font-size: 14px;        }        .social-links {            display: flex;            gap: 20px;            justify-content: center;            margin-top: 16px;        }        .social-links a {            color: var(--color-text-muted);            font-size: 14px;        }        /* ========================================           RESPONSIVE           ======================================== */        @media (max-width: 768px) {            section {                padding: 60px 0;            }            .nav-links {                display: none;            }            .screenshot-grid {                grid-template-columns: 1fr;            }            .hero-actions {                flex-direction: column;                align-items: center;            }        }
-  </style>
- </head>
- <body>
-  <!-- ==========================================         NAVIGATION         ========================================== -->
-  <nav class="nav">
-   <div class="container nav-inner">
-    <div class="nav-brand">
-     Eternal
-     <span>
-      Shade3D
-     </span>
-    </div>
-    <ul class="nav-links">
-     <li>
-      <a href="#features">
-       Features
-      </a>
-     </li>
-     <li>
-      <a href="#screenshots">
-       Screenshots
-      </a>
-     </li>
-     <li>
-      <a href="#docs">
-       Documentation
-      </a>
-     </li>
-     <li>
-      <a href="#pricing">
-       Get It
-      </a>
-     </li>
-    </ul>
-   </div>
-  </nav>
-  <!-- ==========================================         HERO         ========================================== -->
-  <section class="hero">
-   <div class="container hero-content">
-    <div class="hero-badge">
-     Blender Extension & Addon •
-     <span>
-      v1.30.0
-     </span>
-    </div>
-    <h1>
-     Eternal Utility
-     <br/>
-     Toolbox ◈
-    </h1>
-    <p>
-     Precision Scaling and Evaluated Truth Dimensions for Objects. A high-precision utility toolkit focused on                mathematical accuracy within the Blender workflow.
-    </p>
-    <img class="hero-banner" src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Utility Toolbox - Precision Scaling and Evaluated Truth Dimensions for Blender"/>
-    <div class="hero-actions">
-     <a class="btn btn-gold" href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" rel="noopener" target="_blank">
-      💎 Get It on Gumroad
-     </a>
-     <a class="btn btn-primary" href="https://www.fairmarket.land/product/eternal-utility-toolbox" rel="noopener" target="_blank">
-      🛒 Get It on FairMarket
-     </a>
-     <a class="btn btn-secondary" href="#docs">
-      📖 Read Docs
-     </a>
-    </div>
-   </div>
-  </section>
-  <!-- ==========================================         CORE FEATURES (2 hero features)         ========================================== -->
-  <section id="features">
-   <div class="container">
-    <div class="section-header">
-     <h2>
-      What's Inside
-     </h2>
-     <p>
-      Everything you need for mathematical precision in Blender
-     </p>
-    </div>
-    <!-- Core: Truth Dimensions + Edit Mode -->
-    <div class="core-features">
-     <a class="core-card" href="#doc-dimensions">
-      <div class="core-card-icon">
-       📐
-      </div>
-      <h3>
-       Evaluated Truth Dimensions
-      </h3>
-      <p>
-       Blender lies to you about object dimensions. It shows the
-       <strong>
-        cage
-       </strong>
-       size, ignoring                        all modifiers. Truth Dimensions reads through
-       <strong>
-        Subdivision, Bevel, Geometry                            Nodes
-       </strong>
-       — the entire modifier stack — and shows you what you
-       <em>
-        actually
-       </em>
-       see.                        Real-time. Zero lag. Tested on millions of vertices.
-      </p>
-      <div class="core-card-tag">
-       Object Mode
-      </div>
-     </a>
-     <a class="core-card" href="#doc-dimensions">
-      <div class="core-card-icon">
-       ✏️
-      </div>
-      <h3>
-       Edit Mode Precision
-      </h3>
-      <p>
-       Select any faces, edges, or vertices in Edit Mode and see their exact dimensions. Type a value —                        30 cm, 200 cm, 4.5 cm — and your selection scales to match. Respects your
-       <strong>
-        Transform                            Pivot Point
-       </strong>
-       : 3D Cursor, Median Point, Active Element. Something Blender doesn't do                        by default.
-      </p>
-      <div class="core-card-tag">
-       Edit Mode
-      </div>
-     </a>
-    </div>
-    <!-- Also included -->
-    <div class="also-included">
-     <h3 class="also-title">
-      Also Included
-     </h3>
-     <div class="also-grid">
-      <a class="also-card" href="#doc-origin">
-       <div class="also-icon">
-        🎯
-       </div>
-       <div>
-        <h4>
-         Smart Origin Alignment
-        </h4>
-        <p>
-         9-point compass grid, geometry median, cursor snap — snap origins with mathematical                                precision
-        </p>
-       </div>
-      </a>
-      <a class="also-card" href="#doc-naming">
-       <div class="also-icon">
-        🏷️
-       </div>
-       <div>
-        <h4>
-         Naming Engine
-        </h4>
-        <p>
-         Preset-based asset naming with date prefixing and batch rename
-        </p>
-       </div>
-      </a>
-      <a class="also-card" href="#doc-cleanup">
-       <div class="also-icon">
-        🧹
-       </div>
-       <div>
-        <h4>
-         Scene Hygiene
-        </h4>
-        <p>
-         One-click .001 material cleanup and orphan data purging
-        </p>
-       </div>
-      </a>
-      <a class="also-card" href="#doc-faq">
-       <div class="also-icon">
-        🎨
-       </div>
-       <div>
-        <h4>
-         Color Utilities
-        </h4>
-        <p>
-         Random colors for loose parts and UV islands — visual debugging
-        </p>
-       </div>
-      </a>
-      <a class="also-card" href="#doc-camera">
-       <div class="also-icon">
-        📸
-       </div>
-       <div>
-        <h4>
-         Camera Screenshots
-        </h4>
-        <p>
-         Batch-capture every camera — clean shots, ESC to stop, AUTO/SOLID/MATERIAL/RENDERED
-        </p>
-       </div>
-      </a>
-     </div>
-    </div>
-   </div>
-  </section>
-  <!-- ==========================================         SCREENSHOTS         ========================================== -->
-  <section class="screenshots" id="screenshots">
-   <div class="container">
-    <div class="section-header">
-     <h2>
-      See It In Action
-     </h2>
-     <p>
-      Real workflow inside Blender
-     </p>
-    </div>
-    <div class="screenshot-grid">
-     <figure class="screenshot-card">
-      <img alt="Dimensions Panel showing live X/Y/Z dimension sliders with Truth Mode toggle" loading="lazy" src="assets/1.jpg" style="width:100%;display:block;"/>
-     </figure>
-     <figure class="screenshot-card">
-      <img alt="Smart Origin Alignment 9-point compass grid for precise origin snapping" loading="lazy" src="assets/4.jpg" style="width:100%;display:block;"/>
-     </figure>
-     <figure class="screenshot-card">
-      <img alt="Dynamic Naming Engine with category, type, and name tag presets" loading="lazy" src="assets/5.jpg" style="width:100%;display:block;"/>
-     </figure>
-     <figure class="screenshot-card">
-      <img alt="Scene Hygiene panel showing material cleanup and orphan purging tools" loading="lazy" src="assets/6.jpg" style="width:100%;display:block;"/>
-     </figure>
-     <figure class="screenshot-card">
-      <img alt="Edit Mode selection dimensions showing selected geometry measurements" loading="lazy" src="assets/7.jpg" style="width:100%;display:block;"/>
-     </figure>
-     <figure class="screenshot-card">
-      <img alt="Color Utilities assigning random colors to loose parts for visual debugging" loading="lazy" src="assets/8.jpg" style="width:100%;display:block;"/>
-     </figure>
-    </div>
-   </div>
-  </section>
-  <!-- ==========================================         PRICING / CTA         ========================================== -->
-  <section id="pricing">
-   <div class="container">
-    <div class="section-header">
-     <h2>
-      Get Eternal Utility Toolbox
-     </h2>
-     <p>
-      Available now on trusted marketplaces
-     </p>
-    </div>
-    <div class="pricing-cards">
-     <div class="pricing-card">
-      <h3>
-       💎 Gumroad
-      </h3>
-      <p class="price">
-       Get It Now
-      </p>
-      <ul>
-       <li>
-        Instant download
-       </li>
-       <li>
-        Lifetime updates
-       </li>
-       <li>
-        Blender Extension compatible
-       </li>
-       <li>
-        Direct creator support
-       </li>
-      </ul>
-      <a class="btn btn-gold" href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" rel="noopener" style="width:100%;justify-content:center;" target="_blank">
-       Buy on Gumroad →
-      </a>
-     </div>
-     <div class="pricing-card">
-      <h3>
-       🛒 FairMarket
-      </h3>
-      <p class="price">
-       Get It Now
-      </p>
-      <ul>
-       <li>
-        Secure checkout
-       </li>
-       <li>
-        Lifetime updates
-       </li>
-       <li>
-        Blender Extension compatible
-       </li>
-       <li>
-        Community marketplace
-       </li>
-      </ul>
-      <a class="btn btn-primary" href="https://www.fairmarket.land/product/eternal-utility-toolbox" rel="noopener" style="width:100%;justify-content:center;" target="_blank">
-       Buy on FairMarket →
-      </a>
-     </div>
-    </div>
-   </div>
-  </section>
-  <!-- ==========================================         DOCUMENTATION — Expandable Accordion         ========================================== -->
-  <section class="doc-section" id="docs">
-   <div class="container">
-    <div class="section-header">
-     <h2>
-      Documentation
-     </h2>
-     <p>
-      Click any topic to expand the full guide
-     </p>
-    </div>
-    <div class="doc-accordion">
-     <!-- Installation -->
-     <details class="doc-topic" id="doc-installation">
-      <summary>
-       <div class="doc-topic-icon">
-        📦
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Installation Guide
-        </h3>
-        <p>
-         Get up and running in under 2 minutes
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         Requirements
-        </h4>
-        <ul>
-         <li>
-          <strong>
-           Blender
-          </strong>
-          or later
-         </li>
-         <li>
-          Windows, macOS, or Linux
-         </li>
-        </ul>
-        <h4>
-         Steps
-        </h4>
-        <ol>
-         <li>
-          <strong>
-           Download
-          </strong>
-          the addon from
-          <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" rel="noopener" target="_blank">
-           Gumroad
-          </a>
-          or
-          <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" rel="noopener" target="_blank">
-           FairMarket
-          </a>
-         </li>
-         <li>
-          Open Blender →
-          <strong>
-           Edit → Preferences → Add-ons
-          </strong>
-         </li>
-         <li>
-          Click
-          <strong>
-           Install...
-          </strong>
-          → select the downloaded
-          <code>
-           .zip
-          </code>
-          file
-         </li>
-         <li>
-          Enable the checkbox next to
-          <strong>
-           "Eternal Utility Toolbox ◈"
-          </strong>
-         </li>
-         <li>
-          Press
-          <code>
-           N
-          </code>
-          in the 3D Viewport → open the
-          <strong>
-           ETERNAL
-          </strong>
-          tab
-         </li>
-        </ol>
-        <div class="doc-note">
-         <strong>
-          First Launch:
-         </strong>
-         The addon creates a preferences file in your Blender                                config directory. You can customize this path in addon preferences (gear icon in the                                panel header).
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Eternal Toolbox ◈ | Precision Dimensions Addon for Blender</title>
+    <meta name="description" content="Blender addon for Edit Mode dimensions, Truth Dimensions through modifiers, precision scaling with pivot points, smart origin alignment, and scene hygiene. Built for hard-surface modelers and ArchViz professionals."/>
+    <meta name="keywords" content="Blender addon, edit mode dimensions, Blender dimensions, truth dimensions, precision scaling, origin alignment, Blender extension, 3D modeling tools, ArchViz Blender, hard surface modeling"/>
+    <meta name="author" content="EternalShade3D"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="https://eternalshade3d.github.io/EternalShade3D-Toolbox"/>
+
+    <!-- Favicon (brand E mark, filled #7149FF) -->
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Eternal Toolbox"/>
+    <meta property="og:title" content="Eternal Toolbox ◈ — Precision Dimensions for Blender"/>
+    <meta property="og:description" content="See real dimensions in Edit Mode. Scale selections to exact values. Truth Dimensions through all modifiers."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"/>
+    <meta property="og:image" content="assets/eternal_toolbox_banner_clean.png"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0a0a0f',
+                            elevated: '#0e0e16',
+                            card: '#141420',
+                            surface: '#1a1a2b',
+                            border: '#202032',
+                            borderMedium: '#2a2a45',
+                            borderHover: '#33334e',
+                            text: '#f0f0f8',
+                            muted: '#8b8ba7',
+                            dim: '#545470',
+                            heading: '#ffffff',
+                            accent: '#7c5cfc',
+                            accentHover: '#6945f9',
+                            accentLight: '#a48eff',
+                            accentSubtle: 'rgba(124, 92, 252, 0.1)',
+                            accentBorder: 'rgba(124, 92, 252, 0.3)',
+                            gold: '#f0c040',
+                            goldHover: '#e0b030',
+                            goldGlow: 'rgba(240, 192, 64, 0.25)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow-gold': '0 0 32px rgba(240, 192, 64, 0.25), 0 8px 24px rgba(0, 0, 0, 0.5)',
+                        'glow-purple': '0 0 32px rgba(124, 92, 252, 0.2), 0 8px 24px rgba(0, 0, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+    <style>
+        /* Ambient Grid Background FX from Copy 1 */
+        body {
+            background-color: #0a0a0f;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(124, 92, 252, 0.12) 0%, transparent 70%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #202032;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a2a45;
+        }
+
+        .glow-card-hover {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glow-card-hover:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Mobile menu */
+        .menu-btn{
+            display:flex;align-items:center;justify-content:center;
+            width:2rem;height:2rem;background:transparent;border:none;color:var(--brand-muted);cursor:pointer;
+        }
+        .menu-btn[aria-expanded="true"]{color:var(--brand-heading);}
+        .menu-bar{width:1.25rem;height:1px;background:currentColor;position:relative;}
+        .menu-bar::before,.menu-bar::after{content:'';position:absolute;left:0;width:1.25rem;height:1px;background:currentColor;}
+        .menu-bar::before{top:-6px;} .menu-bar::after{top:6px;}
+
+        #mobile-menu{
+            position:fixed;top:0;left:0;right:0;bottom:0;z-index:60;
+            background:#0a0a0f;border-bottom:1px solid var(--brand-border);
+            padding:1rem;display:flex;flex-direction:column;gap:0.5rem;
+            transform:translateX(100%);transition:transform 0.3s ease;opacity:1;
+        }
+        #mobile-menu.open{transform:translateX(0);}
+        #mobile-menu a{
+            display:none;
+        }
+        #mobile-menu .menu-item{
+            display:block;padding:0.85rem 1rem;font-size:0.9rem;font-weight:500;
+            color:#8b8ba7;text-decoration:none;border-radius:var(--radius-md);
+            transition:all 0.2s;position:relative;
+        }
+        #mobile-menu .menu-item:hover{color:#ffffff;background:#1a1a2b;}
+        #mobile-menu .menu-item.btn-gold{color:#000;background:#f0c040;box-shadow:0 0 16px rgba(240,192,64,0.2);}
+        #mobile-menu .menu-item.btn-gold:hover{background:#e0b030;}
+
+        .menu-header{padding:0 0 1rem 0;border-bottom:1px solid #2a2a45;margin-bottom:1.5rem;}
+        .menu-section-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#545470;margin-bottom:0.75rem;padding-left:0.25rem;}
+        .menu-footer{font-size:0.7rem;color:#545470;text-align:center;padding-top:1rem;border-top:1px solid #2a2a45;}
+
+        .menu-close{
+            position:absolute;top:1rem;right:1rem;z-index:70;
+            background:transparent;border:none;color:#8b8ba7;
+            cursor:pointer;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;
+        }
+        .menu-close:hover{color:#ffffff;}
+        .skip-link{
+            position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+        }
+        .skip-link:focus{position:static;width:auto;height:auto;padding:0.5rem 1rem;background:var(--brand-gold);color:#000;z-index:100;font-weight:700;font-size:0.875rem;}
+    </style>
+</head>
+
+<body class="text-brand-text font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Skip to content -->
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ==========================================
+         ANNOUNCEMENT BAR
+         ========================================== -->
+    <div id="announcement-bar" class="bg-gradient-to-r from-brand-accent/30 via-brand-accent/40 to-brand-accent/30 border-b border-brand-accentBorder text-xs sm:text-sm text-brand-heading py-2 px-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2 overflow-hidden text-ellipsis whitespace-nowrap">
+                <span class="inline-block bg-brand-accent text-white text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full">New Release</span>
+                <span class="font-medium text-brand-heading">v1.30.0 introduces evaluated Truth Dimensions &amp; Edit Mode selection scaling!</span>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="#docs" class="text-brand-accentLight hover:underline font-medium text-xs">Learn more &rarr;</a>
+                <button onclick="document.getElementById('announcement-bar').style.display='none'" class="text-brand-muted hover:text-brand-heading transition-colors" aria-label="Dismiss Announcement">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
         </div>
-       </div>
-      </div>
-     </details>
-     <!-- Dimensions -->
-     <details class="doc-topic" id="doc-dimensions">
-      <summary>
-       <div class="doc-topic-icon">
-        📐
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Dimensions Guide
-        </h3>
-        <p>
-         Truth Dimensions, Edit Mode scaling, and performance
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         What Are "Truth" Dimensions?
-        </h4>
-        <p>
-         Blender's native
-         <code>
-          dimensions
-         </code>
-         property shows the bounding box of the object's
-         <strong>
-          cage
-         </strong>
-         (original mesh), not what you actually see. When you have                                modifiers like
-         <strong>
-          Subdivision Surface
-         </strong>
-         ,
-         <strong>
-          Solidify
-         </strong>
-         , or
-         <strong>
-          Geometry Nodes
-         </strong>
-         , the visual size differs from the cage size.
-        </p>
-        <p>
-         <strong>
-          Truth Dimensions
-         </strong>
-         evaluates the actual result of your entire modifier                                stack and shows you the real-world size of what you see.
-        </p>
-        <h4>
-         Panel Features
-        </h4>
-        <div class="doc-table-wrap">
-         <table>
-          <thead>
-           <tr>
-            <th>
-             Feature
-            </th>
-            <th>
-             Description
-            </th>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td>
-             Dimension Sliders (X/Y/Z)
-            </td>
-            <td>
-             Type or drag to set absolute dimensions. Objects scale proportionally.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Uniform Scale
-            </td>
-            <td>
-             All three axes scale together — maintains proportions.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Truth Mode Toggle
-            </td>
-            <td>
-             Switch between evaluated "Truth" math and raw "Cage" fallback.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Pivot Point Selector
-            </td>
-            <td>
-             Respects 3D Cursor, Median Point, Active Element, etc.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Group Bounds Pinning
-            </td>
-            <td>
-             Pin the live bounding box of 2+ objects across selection changes.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Apply Scale
-            </td>
-            <td>
-             Safely applies object scale — handles multi-user mesh data.
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Snap to Round Values
-            </td>
-            <td>
-             Rounds dimensions to the nearest 5cm increment.
-            </td>
-           </tr>
-          </tbody>
-         </table>
-        </div>
-        <h4>
-         Edit Mode Selection Dimensions
-        </h4>
-        <p>
-         When in Edit Mode with geometry selected, an additional
-         <strong>
-          Local Dimensions
-         </strong>
-         section appears. This shows the footprint of your current selection — and when
-         <strong>
-          Truth Mode
-         </strong>
-         is active, it passes through the modifier stack to show the                                evaluated size of just the selected geometry.
-        </p>
-        <h4>
-         Smart Sync &amp; Performance
-        </h4>
-        <p>
-         For dense meshes (above the threshold in preferences), the addon uses
-         <strong>
-          debouncing
-         </strong>
-         to avoid lag. Dimensions update in real-time for light                                meshes and intelligently cache for heavy ones. The
-         <strong>
-          Shield Active
-         </strong>
-         indicator tells you when caching is engaged.
-        </p>
-        <div class="doc-note">
-         <strong>
-          Tip:
-         </strong>
-         Adjust the Real-time Threshold in Addon Preferences to control                                when debouncing kicks in. Default is 100,000 vertices.
-        </div>
-       </div>
-      </div>
-     </details>
-     <!-- Origin Alignment -->
-     <details class="doc-topic" id="doc-origin">
-      <summary>
-       <div class="doc-topic-icon">
-        🎯
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Smart Origin Alignment
-        </h3>
-        <p>
-         Snap origins with 9-point compass, geometry median, cursor
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         Geometry Median
-        </h4>
-        <p>
-         Snaps the origin to the geometric center (mean) of all vertices. Fast and accurate for                                any mesh density.
-        </p>
-        <h4>
-         Cursor Position
-        </h4>
-        <p>
-         Snaps the origin to the 3D cursor's world location.
-        </p>
-        <h4>
-         9-Point Compass Grid
-        </h4>
-        <p>
-         A 3×3 compass grid lets you snap the origin to any combination of:
-        </p>
-        <ul>
-         <li>
-          <strong>
-           Top / Center / Bottom
-          </strong>
-          (Z-axis)
-         </li>
-         <li>
-          <strong>
-           Left / Center / Right
-          </strong>
-          (Y-axis)
-         </li>
-         <li>
-          <strong>
-           Front / Center / Back
-          </strong>
-          (X-axis)
-         </li>
-        </ul>
-        <div class="code-block">
-         <pre>↖  ↑  ↗     (Top row: min/center/max X, max Y)←  •  →     (Middle: min/center/max X, center Y)↙  ↓  ↘     (Bottom: min/center/max X, min Y)</pre>
-        </div>
-        <h4>
-         Selection-Based Origin
-        </h4>
-        <p>
-         In Edit Mode, snap the origin to the center of your current vertex/edge/face selection.
-        </p>
-        <div class="doc-note">
-         <strong>
-          How It Works:
-         </strong>
-         For bounding box calculations on heavy meshes, the addon                                uses a
-         <strong>
-          Geometry Nodes trick
-         </strong>
-         — temporarily creating a GN modifier that                                outputs only the 8 bounding box vertices. This makes even 10M+ vertex meshes compute                                instantly, then the modifier is destroyed cleanly.
-        </div>
-       </div>
-      </div>
-     </details>
-     <!-- Naming Engine -->
-     <details class="doc-topic" id="doc-naming">
-      <summary>
-       <div class="doc-topic-icon">
-        🏷️
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Naming Engine
-        </h3>
-        <p>
-         Systematic asset naming with presets and date prefixing
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         Configuration
-        </h4>
-        <div class="doc-table-wrap">
-         <table>
-          <thead>
-           <tr>
-            <th>
-             Toggle
-            </th>
-            <th>
-             Effect
-            </th>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td>
-             Include Date
-            </td>
-            <td>
-             Prepends
-             <code>
-              YYYY MM
-             </code>
-             (e.g.,
-             <code>
-              2026 04
-             </code>
-             )
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Category
-            </td>
-            <td>
-             Adds a category tag (e.g.,
-             <code>
-              SCENE
-             </code>
-             ,
-             <code>
-              PRODUCT
-             </code>
-             )
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Type
-            </td>
-            <td>
-             Adds a type tag (e.g.,
-             <code>
-              CATEGORY
-             </code>
-             ,
-             <code>
-              PROJECT
-             </code>
-             )
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Name
-            </td>
-            <td>
-             Adds a specific name tag (e.g.,
-             <code>
-              ASSET_NAME
-             </code>
-             )
-            </td>
-           </tr>
-          </tbody>
-         </table>
-        </div>
-        <h4>
-         Preview &amp; Apply
-        </h4>
-        <div class="code-block">
-         Preview: 2026 04 — SCENE — PRODUCT — ASSET_NAME.001
-        </div>
-        <ul>
-         <li>
-          <strong>
-           Rename Objects
-          </strong>
-          — Applies the generated name to all selected objects                                    (with sequential indexing)
-         </li>
-         <li>
-          <strong>
-           Rename Collection
-          </strong>
-          — Applies the generated name to the active                                    collection
-         </li>
-        </ul>
-        <h4>
-         Preset Management
-        </h4>
-        <ul>
-         <li>
-          <strong>
-           +
-          </strong>
-          button — Add a new category/type/name preset
-         </li>
-         <li>
-          <strong>
-           ✏️
-          </strong>
-          button — Edit the currently selected preset
-         </li>
-         <li>
-          <strong>
-           −
-          </strong>
-          button — Remove the currently selected preset
-         </li>
-        </ul>
-        <p>
-         Presets are saved as a JSON file. The path is configurable in addon preferences.
-        </p>
-       </div>
-      </div>
-     </details>
-     <!-- Scene Hygiene -->
-     <details class="doc-topic" id="doc-cleanup">
-      <summary>
-       <div class="doc-topic-icon">
-        🧹
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Scene Hygiene
-        </h3>
-        <p>
-         Material cleanup and orphan purging
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         Material Tools
-        </h4>
-        <div class="doc-table-wrap">
-         <table>
-          <thead>
-           <tr>
-            <th>
-             Tool
-            </th>
-            <th>
-             Description
-            </th>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td>
-             Obj Name → Mat
-            </td>
-            <td>
-             Renames the active material to match the object name
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Mat Name → Obj
-            </td>
-            <td>
-             Renames the object to match its active material
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Clean .001 Materials
-            </td>
-            <td>
-             Merges duplicate materials (e.g.,
-             <code>
-              Material.001
-             </code>
-             →
-             <code>
-              Material
-             </code>
-             ) and remaps all users
-            </td>
-           </tr>
-           <tr>
-            <td>
-             Purge Orphans
-            </td>
-            <td>
-             Removes all orphaned data blocks recursively
-            </td>
-           </tr>
-          </tbody>
-         </table>
-        </div>
-        <div class="doc-note">
-         <strong>
-          Why This Matters:
-         </strong>
-         Blender accumulates orphan data blocks over time,                                increasing file size and causing confusion. Regular cleanup keeps scenes performant and                                organized.
-        </div>
-       </div>
-      </div>
-     </details>
-     <!-- Camera Screenshots -->
-     <details class="doc-topic" id="doc-camera">
-      <summary>
-       <div class="doc-topic-icon">
-        📸
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         Camera Screenshots
-        </h3>
-        <p>
-         Batch-capture every camera with clean shots
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <h4>
-         One-Click Multi-Camera Capture
-        </h4>
-        <p>
-         Render screenshots of every camera in your scene from a single panel — no more manual viewport hopping. Pick a shading mode (
-         <strong>
-          AUTO, SOLID, MATERIAL,
-         </strong>
-         or
-         <strong>
-          RENDERED
-         </strong>
-         ) and let it run.
-        </p>
-        <h4>
-         Clean Shots &amp; Control
-        </h4>
-        <ul>
-         <li>
-          <strong>
-           Clean-shot toggle
-          </strong>
-          — hide viewport overlays and gizmos for presentation-ready frames.
-         </li>
-         <li>
-          <strong>
-           ESC to stop
-          </strong>
-          — abort a long capture run at any time.
-         </li>
-         <li>
-          <strong>
-           Per-camera list
-          </strong>
-          — look through any camera directly from the panel.
-         </li>
-        </ul>
-        <div class="doc-note">
-         <strong>
-          Compatibility:
-         </strong>
-         Camera Screenshots is tested and supported in Blender 5.2.
-        </div>
-       </div>
-      </div>
-     </details>
-     <!-- FAQ -->
-     <details class="doc-topic" id="doc-faq">
-      <summary>
-       <div class="doc-topic-icon">
-        ❓
-       </div>
-       <div class="doc-topic-text">
-        <h3>
-         FAQ
-        </h3>
-        <p>
-         Common questions and troubleshooting
-        </p>
-       </div>
-      </summary>
-      <div class="doc-topic-content">
-       <div class="doc-topic-inner">
-        <div class="faq-list">
-         <details>
-          <summary>
-           Why do the dimensions differ from Blender's native display?
-          </summary>
-          <p>
-           Blender shows the
-           <strong>
-            cage
-           </strong>
-           dimensions (original mesh). This addon                                        evaluates the
-           <strong>
-            modified
-           </strong>
-           mesh through the entire modifier stack,                                        giving you the real-world size of what you actually see.
-          </p>
-         </details>
-         <details>
-          <summary>
-           The dimensions aren't updating instantly on heavy meshes. Is it broken?
-          </summary>
-          <p>
-           No — this is intentional. For meshes above the
-           <strong>
-            Real-time                                            Threshold
-           </strong>
-           (default: 100,000 verts), the addon debounces updates to                                        prevent lag. Wait ~0.25 seconds after changes for the sync to kick in.
-          </p>
-         </details>
-         <details>
-          <summary>
-           Which Blender versions does this work with?
-          </summary>
-          <p>
-           The addon requires Blender's new extension system
-           (
-           <code>
-            blender_manifest.toml
-           </code>
-           ), so it works on Blender 4.2 and later.
-          </p>
-         </details>
-         <details>
-          <summary>
-           Does it work with Geometry Nodes?
-          </summary>
-          <p>
-           Yes! Truth Dimensions evaluates the full GN output, giving you the actual size of                                        whatever your node tree generates.
-          </p>
-         </details>
-         <details>
-          <summary>
-           Where are my naming presets saved?
-          </summary>
-          <p>
-           By default, in your Blender config directory as
-           <code>
-            eternal_naming_data.json
-           </code>
-           . You can change this path in addon                                        preferences.
-          </p>
-         </details>
-         <details>
-          <summary>
-           Is my purchase tied to one machine?
-          </summary>
-          <p>
-           Check the license terms on your purchase platform. Generally, personal use on                                        multiple machines is fine — redistribution is not permitted.
-          </p>
-         </details>
-         <details>
-          <summary>
-           I found a bug or have a feature request.
-          </summary>
-          <p>
-           Reach out via
-           <a href="https://www.instagram.com/eternal.shade3d/" rel="noopener" target="_blank">
-            Instagram
-           </a>
-           ,
-           <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/issues" rel="noopener" target="_blank">
-            GitHub
-           </a>
-           , or
-           <a href="https://discord.gg/YUtnsA3pnp" rel="noopener" target="_blank">
-            Discord
-           </a>
-           — or the support options in the addon's Socials panel.
-          </p>
-         </details>
-        </div>
-       </div>
-      </div>
-     </details>
     </div>
-   </div>
-  </section>
-  <!-- ==========================================         FOOTER         ========================================== -->
-  <footer class="footer">
-   <div class="container">
-    <p>
-     © 2025–2026 EternalShade3D. All rights reserved.
-     <br/>
-     Eternal Utility Toolbox ◈ is a proprietary Blender addon.
-    </p>
-    <div class="social-links">
-     <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" rel="noopener" target="_blank">
-      🐙 GitHub
-     </a>
-     <a href="https://www.instagram.com/eternal.shade3d/" rel="noopener" target="_blank">
-      📷 Instagram
-     </a>
-     <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" rel="noopener" target="_blank">
-      💎                    Gumroad
-     </a>
-     <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" rel="noopener" target="_blank">
-      🛒                    FairMarket
-     </a>
+
+    <!-- ==========================================
+         HEADER / NAVIGATION (FROM INDEX - COPY2.HTML)
+         ========================================== -->
+    <header class="sticky top-0 z-50 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-brand-border">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 text-brand-heading font-bold text-lg tracking-tight hover:opacity-90 transition-opacity">
+                <img src="assets/favicon.svg" alt="EternalShade3D" class="mark" width="32" height="32"/>
+                <span>Eternal<span class="text-brand-accent font-normal">Shade3D</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-muted">
+                <li><a href="#features" class="hover:text-brand-heading transition-colors">Features</a></li>
+                <li><a href="#screenshots" class="hover:text-brand-heading transition-colors">Screenshots</a></li>
+                <li><a href="#panels" class="hover:text-brand-heading transition-colors">Panels</a></li>
+                <li><a href="#docs" class="hover:text-brand-heading transition-colors">Documentation</a></li>
+                <li><a href="#pricing" class="hover:text-brand-heading transition-colors">Pricing</a></li>
+            </ul>
+
+            <!-- Navigation Actions -->
+            <div class="flex items-center gap-3">
+                <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-brand-muted hover:text-brand-heading border border-brand-borderMedium rounded-md hover:border-brand-borderHover transition-all">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="#pricing" class="inline-flex items-center gap-1.5 bg-brand-gold hover:bg-brand-goldHover text-black font-semibold text-xs px-4 py-2 rounded-md shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
+                    <span>Get Addon</span>
+                    <span class="font-mono text-[11px] opacity-80">€19</span>
+                </a>
+                <!-- Mobile hamburger -->
+                <button class="menu-btn md:hidden" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile menu panel -->
+    <div id="mobile-menu">
+        <div class="menu-header flex items-center justify-between pb-2 border-b border-brand-borderMedium mb-4">
+            <div class="flex items-center gap-2">
+                <img src="assets/favicon.svg" alt="EternalShade3D" class="mark" width="32" height="32"/>
+                <span>Eternal<span class="text-brand-accent font-normal">Shade3D</span></span>
+            </div>
+            <button class="menu-close" aria-label="Close menu" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-section-label">Explore</div>
+            <a href="#features" class="menu-item">📐 Features</a>
+            <a href="#screenshots" class="menu-item">🖼️ Screenshots</a>
+            <a href="#panels" class="menu-item">🧩 Panels</a>
+            <a href="#docs" class="menu-item">📖 Documentation</a>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-section-label">Get it</div>
+            <a href="#pricing" class="menu-item">💎 Pricing</a>
+            <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="menu-item">🐙 GitHub Repository</a>
+            <a href="#pricing" class="menu-item btn-gold" style="margin-top:0.5rem;">Get Addon — €19</a>
+        </div>
+
+        <div class="menu-footer mt-auto pt-4 border-t border-brand-borderMedium">
+            <p class="text-[10px] text-brand-dim">v1.30.0 · EternalShade3D</p>
+        </div>
     </div>
-    <p style="margin-top:12px;">
-     Found a bug or want a feature? Reach out on
-     <a href="https://www.instagram.com/eternal.shade3d/" rel="noopener" target="_blank">
-      Instagram
-     </a>
-     ,
-     <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox/issues" rel="noopener" target="_blank">
-      GitHub
-     </a>
-     , or
-     <a href="https://discord.gg/YUtnsA3pnp" rel="noopener" target="_blank">
-      Discord
-     </a>
-     .
-    </p>
-   </div>
-  </footer>
-  <!-- Accordion: only one section open at a time -->
-  <script>
-   document.querySelectorAll('.doc-topic').forEach(details => {            details.addEventListener('toggle', () => {                if (details.open) {                    document.querySelectorAll('.doc-topic').forEach(other => {                        if (other !== details) other.removeAttribute('open');                    });                }            });        });
-  </script>
- </body>
+
+    <main class="flex-grow" id="main">
+        <!-- ==========================================
+             HERO SECTION
+             ========================================== -->
+        <section class="py-16 lg:py-24 text-center relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Hero Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface border border-brand-borderMedium text-xs text-brand-muted mb-7 shadow-sm">
+                    <span>Blender Extension</span>
+                    <span class="text-brand-borderMedium">•</span>
+                    <strong class="text-brand-gold font-semibold">v1.30.0 Released</strong>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent max-w-4xl mx-auto leading-tight mb-6">
+                    Eternal Toolbox ◈
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
+                    Evaluated Truth Dimensions and Precision Scaling for Blender. See true real-world dimensions through your entire modifier stack and scale edit mode selections instantly.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+                    <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-goldHover text-black font-semibold text-sm px-6 py-3 rounded-md shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
+                        <span>💎 Get on Gumroad (€19)</span>
+                    </a>
+                    <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accentHover text-white font-medium text-sm px-6 py-3 rounded-md shadow-[0_0_16px_rgba(124,92,252,0.2)] transition-all transform hover:-translate-y-0.5">
+                        <span>🛒 Get on FairMarket</span>
+                    </a>
+                    <a href="#docs" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-surface text-brand-text hover:bg-brand-surface/80 border border-brand-borderMedium hover:border-brand-muted text-sm px-6 py-3 rounded-md transition-all">
+                        <span>📖 Read Documentation</span>
+                    </a>
+                </div>
+
+                <!-- Banner Preview -->
+                <div class="max-w-5xl mx-auto rounded-2xl p-2 bg-gradient-to-b from-brand-accent/30 to-white/5 border border-brand-border shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_32px_rgba(124,92,252,0.2)]">
+                    <img src="assets/eternal_toolbox_banner_clean.png"
+                         alt="Eternal Toolbox Banner"
+                         width="2048" height="1024"
+                         class="w-full h-auto rounded-xl border border-brand-border"/>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             CORE FEATURES & ALSO INCLUDED (FULL 6 CARDS)
+             ========================================== -->
+        <section id="features" class="py-20 border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-brand-heading mb-3">
+                        Engineered for Precision
+                    </h2>
+                    <p class="text-brand-muted text-base sm:text-lg">
+                        Mathematical accuracy and workflow speed built directly into Blender's viewport.
+                    </p>
+                </div>
+
+                <!-- 2 Main Core Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium p-8 flex flex-col justify-between hover:border-brand-accentBorder hover:shadow-glow-purple">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-accentSubtle border border-brand-accentBorder flex items-center justify-center text-2xl mb-6">
+                                📐
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-3">Evaluated Truth Dimensions</h3>
+                            <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                                Blender natively shows cage sizes, completely ignoring modifiers. Truth Dimensions reads evaluated geometry across Subdivision, Bevel, and Geometry Nodes in real time.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-brand-surface border border-brand-borderMedium text-brand-accentLight">
+                                Object Mode
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium p-8 flex flex-col justify-between hover:border-brand-accentBorder hover:shadow-glow-purple">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-accentSubtle border border-brand-accentBorder flex items-center justify-center text-2xl mb-6">
+                                ✏️
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-3">Edit Mode Selection Scaling</h3>
+                            <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                                Select faces, edges, or vertices and view exact dimensions. Scale geometry to precise values (e.g. 30 cm) while maintaining your active Transform Pivot Point.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-brand-surface border border-brand-borderMedium text-brand-accentLight">
+                                Edit Mode
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- "Also Included in Eternal Toolbox" Grid (FULL 6 CARDS) -->
+                <div class="rounded-2xl bg-brand-elevated border border-brand-border p-8">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-brand-dim mb-6">
+                        Also Included in Eternal Toolbox
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        
+                        <!-- 1. Smart Origin -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">🎯</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Smart Origin Alignment</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">9-point compass grid, geometry median center, and 3D cursor snapping.</p>
+                            </div>
+                        </a>
+
+                        <!-- 2. Dynamic Naming Engine -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">🏷️</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Dynamic Naming Engine</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">Preset-based asset naming with customizable date prefixing &amp; batch indexing.</p>
+                            </div>
+                        </a>
+
+                        <!-- 3. Scene Hygiene -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">🧹</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Scene Hygiene</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">One-click duplicate material cleanup (.001) and recursive orphan data purging.</p>
+                            </div>
+                        </a>
+
+                        <!-- 4. Camera Screenshots -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">📸</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Camera Screenshots</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">Batch capture every scene camera with auto-cropped frame and clean overlays.</p>
+                            </div>
+                        </a>
+
+                        <!-- 5. Color Utilities -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">🎨</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Color Utilities</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">Assign visual debugging colors across loose mesh parts and UV islands.</p>
+                            </div>
+                        </a>
+
+                        <!-- 6. Perimeter & Edge Readout -->
+                        <a href="#docs" class="glow-card-hover flex items-start gap-4 p-5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-borderMedium hover:bg-brand-surface transition-all group">
+                            <div class="text-2xl shrink-0">📏</div>
+                            <div>
+                                <h4 class="text-base font-semibold text-brand-heading mb-1 group-hover:text-brand-accentLight transition-colors">Perimeter &amp; Edge Readout</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed font-normal">Closed-loop perimeter length and open segment edge measurements.</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SCREENSHOTS / WORKFLOW SECTION
+             ========================================== -->
+        <section id="screenshots" class="py-20 border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-brand-heading mb-3">
+                        See It In Action
+                    </h2>
+                    <p class="text-brand-muted text-base sm:text-lg">
+                        See how Eternal Toolbox solves default Blender limitations in real scenarios.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/1.jpg" alt="Accurate Object & Edit Mode Overview" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Accurate Object &amp; Edit Mode Overview</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Seamlessly switch between Object and Edit mode with real-time dimension feedback and pivot controls.</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/4.jpg" alt="Truth Dimensions vs Native Cage" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Truth Dimensions vs Native Cage</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Native Blender misleads cage dimensions (29.2 cm), while Eternal calculates true evaluated size (25 cm).</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/5.jpg" alt="Edit Mode Measurement" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Edit Mode Measurement</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Eliminate guessing in Edit Mode with instant numerical measurement displays for selected components.</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/6.jpg" alt="Pivot-Based Precision Resizing" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Pivot-Based Precision Resizing</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Resize local selections accurately based on 3D Cursor or Custom Pivot locations.</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/7.jpg" alt="Multi-Object Bounding Bounds" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Multi-Object Bounding Bounds</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Pin global dimensions across multiple selected objects accurately in real time.</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/8.jpg" alt="Batch Naming Engine" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Batch Naming Engine</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Organize scene hierarchies automatically using custom presets and dropdown list rules.</p>
+                        </div>
+                    </div>
+
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                            <img src="assets/9.jpg" alt="Color Utilities Debugging" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        </div>
+                        <div class="p-5 border-t border-brand-border">
+                            <h4 class="text-base font-semibold text-brand-heading mb-1">Color Utilities Debugging</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">Assign instant random color passes to loose mesh parts and UV islands for visual inspection.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ORGANIC MODULAR PANELS BREAKDOWN (3-COLUMN MASONRY FROM INDEX - COPY2.HTML)
+             ========================================== -->
+        <section id="panels" class="py-20 bg-brand-elevated border-t border-b border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-brand-heading mb-3">
+                        Modular Panels Breakdown
+                    </h2>
+                    <p class="text-brand-muted text-base sm:text-lg">
+                        Clean, independent modules built natively for Blender N-panel workflow.
+                    </p>
+                </div>
+
+                <!-- 3-Column Column Layout (Organic Masonry Sizes) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Column 1 -->
+                    <div class="flex flex-col gap-6">
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_overview.png" alt="Eternal Toolbox overview panel" width="600" height="382" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Modular collapsible N-panel structure.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_global_dimensions.png" alt="Global dimensions panel" width="600" height="440" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Global Truth Dimensions &amp; Uniform Scaling.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_smart_origin.png" alt="Smart origin panel" width="600" height="440" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Origin alignment by compass, median, or 3D cursor.</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="flex flex-col gap-6">
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_camera_screenshots.png" alt="Camera screenshots panel" width="600" height="720" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Batch camera capture with shading mode control.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_naming_engine.png" alt="Naming engine panel" width="600" height="480" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Preset naming engine with date tags.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_scene_hygiene.png" alt="Scene hygiene panel" width="600" height="280" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Clean duplicate .001 materials &amp; purge orphans.</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div class="flex flex-col gap-6">
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_color_utilities.png" alt="Color utilities panel" width="600" height="240" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Random colors for loose parts &amp; UV island debugging.</figcaption>
+                        </figure>
+                        <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
+                            <img src="assets/panel_preferences.png" alt="Addon preferences page" width="600" height="800" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Extensive addon preference controls &amp; performance thresholds.</figcaption>
+                        </figure>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             PRICING SECTION (COPY 2 CONTENT + COPY 1 BLOOM & OUTLINE)
+             ========================================== -->
+        <section id="pricing" class="py-20 border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-brand-heading mb-3">
+                        Get Eternal Toolbox
+                    </h2>
+                    <p class="text-brand-muted text-base sm:text-lg">
+                        Single purchase, lifetime updates, and complete support.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Gumroad Pricing Card (Card Copy from index - Copy2.html + Border Outline & Glow from index - Copy.html) -->
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border-2 border-brand-gold p-8 flex flex-col justify-between shadow-glow-gold relative">
+                        
+                        <!-- Most Popular Badge Tag (from index - Copy.html centered) -->
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-gold text-black font-extrabold text-[11px] uppercase tracking-wider px-4 py-0.5 rounded-full shadow-sm z-10 whitespace-nowrap">
+                            Most Popular
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-2xl">💎</span>
+                                <h3 class="text-xl font-bold text-brand-heading">Gumroad Store</h3>
+                            </div>
+                            <div class="flex items-baseline gap-2 my-4">
+                                <span class="text-4xl font-extrabold text-brand-gold">€19</span>
+                                <span class="text-xs text-brand-muted font-normal">one-time payment</span>
+                            </div>
+                            <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Instant ZIP digital download</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Lifetime free updates &amp; new modules</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Blender 4.2+ &amp; 5.2 Extension Manifest ready</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Direct developer support via email &amp; Discord</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-goldHover text-black font-bold text-sm py-3.5 px-5 rounded-xl shadow-[0_0_16px_rgba(240,192,64,0.2)] transition-all transform hover:-translate-y-0.5">
+                            Buy on Gumroad →
+                        </a>
+                    </div>
+
+                    <!-- FairMarket Pricing Card (from index - Copy2.html) -->
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium p-8 flex flex-col justify-between hover:border-brand-accentBorder transition-all">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-2xl">🛒</span>
+                                <h3 class="text-xl font-bold text-brand-heading">FairMarket Store</h3>
+                            </div>
+                            <div class="flex items-baseline gap-2 my-4">
+                                <span class="text-3xl font-extrabold text-brand-accentLight">Market Pricing</span>
+                            </div>
+                            <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
+                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Secure decentralized / Web3 checkout</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Lifetime software access</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Community marketplace verified</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Complete documentation access</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-brand-surface hover:bg-brand-surface/80 border border-brand-borderMedium hover:border-brand-accentBorder text-brand-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition-all">
+                            Buy on FairMarket →
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             DOCUMENTATION & GUIDES
+             ========================================== -->
+        <section id="docs" class="py-20 border-t border-brand-border">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-brand-heading mb-3">
+                        Documentation &amp; Guides
+                    </h2>
+                    <p class="text-brand-muted text-base sm:text-lg">
+                        Everything you need to master precision modeling in Blender.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- 1. Quick Installation -->
+                    <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
+                        <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
+                            <span class="text-xl">📦</span> Installation &amp; Setup Guide
+                        </summary>
+                        <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-4">
+                            <div>
+                                <h4 class="font-bold text-brand-heading mb-1">Requirements</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li><strong>Blender 4.2+</strong> or later (Full support for Blender 5.2 Extension Manifest)</li>
+                                    <li>Compatible with Windows, macOS, and Linux</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-heading mb-1">Installation Steps</h4>
+                                <ol class="list-decimal pl-5 space-y-1.5">
+                                    <li>Download the <code>.zip</code> file after purchase.</li>
+                                    <li>In Blender, navigate to <strong>Edit &rarr; Preferences &rarr; Add-ons</strong>.</li>
+                                    <li>Click the drop-down menu in the top right and choose <strong>Install from Disk...</strong></li>
+                                    <li>Select your downloaded <code>.zip</code> file and enable <strong>Eternal Toolbox ◈</strong>.</li>
+                                    <li>Press <kbd class="px-1.5 py-0.5 rounded bg-brand-surface text-brand-accentLight font-mono text-xs">N</kbd> in the 3D Viewport to open the sidebar.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 2. Truth Dimensions -->
+                    <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
+                        <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
+                            <span class="text-xl">📐</span> Dimensions &amp; Truth Mode Guide
+                        </summary>
+                        <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-3">
+                            <p>Native Blender <code>object.dimensions</code> only reports the raw un-evaluated vertex cage. If you apply a <em>Solidify, Subdivision Surface, or Geometry Nodes modifier</em>, native Blender dimensions remain unchanged.</p>
+                            <p><strong>Truth Mode</strong> continuously evaluates the dependency graph (Depsgraph) output, ensuring your numeric readouts match real physical bounding dimensions.</p>
+                            <div class="p-4 rounded-xl bg-brand-surface border-l-4 border-brand-accent text-xs">
+                                <strong>Performance Thresholds &amp; Debouncing:</strong> High vertex counts (&gt;100k verts) switch automatically to asynchronous debouncing to keep viewport framerates smooth.
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 3. Smart Origin Alignment -->
+                    <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
+                        <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
+                            <span class="text-xl">🎯</span> Smart Origin Alignment
+                        </summary>
+                        <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-3">
+                            <p>Easily realign an object's origin to any corner, edge, face bounding extreme, or internal median center using the 9-Point Compass grid interface:</p>
+                            <div class="bg-brand-bg p-4 rounded-xl border border-brand-border font-mono text-xs text-brand-accentLight leading-loose">
+                                ↖  ↑  ↗   (Top Bounds Z-max)<br/>
+                                ←  •  →   (Median Center)<br/>
+                                ↙  ↓  ↘   (Bottom Bounds Z-min)
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 4. FAQ -->
+                    <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
+                        <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
+                            <span class="text-xl">❓</span> Frequently Asked Questions
+                        </summary>
+                        <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-3">
+                            <div>
+                                <h5 class="font-bold text-brand-heading">Which Blender versions are supported?</h5>
+                                <p>Blender 4.2 LTS through Blender 5.2. Supported via extension manifest standards.</p>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brand-heading">Is my purchase valid for multiple workstations?</h5>
+                                <p>Yes, standard individual licenses allow usage on your personal workstations.</p>
+                            </div>
+                        </div>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER (FROM INDEX - COPY2.HTML)
+         ========================================== -->
+    <footer class="bg-brand-bg border-t border-brand-border py-12 text-center text-xs text-brand-dim">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex items-center justify-center gap-2 text-brand-heading font-semibold text-base">
+                <span class="text-brand-accent">◈</span> Eternal Toolbox
+            </div>
+            
+            <p>© 2025–2026 EternalShade3D. All rights reserved. Proprietary Blender extension toolkit.</p>
+
+            <div class="flex flex-wrap items-center justify-center gap-6 text-brand-muted">
+                <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">🐙 GitHub Repository</a>
+                <a href="https://www.instagram.com/eternal.shade3d/" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">📷 Instagram</a>
+                <a href="https://discord.gg/YUtnsA3pnp" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">💬 Discord Support</a>
+                <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">💎 Gumroad Listing</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script (Single Accordion open handler) -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu(){
+            var btn = document.querySelector('.menu-btn');
+            var menu = document.getElementById('mobile-menu');
+            var open = menu.classList.contains('open');
+            if(open){
+                menu.classList.remove('open');
+                btn.setAttribute('aria-expanded','false');
+            } else {
+                menu.classList.add('open');
+                btn.setAttribute('aria-expanded','true');
+            }
+        }
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(function(a){
+            a.addEventListener('click', function(){
+                document.getElementById('mobile-menu').classList.remove('open');
+                document.querySelector('.menu-btn').setAttribute('aria-expanded','false');
+            });
+        });
+        // Single-open docs accordion
+        document.querySelectorAll('.doc-item').forEach(function(details){
+            details.addEventListener('toggle', function(){
+                if(details.open){
+                    document.querySelectorAll('.doc-item').forEach(function(other){
+                        if(other !== details) other.removeAttribute('open');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
