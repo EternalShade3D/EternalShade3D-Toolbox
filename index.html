@@ -108,7 +108,20 @@
         .skip-link{
             position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
         }
-        .skip-link:focus{position:static;width:auto;height:auto;padding:0.5rem 1rem;background:var(--brand-gold);color:#000;z-index:100;font-weight:700;font-size:0.875rem;}
+        /* Zoom Modal Gallery */
+        .cursor-zoom-in{cursor:zoom-in}
+        .zoom-modal{position:fixed;inset:0;z-index:100;background:rgba(10,10,15,0.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:2rem;animation:zoomFadeIn .25s ease}
+        .zoom-modal.open{display:flex}
+        .zoom-modal .zoom-backdrop{position:absolute;inset:0;cursor:zoom-out}
+        .zoom-content{position:relative;z-index:10;max-width:98vw;max-height:96vh;display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+        .zoom-content img{max-width:98vw;max-height:82vh;width:auto;height:auto;border-radius:1rem;border:1px solid var(--brand-border);box-shadow:0 20px 80px rgba(0,0,0,0.8);cursor:zoom-in;object-fit:contain}
+        .zoom-btn-close{position:absolute;top:1rem;right:1rem;z-index:20;width:2.75rem;height:2.75rem;border-radius:50%;background:rgba(0,0,0,0.65);border:1px solid var(--brand-borderMedium);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;line-height:1}
+        .zoom-btn-close:hover{background:rgba(0,0,0,0.9)}
+        #zoom-prev,#zoom-next{position:absolute;top:50%;transform:translateY(-50%);z-index:15;width:2.75rem;height:2.75rem;border-radius:50%;background:rgba(0,0,0,0.65);border:1px solid var(--brand-borderMedium);color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+        #zoom-prev{left:1rem}#zoom-next:right:1rem
+        #zoom-prev:hover,#zoom-next:hover{background:rgba(0,0,0,0.9)}
+        .zoom-caption{color:#8b8ba7;font-size:0.875rem;text-align:center;margin-top:0.25rem}
+        @keyframes zoomFadeIn{from{opacity:0}to{opacity:1}}
     </style>
 </head>
 
@@ -393,8 +406,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
-                            <img src="assets/1.jpg" alt="Accurate Object & Edit Mode Overview" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/1.zoom.webp" data-zoom-fallback="assets/1.jpg" data-zoom-alt="Accurate Object &amp; Edit Mode Overview" tabindex="0" role="button" aria-label="Zoom: Accurate Object &amp; Edit Mode Overview">
+                            <img src="assets/1.jpg" alt="Accurate Object &amp; Edit Mode Overview" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Accurate Object &amp; Edit Mode Overview</h4>
@@ -403,8 +421,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/4.zoom.webp" data-zoom-fallback="assets/4.jpg" data-zoom-alt="Truth Dimensions vs Native Cage" tabindex="0" role="button" aria-label="Zoom: Truth Dimensions vs Native Cage">
                             <img src="assets/4.jpg" alt="Truth Dimensions vs Native Cage" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Truth Dimensions vs Native Cage</h4>
@@ -413,8 +436,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/5.zoom.webp" data-zoom-fallback="assets/5.jpg" data-zoom-alt="Edit Mode Measurement" tabindex="0" role="button" aria-label="Zoom: Edit Mode Measurement">
                             <img src="assets/5.jpg" alt="Edit Mode Measurement" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Edit Mode Measurement</h4>
@@ -423,8 +451,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/6.zoom.webp" data-zoom-fallback="assets/6.jpg" data-zoom-alt="Pivot-Based Precision Resizing" tabindex="0" role="button" aria-label="Zoom: Pivot-Based Precision Resizing">
                             <img src="assets/6.jpg" alt="Pivot-Based Precision Resizing" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Pivot-Based Precision Resizing</h4>
@@ -433,8 +466,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/7.zoom.webp" data-zoom-fallback="assets/7.jpg" data-zoom-alt="Multi-Object Bounding Bounds" tabindex="0" role="button" aria-label="Zoom: Multi-Object Bounding Bounds">
                             <img src="assets/7.jpg" alt="Multi-Object Bounding Bounds" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Multi-Object Bounding Bounds</h4>
@@ -443,8 +481,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/8.zoom.webp" data-zoom-fallback="assets/8.jpg" data-zoom-alt="Batch Naming Engine" tabindex="0" role="button" aria-label="Zoom: Batch Naming Engine">
                             <img src="assets/8.jpg" alt="Batch Naming Engine" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Batch Naming Engine</h4>
@@ -453,8 +496,13 @@
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
-                        <div class="aspect-video bg-brand-elevated overflow-hidden">
+                        <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/9.zoom.webp" data-zoom-fallback="assets/9.jpg" data-zoom-alt="Color Utilities Debugging" tabindex="0" role="button" aria-label="Zoom: Color Utilities Debugging">
                             <img src="assets/9.jpg" alt="Color Utilities Debugging" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                                <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
                             <h4 class="text-base font-semibold text-brand-heading mb-1">Color Utilities Debugging</h4>
@@ -722,6 +770,18 @@
         </div>
     </footer>
 
+    <!-- Zoom Modal Gallery -->
+    <div id="zoom-modal" class="zoom-modal" aria-modal="true" role="dialog" aria-label="Image gallery zoom" aria-hidden="true">
+        <div class="zoom-backdrop" id="zoom-backdrop"></div>
+        <div class="zoom-content">
+            <button id="zoom-close" class="zoom-btn-close" aria-label="Close zoom">&times;</button>
+            <img id="zoom-img" src="" alt="" />
+            <p id="zoom-caption" class="zoom-caption"></p>
+        </div>
+        <button id="zoom-prev" class="zoom-nav-btn" aria-label="Previous image">&#8249;</button>
+        <button id="zoom-next" class="zoom-nav-btn" aria-label="Next image">&#8250;</button>
+    </div>
+
     <!-- Interactive Script (Single Accordion open handler) -->
     <script>
         // Mobile menu toggle
@@ -754,6 +814,58 @@
                 }
             });
         });
-    </script>
+
+
+    // Zoom modal gallery
+    (function(){
+        var modal = document.getElementById('zoom-modal');
+        var zoomImg = document.getElementById('zoom-img');
+        var zoomCaption = document.getElementById('zoom-caption');
+        var cards = document.querySelectorAll('[data-zoom]');
+        var list = [];
+        var idx = 0;
+
+        cards.forEach(function(c){
+            list.push({
+                src: c.getAttribute('data-zoom'),
+                fallback: c.getAttribute('data-zoom-fallback'),
+                alt: c.getAttribute('data-zoom-alt')
+            });
+        });
+
+        function open(n){
+            idx = ((n % list.length) + list.length) % list.length;
+            var item = list[idx];
+            zoomImg.src = item.src;
+            zoomImg.onerror = function(){ this.src = item.fallback; };
+            zoomCaption.textContent = item.alt;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden','false');
+            document.body.style.overflow = 'hidden';
+        }
+        function close(){
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden','true');
+            document.body.style.overflow = '';
+        }
+        cards.forEach(function(c, i){
+            c.addEventListener('click', function(){ open(i); });
+            c.addEventListener('keydown', function(e){
+                if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(i); }
+            });
+        });
+        document.getElementById('zoom-close').addEventListener('click', close);
+        document.getElementById('zoom-backdrop').addEventListener('click', close);
+        document.getElementById('zoom-prev').addEventListener('click', function(e){ e.stopPropagation(); open(idx - 1); });
+        document.getElementById('zoom-next').addEventListener('click', function(e){ e.stopPropagation(); open(idx + 1); });
+        document.addEventListener('keydown', function(e){
+            if(modal.getAttribute('aria-hidden') === 'false'){
+                if(e.key === 'Escape') close();
+                else if(e.key === 'ArrowLeft') open(idx - 1);
+                else if(e.key === 'ArrowRight') open(idx + 1);
+            }
+        });
+    })();
+</script>
 </body>
 </html>
