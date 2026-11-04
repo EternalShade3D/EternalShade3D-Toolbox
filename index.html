@@ -8,7 +8,7 @@
     <meta name="keywords" content="Blender addon, edit mode dimensions, Blender dimensions, truth dimensions, precision scaling, origin alignment, Blender extension, 3D modeling tools, ArchViz Blender, hard surface modeling"/>
     <meta name="author" content="EternalShade3D"/>
     <meta name="robots" content="index, follow"/>
-    <link rel="canonical" href="https://eternalshade3d.github.io/EternalShade3D-Toolbox"/>
+    <link rel="canonical" href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"/>
 
     <!-- Favicon (brand E mark, filled #7149FF) -->
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
@@ -21,6 +21,10 @@
     <meta property="og:url" content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"/>
     <meta property="og:image" content="assets/eternal_toolbox_banner_clean.png"/>
     <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Eternal Toolbox ◈ — Precision Dimensions Addon for Blender"/>
+    <meta name="twitter:description" content="Blender addon for Edit Mode dimensions, Truth Dimensions through modifiers, precision scaling with pivot points. Built for hard-surface modelers and ArchViz professionals."/>
+    <meta name="twitter:image" content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/eternal_toolbox_banner_clean.webp"/>
+    <meta name="twitter:creator" content="@eternal.shade3d"/>
 
         <!-- Local styles (built from Tailwind, no CDN) -->
         <link rel="stylesheet" href="assets/fonts.css"/>
@@ -124,6 +128,110 @@
         .zoom-caption{color:#8b8ba7;font-size:0.875rem;text-align:center;margin-top:0.25rem}
         @keyframes zoomFadeIn{from{opacity:0}to{opacity:1}}
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "#person",
+          "name": "Márcio",
+          "jobTitle": "3D Freelancer, Blender Add-on Developer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "EternalShade3D"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Braga",
+            "addressCountry": "PT"
+          },
+          "sameAs": [
+            "https://www.instagram.com/eternal.shade3d/",
+            "https://github.com/EternalShade3D/EternalShade3D-Toolbox",
+            "https://discord.gg/DHMT6J6TmX"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "#org",
+          "name": "EternalShade3D",
+          "legalName": "EternalShade3D",
+          "url": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/",
+          "logo": "https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/favicon.svg",
+          "sameAs": [
+            "https://www.instagram.com/eternal.shade3d/",
+            "https://github.com/EternalShade3D/EternalShade3D-Toolbox",
+            "https://discord.gg/DHMT6J6TmX",
+            "https://eternalshade3d.gumroad.com/",
+            "https://www.fairmarket.land/"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Braga",
+            "addressCountry": "PT"
+          },
+          "founder": {"@id": "#person"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "#app",
+          "name": "Eternal Toolbox",
+          "alternateName": "EternalShade3D Toolbox",
+          "applicationCategory": "ProductivityApplication",
+          "operatingSystem": "Windows, macOS, Linux",
+          "author": {"@id": "#person"},
+          "publisher": {"@id": "#org"},
+          "description": "Blender 4.2+ extension. Evaluated Truth Dimensions through modifier stacks, Edit Mode precision scaling, Smart Origin alignment, Dynamic Naming Engine, Scene Hygiene, Color Utilities.",
+          "featureList": [
+            "Evaluated Truth Dimensions (Subdivision, Displace, Bevel, Geometry Nodes)",
+            "Edit Mode selection dimensions with pivot point control",
+            "Smart Origin Alignment 9-point compass grid",
+            "Dynamic Naming Engine with date prefixing",
+            "Scene Hygiene material cleanup and orphan purging",
+            "Color Utilities random loose parts and UV island colors",
+            "Camera Screenshots batch capture"
+          ],
+          "sameAs": [
+            "https://github.com/EternalShade3D/EternalShade3D-Toolbox",
+            "https://eternalshade3d.github.io/EternalShade3D-Toolbox/",
+            "https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox",
+            "https://www.fairmarket.land/product/eternal-utility-toolbox"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What Blender versions does Eternal Toolbox support?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Blender 4.2.0 or later, Windows, macOS, or Linux. Requires the Blender extension system (blender_manifest.toml)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are Truth Dimensions in Blender?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Truth Dimensions reads the real evaluated size of your object after all modifiers (Subdivision, Displace, Bevel, Geometry Nodes), not Blender's native cage dimensions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I buy Eternal Toolbox?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Available on Gumroad and FairMarket. Links on the official page at eternalshade3d.github.io/EternalShade3D-Toolbox."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="text-brand-text font-sans antialiased min-h-screen flex flex-col">
@@ -234,7 +342,7 @@
 
                 <!-- Headline -->
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent max-w-4xl mx-auto leading-tight mb-6">
-                    Eternal Toolbox ◈
+                    Eternal Toolbox ◈ — Blender Addon
                 </h1>
                 
                 <p class="text-lg sm:text-xl text-brand-muted max-w-2xl mx-auto leading-relaxed mb-10 font-normal">

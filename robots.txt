@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eternalshade3d.github.io/EternalShade3D-Toolbox/sitemap.xml
