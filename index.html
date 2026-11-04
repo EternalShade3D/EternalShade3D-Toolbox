@@ -110,8 +110,9 @@
         }
         /* Zoom Modal Gallery */
         .cursor-zoom-in{cursor:zoom-in}
-        .zoom-modal{position:fixed;inset:0;z-index:100;background:rgba(10,10,15,0.94);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:2rem;animation:zoomFadeIn .25s ease}
+        .zoom-modal{position:fixed;inset:0;z-index:100;background:rgba(10,10,15,0.94);backdrop-filter:blur(8px);display:none;animation:zoomFadeIn .25s ease}
         .zoom-modal.open{display:flex}
+        .zoom-stage{position:relative;inset:0;display:flex;align-items:center;justify-content:center;padding:2rem}
         .zoom-modal .zoom-backdrop{position:absolute;inset:0;cursor:zoom-out}
         .zoom-content{position:relative;z-index:10;max-width:98vw;max-height:96vh;display:flex;flex-direction:column;align-items:center;gap:0.5rem}
         .zoom-content img{max-width:98vw;max-height:82vh;width:auto;height:auto;border-radius:1rem;border:1px solid var(--brand-border);box-shadow:0 20px 80px rgba(0,0,0,0.8);cursor:zoom-in;object-fit:contain}
@@ -407,7 +408,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/1.zoom.webp" data-zoom-fallback="assets/1.jpg" data-zoom-alt="Accurate Object &amp; Edit Mode Overview" tabindex="0" role="button" aria-label="Zoom: Accurate Object &amp; Edit Mode Overview">
-                            <img src="assets/1.jpg" alt="Accurate Object &amp; Edit Mode Overview" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/1.jpg" alt="Accurate Object &amp; Edit Mode Overview" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -422,7 +423,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/4.zoom.webp" data-zoom-fallback="assets/4.jpg" data-zoom-alt="Truth Dimensions vs Native Cage" tabindex="0" role="button" aria-label="Zoom: Truth Dimensions vs Native Cage">
-                            <img src="assets/4.jpg" alt="Truth Dimensions vs Native Cage" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/4.jpg" alt="Truth Dimensions vs Native Cage" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -437,7 +438,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/5.zoom.webp" data-zoom-fallback="assets/5.jpg" data-zoom-alt="Edit Mode Measurement" tabindex="0" role="button" aria-label="Zoom: Edit Mode Measurement">
-                            <img src="assets/5.jpg" alt="Edit Mode Measurement" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/5.jpg" alt="Edit Mode Measurement" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -452,7 +453,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/6.zoom.webp" data-zoom-fallback="assets/6.jpg" data-zoom-alt="Pivot-Based Precision Resizing" tabindex="0" role="button" aria-label="Zoom: Pivot-Based Precision Resizing">
-                            <img src="assets/6.jpg" alt="Pivot-Based Precision Resizing" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/6.jpg" alt="Pivot-Based Precision Resizing" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -467,7 +468,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/7.zoom.webp" data-zoom-fallback="assets/7.jpg" data-zoom-alt="Multi-Object Bounding Bounds" tabindex="0" role="button" aria-label="Zoom: Multi-Object Bounding Bounds">
-                            <img src="assets/7.jpg" alt="Multi-Object Bounding Bounds" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/7.jpg" alt="Multi-Object Bounding Bounds" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -482,7 +483,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/8.zoom.webp" data-zoom-fallback="assets/8.jpg" data-zoom-alt="Batch Naming Engine" tabindex="0" role="button" aria-label="Zoom: Batch Naming Engine">
-                            <img src="assets/8.jpg" alt="Batch Naming Engine" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/8.jpg" alt="Batch Naming Engine" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -497,7 +498,7 @@
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/9.zoom.webp" data-zoom-fallback="assets/9.jpg" data-zoom-alt="Color Utilities Debugging" tabindex="0" role="button" aria-label="Zoom: Color Utilities Debugging">
-                            <img src="assets/9.jpg" alt="Color Utilities Debugging" width="2560" height="1440" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <img src="assets/9.jpg" alt="Color Utilities Debugging" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -773,14 +774,16 @@
     <!-- Zoom Modal Gallery -->
     <div id="zoom-modal" class="zoom-modal" aria-modal="true" role="dialog" aria-label="Image gallery zoom" aria-hidden="true">
         <div class="zoom-backdrop" id="zoom-backdrop"></div>
-        <div class="zoom-content">
-            <button id="zoom-close" class="zoom-btn-close" aria-label="Close zoom">&times;</button>
-            <img id="zoom-img" src="" alt="" />
-            <p id="zoom-caption" class="zoom-caption"></p>
+        <div class="zoom-stage">
+            <div class="zoom-content">
+                <button id="zoom-close" class="zoom-btn-close" aria-label="Close zoom">&times;</button>
+                <img id="zoom-img" src="" alt="" />
+                <p id="zoom-caption" class="zoom-caption"></p>
+            </div>
+            <button id="zoom-prev" class="zoom-nav-btn" aria-label="Previous image">&#8249;</button>
+            <button id="zoom-next" class="zoom-nav-btn" aria-label="Next image">&#8250;</button>
         </div>
-        <button id="zoom-prev" class="zoom-nav-btn" aria-label="Previous image">&#8249;</button>
-        <button id="zoom-next" class="zoom-nav-btn" aria-label="Next image">&#8250;</button>
-    </div>
+        </div>
 
     <!-- Interactive Script (Single Accordion open handler) -->
     <script>
