@@ -4,7 +4,7 @@
   <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Eternal Toolbox documentation guide"></a>
   <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox"><img src="https://img.shields.io/badge/Repo-About-F0C040?style=for-the-badge&labelColor=26282e&logo=github&logoColor=white" alt="Eternal Toolbox repository"></a>
   <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-9D85FD?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="EternalShade3D Blender addon showcase on Instagram"></a>
-  <a href="https://discord.gg/YUtnsA3pnp"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
+  <a href="https://discord.com/invite/DHMT6J6TmX"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
 </p>
 
 <p align="center">

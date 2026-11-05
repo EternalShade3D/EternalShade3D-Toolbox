@@ -20,8 +20,8 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"/>
     <meta property="og:image" content="https://eternalshade3d.github.io/EternalShade3D-Toolbox/assets/eternal_toolbox_banner_clean.png"/>
-    <meta property="og:image:width" content="2048"/>
-    <meta property="og:image:height" content="1024"/>
+    <meta property="og:image:width" content="1400"/>
+    <meta property="og:image:height" content="700"/>
     <meta property="og:image:alt" content="Eternal Toolbox Blender addon banner"/>
     <meta property="og:locale" content="en_US"/>
     <meta name="twitter:card" content="summary_large_image"/>
@@ -35,7 +35,7 @@
         <link rel="stylesheet" href="assets/style.css"/>
 
     <style>
-        /* Ambient Grid Background FX from Copy 1 */
+        /* Ambient grid background */
         body {
             background-color: #0a0a0f;
         }
@@ -193,16 +193,31 @@
         .cursor-zoom-in{cursor:zoom-in}
         .zoom-modal{position:fixed;inset:0;z-index:100;background:rgba(10,10,15,0.94);backdrop-filter:blur(8px);display:none;animation:zoomFadeIn .25s ease}
         .zoom-modal.open{display:flex}
-        .zoom-stage{position:relative;inset:0;display:flex;align-items:center;justify-content:center;padding:2rem}
+        .zoom-stage{position:relative;flex:1 1 auto;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem}
         .zoom-modal .zoom-backdrop{position:absolute;inset:0;cursor:zoom-out}
         .zoom-content{position:relative;z-index:10;max-width:98vw;max-height:96vh;display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+        .zoom-content img[src*="panel_"]{max-width:min(calc(100vw - 2rem), 600px)}
         .zoom-content img{max-width:98vw;max-height:82vh;width:auto;height:auto;border-radius:1rem;border:1px solid var(--brand-border);box-shadow:0 20px 80px rgba(0,0,0,0.8);cursor:zoom-in;object-fit:contain}
         .zoom-btn-close{position:absolute;top:1rem;right:1rem;z-index:20;width:2.75rem;height:2.75rem;border-radius:50%;background:rgba(0,0,0,0.65);border:1px solid var(--brand-borderMedium);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;line-height:1}
         .zoom-btn-close:hover{background:rgba(0,0,0,0.9)}
         #zoom-prev,#zoom-next{position:absolute;top:50%;transform:translateY(-50%);z-index:15;width:2.75rem;height:2.75rem;border-radius:50%;background:rgba(0,0,0,0.65);border:1px solid var(--brand-borderMedium);color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
-        #zoom-prev{left:1rem}#zoom-next:right:1rem
+        #zoom-prev{left:1rem}
+        #zoom-next{right:1rem}
         #zoom-prev:hover,#zoom-next:hover{background:rgba(0,0,0,0.9)}
         .zoom-caption{color:#8b8ba7;font-size:0.875rem;text-align:center;margin-top:0.25rem}
+        /* Caption links: #A48EFF is 6.86:1 on the card surface, underline keeps them from being colour-only */
+        #screenshots figcaption a{color:#A48EFF;text-decoration:underline;text-underline-offset:0.18em;text-decoration-thickness:1px;text-decoration-color:rgba(164,142,255,0.45)}
+        #screenshots figcaption a:hover{text-decoration-color:#A48EFF}
+        /* <picture> must fill the 16:9 card stage exactly like the old bare <img> did */
+        #screenshots picture{display:block;width:100%;height:100%}
+        @media (max-width:639px){
+            .zoom-stage{padding:1rem 1rem 4.75rem}
+            #zoom-prev,#zoom-next{top:auto;bottom:1rem}
+            #zoom-prev{left:50%;transform:translateX(calc(-100% - 0.5rem))}
+            #zoom-next{right:50%;transform:translateX(calc(100% + 0.5rem))}
+            .zoom-content img{max-height:72vh}
+            .zoom-caption{margin-top:0}
+        }
         @keyframes zoomFadeIn{from{opacity:0}to{opacity:1}}
     </style>
 
@@ -226,7 +241,7 @@
           "sameAs": [
             "https://www.instagram.com/eternal.shade3d/",
             "https://github.com/EternalShade3D/",
-            "https://discord.gg/DHMT6J6TmX"
+            "https://discord.com/invite/DHMT6J6TmX"
           ]
         },
         {
@@ -239,7 +254,7 @@
           "sameAs": [
             "https://www.instagram.com/eternal.shade3d/",
             "https://github.com/EternalShade3D/EternalShade3D-Toolbox",
-            "https://discord.gg/DHMT6J6TmX",
+            "https://discord.com/invite/DHMT6J6TmX",
             "https://eternalshade3d.gumroad.com/",
             "https://eternalshade3d.s.fairmarket.land/",
             "https://www.instagram.com/eternal.shade3d/"
@@ -334,7 +349,7 @@
     </div>
 
     <!-- ==========================================
-         HEADER / NAVIGATION (FROM INDEX - COPY2.HTML)
+         HEADER / NAVIGATION
          ========================================== -->
     <header class="sticky top-0 z-50 bg-[#0a0a0f]/85 backdrop-blur-md border-b border-brand-border">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -363,7 +378,7 @@
                     <span>Get Addon</span>
                 </a>
                 <!-- Mobile hamburger -->
-                <button class="menu-btn lg:hidden" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
+                <button class="menu-btn lg:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu" onclick="toggleMenu()">
                     <span class="menu-bar"></span>
                 </button>
             </div>
@@ -441,10 +456,11 @@
                 <!-- Banner Preview -->
                 <div class="max-w-5xl mx-auto rounded-2xl p-2 bg-gradient-to-b from-brand-accent/30 to-white/5 border border-brand-border shadow-[0_16px_48px_rgba(0,0,0,0.6),0_0_32px_rgba(124,92,252,0.2)]">
                     <picture>
-                        <source srcset="assets/eternal_toolbox_banner_clean.webp" type="image/webp"/>
+                        <source srcset="assets/eternal_toolbox_banner_700.webp 700w, assets/eternal_toolbox_banner_clean.webp 1400w"
+                                sizes="(min-width:1024px) 1024px, 92vw" type="image/webp"/>
                         <img src="assets/eternal_toolbox_banner_clean.png"
                              alt="Eternal Toolbox Banner"
-                             width="2048" height="1024"
+                             width="1400" height="700"
                              fetchpriority="high"
                              loading="eager"
                              class="w-full h-auto rounded-xl border border-brand-border"/>
@@ -602,15 +618,16 @@
                             class="w-full h-full border-0"></iframe>
                     </div>
                     <figcaption class="p-5 border-t border-brand-border">
-                        <h4 class="text-base font-semibold text-brand-heading mb-1">Showcase 01: Type a Size, Get That Size</h4>
-                        <p class="text-xs text-brand-muted leading-relaxed">Global and local dimensions in one pass, captured inside Blender. <a href="https://youtu.be/nP42ajGU4c4" class="text-brand-accent hover:underline">Open on YouTube</a></p>
+                        <h3 class="text-base font-semibold text-brand-heading mb-1">Showcase 01: Type a Size, Get That Size</h3>
+                        <p class="text-xs text-brand-muted leading-relaxed">Global and local dimensions in one pass, captured inside Blender. <a href="https://youtu.be/nP42ajGU4c4" class="font-medium">Open on YouTube</a></p>
                     </figcaption>
                 </figure>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/1.zoom.webp" data-zoom-fallback="assets/1.jpg" data-zoom-alt="Accurate Object &amp; Edit Mode Overview" tabindex="0" role="button" aria-label="Zoom: Accurate Object &amp; Edit Mode Overview">
-                            <img src="assets/1.jpg" alt="Accurate Object &amp; Edit Mode Overview" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/1_640.webp 640w, assets/1_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/1_900.jpg" alt="Accurate Object &amp; Edit Mode Overview" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -618,14 +635,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Accurate Object &amp; Edit Mode Overview</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Accurate Object &amp; Edit Mode Overview</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Seamlessly switch between Object and Edit mode with real-time dimension feedback and pivot controls.</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/4.zoom.webp" data-zoom-fallback="assets/4.jpg" data-zoom-alt="Truth Dimensions vs Native Cage" tabindex="0" role="button" aria-label="Zoom: Truth Dimensions vs Native Cage">
-                            <img src="assets/4.jpg" alt="Truth Dimensions vs Native Cage" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/4_640.webp 640w, assets/4_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/4_900.jpg" alt="Truth Dimensions vs Native Cage" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -633,14 +651,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Truth Dimensions vs Native Cage</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Truth Dimensions vs Native Cage</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Native Blender misleads cage dimensions (29.2 cm), while Eternal calculates true evaluated size (25 cm).</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/5.zoom.webp" data-zoom-fallback="assets/5.jpg" data-zoom-alt="Edit Mode Measurement" tabindex="0" role="button" aria-label="Zoom: Edit Mode Measurement">
-                            <img src="assets/5.jpg" alt="Edit Mode Measurement" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/5_640.webp 640w, assets/5_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/5_900.jpg" alt="Edit Mode Measurement" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -648,14 +667,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Edit Mode Measurement</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Edit Mode Measurement</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Eliminate guessing in Edit Mode with instant numerical measurement displays for selected components.</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/6.zoom.webp" data-zoom-fallback="assets/6.jpg" data-zoom-alt="Pivot-Based Precision Resizing" tabindex="0" role="button" aria-label="Zoom: Pivot-Based Precision Resizing">
-                            <img src="assets/6.jpg" alt="Pivot-Based Precision Resizing" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/6_640.webp 640w, assets/6_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/6_900.jpg" alt="Pivot-Based Precision Resizing" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -663,14 +683,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Pivot-Based Precision Resizing</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Pivot-Based Precision Resizing</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Resize local selections accurately based on 3D Cursor or Custom Pivot locations.</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/7.zoom.webp" data-zoom-fallback="assets/7.jpg" data-zoom-alt="Multi-Object Bounding Bounds" tabindex="0" role="button" aria-label="Zoom: Multi-Object Bounding Bounds">
-                            <img src="assets/7.jpg" alt="Multi-Object Bounding Bounds" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/7_640.webp 640w, assets/7_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/7_900.jpg" alt="Multi-Object Bounding Bounds" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -678,14 +699,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Multi-Object Bounding Bounds</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Multi-Object Bounding Bounds</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Pin global dimensions across multiple selected objects accurately in real time.</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/8.zoom.webp" data-zoom-fallback="assets/8.jpg" data-zoom-alt="Batch Naming Engine" tabindex="0" role="button" aria-label="Zoom: Batch Naming Engine">
-                            <img src="assets/8.jpg" alt="Batch Naming Engine" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/8_640.webp 640w, assets/8_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/8_900.jpg" alt="Batch Naming Engine" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -693,14 +715,15 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Batch Naming Engine</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Batch Naming Engine</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Organize scene hierarchies automatically using custom presets and dropdown list rules.</p>
                         </div>
                     </div>
 
                     <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden flex flex-col hover:border-brand-accentBorder">
                         <div class="aspect-video bg-brand-elevated overflow-hidden relative group cursor-zoom-in" data-zoom="assets/9.zoom.webp" data-zoom-fallback="assets/9.jpg" data-zoom-alt="Color Utilities Debugging" tabindex="0" role="button" aria-label="Zoom: Color Utilities Debugging">
-                            <img src="assets/9.jpg" alt="Color Utilities Debugging" width="2560" height="1440" loading="lazy" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/>
+                            <picture><source srcset="assets/9_640.webp 640w, assets/9_900.webp 900w"
+                                        sizes="(min-width:1024px) 440px, (min-width:640px) 45vw, 92vw" type="image/webp" width="900" height="506"/><img src="assets/9_900.jpg" alt="Color Utilities Debugging" width="900" height="506" loading="lazy" decoding="async" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"/></picture>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                                 <div class="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
                                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -708,7 +731,7 @@
                             </div>
                         </div>
                         <div class="p-5 border-t border-brand-border">
-                            <h4 class="text-base font-semibold text-brand-heading mb-1">Color Utilities Debugging</h4>
+                            <h3 class="text-base font-semibold text-brand-heading mb-1">Color Utilities Debugging</h3>
                             <p class="text-xs text-brand-muted leading-relaxed">Assign instant random color passes to loose mesh parts and UV islands for visual inspection.</p>
                         </div>
                     </div>
@@ -738,19 +761,19 @@
                     <!-- Column 1 -->
                     <div class="flex flex-col gap-6">
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_overview.png" alt="Eternal Toolbox overview panel" width="600" height="382" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_overview.png" alt="Eternal Toolbox overview panel" width="600" height="382" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_overview.png" data-zoom-alt="Eternal Toolbox overview panel" tabindex="0" role="button" aria-label="Zoom: Eternal Toolbox overview panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Modular collapsible N-panel structure.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_global_dimensions.png" alt="Global dimensions panel" width="600" height="440" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_global_dimensions.png" alt="Global dimensions panel" width="600" height="440" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_global_dimensions.png" data-zoom-alt="Global dimensions panel" tabindex="0" role="button" aria-label="Zoom: Global dimensions panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Global Truth Dimensions &amp; Uniform Scaling.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_local_dimensions.png" alt="Local dimensions panel for the current Edit Mode selection" width="600" height="442" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_local_dimensions.png" alt="Local dimensions panel for the current Edit Mode selection" width="600" height="442" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_local_dimensions.png" data-zoom-alt="Local dimensions panel for the current Edit Mode selection" tabindex="0" role="button" aria-label="Zoom: Local dimensions panel for the current Edit Mode selection"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Local dimensions for the active selection, type a size and the selection scales to it.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_smart_origin.png" alt="Smart origin panel" width="600" height="440" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_smart_origin.png" alt="Smart origin panel" width="600" height="440" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_smart_origin.png" data-zoom-alt="Smart origin panel" tabindex="0" role="button" aria-label="Zoom: Smart origin panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Origin alignment by compass, median, or 3D cursor.</figcaption>
                         </figure>
                     </div>
@@ -758,15 +781,15 @@
                     <!-- Column 2 -->
                     <div class="flex flex-col gap-6">
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_camera_screenshots.png" alt="Camera screenshots panel" width="600" height="720" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_camera_screenshots.png" alt="Camera screenshots panel" width="600" height="720" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_camera_screenshots.png" data-zoom-alt="Camera screenshots panel" tabindex="0" role="button" aria-label="Zoom: Camera screenshots panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Batch camera capture with shading mode control.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_naming_engine.png" alt="Naming engine panel" width="600" height="480" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_naming_engine.png" alt="Naming engine panel" width="600" height="480" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_naming_engine.png" data-zoom-alt="Naming engine panel" tabindex="0" role="button" aria-label="Zoom: Naming engine panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Preset naming engine with date tags.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_scene_hygiene.png" alt="Scene hygiene panel" width="600" height="280" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_scene_hygiene.png" alt="Scene hygiene panel" width="600" height="280" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_scene_hygiene.png" data-zoom-alt="Scene hygiene panel" tabindex="0" role="button" aria-label="Zoom: Scene hygiene panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Clean duplicate .001 materials &amp; purge orphans.</figcaption>
                         </figure>
                     </div>
@@ -774,15 +797,15 @@
                     <!-- Column 3 -->
                     <div class="flex flex-col gap-6">
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_local_dimensions_edge_readout.png" alt="Local dimensions and edge readout panel" width="600" height="703" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_local_dimensions_edge_readout.png" alt="Local dimensions and edge readout panel" width="600" height="703" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_local_dimensions_edge_readout.png" data-zoom-alt="Local dimensions and edge readout panel" tabindex="0" role="button" aria-label="Zoom: Local dimensions and edge readout panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Edge readout: closed loop total length, open line segment length.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_color_utilities.png" alt="Color utilities panel" width="600" height="240" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_color_utilities.png" alt="Color utilities panel" width="600" height="240" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_color_utilities.png" data-zoom-alt="Color utilities panel" tabindex="0" role="button" aria-label="Zoom: Color utilities panel"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Random colors for loose parts &amp; UV island debugging.</figcaption>
                         </figure>
                         <figure class="rounded-xl bg-brand-card border border-brand-borderMedium p-3 shadow-sm hover:border-brand-accentBorder transition-all">
-                            <img src="assets/panel_preferences.png" alt="Addon preferences page" width="600" height="800" loading="lazy" class="rounded-lg w-full h-auto border border-brand-border"/>
+                            <img src="assets/panel_preferences.png" alt="Addon preferences page" width="600" height="800" loading="lazy" class="rounded-lg cursor-zoom-in w-full h-auto border border-brand-border" data-zoom="assets/panel_preferences.png" data-zoom-alt="Addon preferences page" tabindex="0" role="button" aria-label="Zoom: Addon preferences page"/>
                             <figcaption class="pt-3 text-xs text-brand-muted font-normal leading-snug">Extensive addon preference controls &amp; performance thresholds.</figcaption>
                         </figure>
                     </div>
@@ -810,10 +833,10 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto pricing-grid">
                     
-                    <!-- Gumroad Pricing Card (Card Copy from index - Copy2.html + Border Outline & Glow from index - Copy.html) -->
+                    <!-- Gumroad Pricing Card -->
                     <div class="glow-card-hover rounded-2xl bg-brand-card border-2 border-brand-gold p-8 flex flex-col justify-between shadow-glow-gold relative">
                         
-                        <!-- Most Popular Badge Tag (from index - Copy.html centered) -->
+                        <!-- Most Popular Badge Tag -->
                         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-gold text-black font-extrabold text-[11px] uppercase tracking-wider px-4 py-0.5 rounded-full shadow-sm z-10 whitespace-nowrap">
                             Most Popular
                         </div>
@@ -1028,7 +1051,7 @@
     </main>
 
     <!-- ==========================================
-         FOOTER (FROM INDEX - COPY2.HTML)
+         FOOTER
          ========================================== -->
     <footer class="bg-brand-bg border-t border-brand-border py-12 text-center text-xs text-brand-muted">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -1041,7 +1064,7 @@
             <div class="flex flex-wrap items-center justify-center gap-6 text-brand-muted">
                 <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_github.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>GitHub Repository</a>
                 <a href="https://www.instagram.com/eternal.shade3d/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_instagram.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Instagram</a>
-                <a href="https://discord.gg/YUtnsA3pnp" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_discord.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Discord Support</a>
+                <a href="https://discord.com/invite/DHMT6J6TmX" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_discord.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Discord Support</a>
                 <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_gumroad.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Gumroad Listing</a>
                 <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_fairmarket.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>FairMarket Listing</a>
                 <a href="https://blendswap.com/blend/34071" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_blendswap.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>BlendSwap Listing</a>
@@ -1054,12 +1077,12 @@
         <div class="zoom-backdrop" id="zoom-backdrop"></div>
         <div class="zoom-stage">
             <div class="zoom-content">
-                <button id="zoom-close" class="zoom-btn-close" aria-label="Close zoom">&times;</button>
-                <img id="zoom-img" src="" alt="" width="1600" height="900" />
+                <img id="zoom-img" alt="" width="1400" height="788" />
                 <p id="zoom-caption" class="zoom-caption"></p>
             </div>
             <button id="zoom-prev" class="zoom-nav-btn" aria-label="Previous image">&#8249;</button>
             <button id="zoom-next" class="zoom-nav-btn" aria-label="Next image">&#8250;</button>
+            <button id="zoom-close" class="zoom-btn-close" aria-label="Close zoom">&times;</button>
         </div>
         </div>
 
@@ -1149,4 +1172,4 @@
     })();
 </script>
 </body>
-</html><!-- redeploy 2026-11-04T22:16:54Z -->
+</html>

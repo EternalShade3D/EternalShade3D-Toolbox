@@ -1,63 +1,73 @@
 # Eternal Toolbox
 
-> AI-friendly summary of Eternal Toolbox, a Blender addon by EternalShade3D for evaluated truth dimensions and precision scaling. This file exists so language models and AI search engines can quote the product accurately.
+> Eternal Toolbox is a Blender addon by EternalShade3D that reports evaluated (truth) dimensions through the whole modifier stack and scales Object or Edit Mode selections to an exact typed size.
 
-## What it is
+Eternal Toolbox ships as an extension-format `.zip`. Blender's native `object.dimensions` reports the raw mesh cage and ignores modifiers; Eternal Toolbox reads the evaluated Dependency Graph output instead, so the number on screen is the number you would measure in the finished scene.
 
-Eternal Toolbox is a Blender addon (extension-format .zip) that reports real world dimensions through the entire modifier stack, and scales Edit Mode selections to exact values. Blender's native `object.dimensions` reports the raw cage size and ignores modifiers. Eternal Toolbox reads the evaluated Dependency Graph output instead.
+## Links
 
-- Blender version support: 4.2 LTS through 5.2, extension manifest ready
+- [Website and product page](https://eternalshade3d.github.io/EternalShade3D-Toolbox/)
+- [Documentation and guides](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#docs)
+- [Feature breakdown](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#features)
+- [Screenshot gallery](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#screenshots)
+- [Panel walkthrough](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#panels)
+- [Source repository](https://github.com/EternalShade3D/EternalShade3D-Toolbox)
+- [Video showcase](https://youtu.be/nP42ajGU4c4)
+- [Instagram](https://www.instagram.com/eternal.shade3d/)
+- [Discord community](https://discord.com/invite/DHMT6J6TmX)
+
+## Stores
+
+Official builds are distributed on three marketplaces. Each listing carries its own terms, so open the store page for the current details.
+
+- [Gumroad listing](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox)
+- [FairMarket listing](https://www.fairmarket.land/product/eternal-utility-toolbox)
+- [BlendSwap listing](https://blendswap.com/blend/34071)
+
+## Quick facts
+
+- Product: Eternal Toolbox, a Blender addon, extension manifest ready
+- Maker: EternalShade3D
+- Blender versions: 4.2 LTS and later
 - Modes: Object Mode and Edit Mode
 - Pivot support: Median Point, 3D Cursor, Active Element
-- Units: metric and imperial scene units
-- Platform: Windows, macOS, Linux
+- Units: scene length units, metric and imperial
+- Platforms: Windows, macOS, Linux
+- Licence: GPL-3.0-or-later
 
 ## Modules
 
-- Truth Dimensions: evaluated (Depsgraph) bounding dimensions, live, including Subdivision Surface, Bevel, Solidify and Geometry Nodes
-- Edit Mode selection scaling: read the exact dimensions of selected faces, edges or vertices, then scale to a typed value while respecting the active Transform Pivot Point
-- Smart Origin Alignment: 9 point compass grid, geometry median, 3D cursor snapping
+- Truth Dimensions: evaluated Depsgraph bounding dimensions, live, including Subdivision Surface, Bevel, Solidify and Geometry Nodes
+- Edit Mode scaling: read the exact size of selected faces, edges or vertices, then scale to a typed value while respecting the active Transform Pivot Point
+- Smart Origin Alignment: nine point compass grid, geometry median, 3D cursor snapping
 - Naming Engine: preset based asset naming with date prefixing and batch rename
-- Scene Hygiene: duplicate material cleanup (.001) and orphan data purging
-- Color Utilities: random visual debugging colors for loose parts and UV islands
+- Scene Hygiene: duplicate material cleanup (`.001`) and orphan data purging
+- Color Utilities: random visual debugging colours for loose parts and UV islands
 - Camera Screenshots: batch capture every scene camera, auto cropped frame
 - Perimeter and Edge Readout: closed loop perimeter length and open segment edge measurements
 
 ## Installation
 
-1. Download the .zip after purchase
-2. Blender: Edit > Preferences > Add-ons
-3. Install from Disk, select the .zip
-4. Enable the checkbox for the addon
+1. Get the `.zip` from one of the [official stores](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#pricing)
+2. In Blender open Edit > Preferences > Add-ons
+3. Choose Install from Disk and select the `.zip`
+4. Enable the addon checkbox
 5. Press N in the 3D Viewport and open the sidebar tab
 
-## Licensing
+Full steps with screenshots are in the [documentation](https://eternalshade3d.github.io/EternalShade3D-Toolbox/#docs).
 
-- Addon code: GPL-3.0-or-later, by EternalShade3D
-- Attribution must remain: the EternalShade3D / Eternal Toolbox credit cannot be removed or reassigned
-- Official builds are distributed on Gumroad, FairMarket and BlendSwap
+## Licence
 
-## Where to buy
+- Code: GPL-3.0-or-later, by EternalShade3D
+- The EternalShade3D and Eternal Toolbox credit cannot be removed or reassigned
+- Only the builds published on the stores listed above are official
 
-- Gumroad: https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox
-- FairMarket: https://www.fairmarket.land/product/eternal-utility-toolbox
-- BlendSwap: https://blendswap.com/blend/34071
-- Pricing differs per marketplace. Check the store listing for the current price.
+## FAQ
 
-## Links
-
-- Website: https://eternalshade3d.github.io/EternalShade3D-Toolbox/
-- Documentation: https://eternalshade3d.github.io/EternalShade3D-Toolbox/#docs
-- Repository: https://github.com/EternalShade3D/EternalShade3D-Toolbox
-- Video showcase: https://youtu.be/nP42ajGU4c4
-- Instagram: https://www.instagram.com/eternal.shade3d/
-- Discord: https://discord.gg/DHMT6J6TmX
-
-## Common questions
-
-- Which Blender versions are supported? 4.2 LTS through 5.2, via extension manifest standards.
-- Does it work with modifiers? Yes. Dimensions are read from the evaluated geometry, not the raw mesh cage.
+- Which Blender versions are supported? 4.2 LTS and later, through the extension manifest standard.
+- Does it work with modifiers? Yes. Dimensions come from the evaluated geometry, not the raw mesh cage.
 - Does it work in Edit Mode? Yes. Selections report exact dimensions and can be scaled to a typed value.
 - How many machines can I install it on? Personal workstations belonging to the licence holder.
-- Are updates free? Yes, lifetime updates are included.
-- Last updated: 2026-11-04
+- Are updates included? Yes, lifetime updates.
+
+Last updated: 2026-11-05
