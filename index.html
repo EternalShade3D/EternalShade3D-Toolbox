@@ -608,14 +608,20 @@
                 <!-- Showcase 01: standard YouTube embed with native thumbnail + controls -->
                 <figure class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden mb-8 hover:border-brand-accentBorder">
                     <div class="aspect-video relative overflow-hidden bg-brand-card">
+                        <!-- The player is 867 KB of third party JS, so it is only fetched when the viewer reaches it -->
                         <iframe
-                            src="https://www.youtube.com/embed/nP42ajGU4c4"
-                            width="600" height="338" loading="lazy"
+                            id="showcase-video"
+                            data-src="https://www.youtube.com/embed/nP42ajGU4c4"
+                            width="600" height="338"
                             title="Eternal Toolbox showcase 01: Type a Size Get That Size"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
+                            style="visibility:hidden"
                             class="w-full h-full border-0"></iframe>
+                        <noscript>
+                            <a href="https://youtu.be/nP42ajGU4c4" class="absolute inset-0 flex items-center justify-center text-base font-semibold text-brand-heading underline">Watch the showcase on YouTube</a>
+                        </noscript>
                     </div>
                     <figcaption class="p-5 border-t border-brand-border">
                         <h3 class="text-base font-semibold text-brand-heading mb-1">Showcase 01: Type a Size, Get That Size</h3>
@@ -1119,6 +1125,27 @@
             });
         });
 
+
+    // Deferred showcase video: paint first, fetch the YouTube player when the viewer gets near it
+    (function(){
+        var frame = document.getElementById('showcase-video');
+        if(!frame) return;
+        function load(){
+            if(frame.getAttribute('src')) return;
+            frame.addEventListener('load', function(){ frame.style.visibility = 'visible'; });
+            frame.src = frame.getAttribute('data-src');
+        }
+        if('IntersectionObserver' in window){
+            var io = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if(e.isIntersecting){ load(); io.disconnect(); }
+                });
+            }, {rootMargin: '300px 0px'});
+            io.observe(frame);
+        } else {
+            window.addEventListener('load', load);
+        }
+    })();
 
     // Zoom modal gallery
     (function(){
