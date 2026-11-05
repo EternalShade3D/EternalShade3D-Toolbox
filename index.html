@@ -74,6 +74,79 @@
             transform: translateY(-4px);
         }
 
+        /* Pricing: one column on phones, 2 columns on tablets, 3 stores on desktop */
+        #pricing .pricing-grid { max-width: 72rem; }
+        @media (min-width: 640px) {
+            #pricing .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); }
+        }
+        /* Tablet: two cards per row and the third centred, not orphaned left */
+        @media (min-width: 640px) and (max-width: 1023px) {
+            #pricing .pricing-grid { display: flex; flex-wrap: wrap; justify-content: center; row-gap: 3rem; }
+            #pricing .pricing-grid > * { flex: 0 1 calc(50% - 1rem); }
+        }
+        /* Phones: extra room so the badge does not crowd the card above */
+        @media (max-width: 639px) {
+            #pricing .pricing-grid { row-gap: 2.5rem; }
+        }
+
+        /* BlendSwap card accent: brand orange #ff5e00 */
+        #pricing .card-blendswap { border-color: rgba(255, 94, 0, 0.45); }
+        #pricing .card-blendswap:hover { border-color: #ff5e00; }
+        #pricing .badge-new { background: #ff5e00; color: #0a0a0f; font-size: 11px; }
+        #pricing .accent-blendswap { color: #ff5e00; }
+        #pricing .btn-blendswap {
+            background: #ff5e00;
+            color: #0a0a0f;
+            box-shadow: 0 0 16px rgba(255, 94, 0, 0.22);
+        }
+        #pricing .btn-blendswap:hover { background: #ff7a26; }
+
+        /* FairMarket card accent: brand colour #e2c9c4 (black text, white would be 1.57:1) */
+        #pricing .card-fairmarket { border-color: rgba(226, 201, 196, 0.7); }
+        #pricing .card-fairmarket:hover { border-color: #e2c9c4; }
+        #pricing .accent-fairmarket { color: #e2c9c4; }
+        #pricing .btn-fairmarket {
+            background: #e2c9c4;
+            color: #0a0a0f;
+            box-shadow: 0 0 16px rgba(226, 201, 196, 0.18);
+        }
+        #pricing .btn-fairmarket:hover { background: #f0dcd8; }
+
+        /* Technical specifications table: stacked label/value on phones, two columns from 640px */
+        #docs .spec-table table { border-collapse: collapse; }
+        #docs .spec-table caption {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0 0 0 0); clip-path: inset(50%);
+            white-space: nowrap; border: 0;
+        }
+        #docs .spec-table tbody, #docs .spec-table tr, #docs .spec-table th, #docs .spec-table td { display: block; width: 100%; }
+        #docs .spec-table tr { border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+        #docs .spec-table tr:last-child { border-bottom: none; }
+        #docs .spec-table th {
+            padding: 0.875rem 1rem 0.15rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            text-align: left;
+            color: var(--brand-muted, #545470);
+        }
+        #docs .spec-table td { padding: 0 1rem 1rem; line-height: 1.55; text-align: left; }
+        @media (min-width: 640px) {
+            #docs .spec-table tbody { display: table-row-group; }
+            #docs .spec-table tr { display: table-row; }
+            #docs .spec-table th, #docs .spec-table td { display: table-cell; padding: 1rem; vertical-align: top; }
+            #docs .spec-table th {
+                width: 38%;
+                font-size: 0.875rem;
+                letter-spacing: normal;
+                text-transform: none;
+                font-weight: 600;
+                color: #f0f0f5;
+            }
+        }
+
         /* Mobile menu */
         .menu-btn{
             display:flex;align-items:center;justify-content:center;
@@ -719,6 +792,7 @@
             </div>
         </section>
 
+
         <!-- ==========================================
              PRICING SECTION
              ========================================== -->
@@ -734,7 +808,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto pricing-grid">
                     
                     <!-- Gumroad Pricing Card (Card Copy from index - Copy2.html + Border Outline & Glow from index - Copy.html) -->
                     <div class="glow-card-hover rounded-2xl bg-brand-card border-2 border-brand-gold p-8 flex flex-col justify-between shadow-glow-gold relative">
@@ -750,13 +824,13 @@
                                 <h3 class="text-xl font-bold text-brand-heading">Gumroad Store</h3>
                             </div>
                             <div class="flex items-baseline gap-2 my-4">
-                                <span class="text-xs text-brand-muted font-normal">one-time payment</span>
+                                <span class="text-3xl font-extrabold text-brand-gold">Instant access</span>
                             </div>
                             <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
-                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Instant ZIP digital download</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Lifetime free updates &amp; new modules</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Blender 4.2+ &amp; 5.2 Extension Manifest ready</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Direct developer support via email &amp; Discord</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> See the real size even with modifiers</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Every future module included</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Direct support by GitHub &amp; Discord</li>
+                                <li class="flex items-center gap-2.5"><span class="text-brand-gold font-bold">✓</span> Install and start sizing in a minute</li>
                             </ul>
                         </div>
 
@@ -765,26 +839,54 @@
                         </a>
                     </div>
 
-                    <!-- FairMarket Pricing Card (from index - Copy2.html) -->
-                    <div class="glow-card-hover rounded-2xl bg-brand-card border border-brand-borderMedium p-8 flex flex-col justify-between hover:border-brand-accentBorder transition-all">
+                    <!-- FairMarket Pricing Card (brand colour #e2c9c4) -->
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border card-fairmarket p-8 flex flex-col justify-between relative">
                         <div>
                             <div class="flex items-center gap-2 mb-2">
                                 <img src="assets/logo_white_fairmarket.png" alt="FairMarket" width="28" height="28" class="w-7 h-7"/>
                                 <h3 class="text-xl font-bold text-brand-heading">FairMarket Store</h3>
                             </div>
                             <div class="flex items-baseline gap-2 my-4">
-                                <span class="text-3xl font-extrabold text-brand-accentLight">Market Pricing</span>
+                                <span class="text-3xl font-extrabold accent-fairmarket">Add to collection</span>
                             </div>
                             <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
-                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Secure decentralized / Web3 checkout</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Lifetime software access</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Community marketplace verified</li>
-                                <li class="flex items-center gap-2.5"><span class="text-brand-accentLight font-bold">✓</span> Complete documentation access</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-fairmarket font-bold">✓</span> Instant access to the download</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-fairmarket font-bold">✓</span> Every future module included</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-fairmarket font-bold">✓</span> Ask questions on the product page</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-fairmarket font-bold">✓</span> Marketplace-verified listing</li>
                             </ul>
                         </div>
 
-                        <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-brand-surface hover:bg-brand-surface/80 border border-brand-borderMedium hover:border-brand-accentBorder text-brand-heading font-semibold text-sm py-3.5 px-5 rounded-xl transition-all">
+                        <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 btn-fairmarket font-bold text-sm py-3.5 px-5 rounded-xl transition-all transform hover:-translate-y-0.5">
                             Get on FairMarket →
+                        </a>
+                    </div>
+
+                    <!-- BlendSwap Pricing Card (new store, brand orange #ff5e00) -->
+                    <div class="glow-card-hover rounded-2xl bg-brand-card border card-blendswap p-8 flex flex-col justify-between relative">
+
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 badge-new font-extrabold text-[11px] uppercase tracking-wider px-4 py-0.5 rounded-full shadow-sm z-10 whitespace-nowrap">
+                            New
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <img src="assets/logo_white_blendswap.png" alt="BlendSwap" width="28" height="28" class="w-7 h-7"/>
+                                <h3 class="text-xl font-bold text-brand-heading">BlendSwap Store</h3>
+                            </div>
+                            <div class="flex items-baseline gap-2 my-4">
+                                <span class="text-3xl font-extrabold accent-blendswap">Community Driven</span>
+                            </div>
+                            <ul class="space-y-3.5 text-sm text-brand-muted font-normal mb-8">
+                                <li class="flex items-center gap-2.5"><span class="accent-blendswap font-bold">✓</span> Client-ready sizes, no re-measuring</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-blendswap font-bold">✓</span> Royalty-free, personal and commercial</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-blendswap font-bold">✓</span> Games, film, print, client work</li>
+                                <li class="flex items-center gap-2.5"><span class="accent-blendswap font-bold">✓</span> Reshape it for your pipeline</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://blendswap.com/blend/34071" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 btn-blendswap font-bold text-sm py-3.5 px-5 rounded-xl transition-all transform hover:-translate-y-0.5">
+                            Get on BlendSwap →
                         </a>
                     </div>
 
@@ -810,6 +912,43 @@
 
                 <div class="space-y-4">
                     
+                    <!-- 0. Compact specifications (absorbed from the old specs section) -->
+                    <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
+                        <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
+                            <span class="text-xl">⚙️</span> Technical Specifications
+                        </summary>
+                        <div class="p-6 border-t border-brand-border">
+                            <table class="spec-table w-full text-sm rounded-xl overflow-hidden bg-brand-surface border border-brand-border">
+                                <tbody>
+                                    <tr class="border-b border-brand-border">
+                                        <th scope="row" class="text-left p-3">Blender</th>
+                                        <td class="p-3">4.2 LTS and later</td>
+                                    </tr>
+                                    <tr class="border-b border-brand-border">
+                                        <th scope="row" class="text-left p-3">Type</th>
+                                        <td class="p-3">Extension, installs like a classic addon</td>
+                                    </tr>
+                                    <tr class="border-b border-brand-border">
+                                        <th scope="row" class="text-left p-3">Modes</th>
+                                        <td class="p-3">Object Mode and Edit Mode</td>
+                                    </tr>
+                                    <tr class="border-b border-brand-border">
+                                        <th scope="row" class="text-left p-3">Dimensions from</th>
+                                        <td class="p-3">Evaluated geometry, modifiers included</td>
+                                    </tr>
+                                    <tr class="border-b border-brand-border">
+                                        <th scope="row" class="text-left p-3">Pivots</th>
+                                        <td class="p-3">Median, 3D Cursor, Active Element</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-left p-3">Units</th>
+                                        <td class="p-3">Metric and imperial</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </details>
+
                     <!-- 1. Quick Installation -->
                     <details class="doc-item rounded-2xl bg-brand-card border border-brand-borderMedium overflow-hidden transition-all duration-200">
                         <summary class="flex items-center gap-4 p-5 cursor-pointer hover:bg-brand-surface select-none font-semibold text-base text-brand-heading">
@@ -819,7 +958,7 @@
                             <div>
                                 <h3 class="font-bold text-brand-heading mb-1">Requirements</h3>
                                 <ul class="list-disc pl-5 space-y-1">
-                                    <li><strong>Blender 4.2+</strong> or later (Full support for Blender 5.2 Extension Manifest)</li>
+                                    <li><strong>Blender 4.2 LTS</strong> or later, installed through the extension manifest</li>
                                     <li>Compatible with Windows, macOS, and Linux</li>
                                 </ul>
                             </div>
@@ -873,7 +1012,7 @@
                         <div class="p-6 border-t border-brand-border text-sm text-brand-muted leading-relaxed space-y-3">
                             <div>
                                 <h4 class="font-bold text-brand-heading">Which Blender versions are supported?</h4>
-                                <p>Blender 4.2 LTS through Blender 5.2. Supported via extension manifest standards.</p>
+                                <p>Blender 4.2 LTS and later, supported through the extension manifest.</p>
                             </div>
                             <div>
                                 <h4 class="font-bold text-brand-heading">Is my purchase valid for multiple workstations?</h4>
@@ -900,10 +1039,12 @@
             <p>© 2025–2026 EternalShade3D. All rights reserved. Proprietary Blender extension toolkit.</p>
 
             <div class="flex flex-wrap items-center justify-center gap-6 text-brand-muted">
-                <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">🐙 GitHub Repository</a>
-                <a href="https://www.instagram.com/eternal.shade3d/" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">📷 Instagram</a>
-                <a href="https://discord.gg/YUtnsA3pnp" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">💬 Discord Support</a>
-                <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="hover:text-brand-heading transition-colors">💎 Gumroad Listing</a>
+                <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_github.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>GitHub Repository</a>
+                <a href="https://www.instagram.com/eternal.shade3d/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_instagram.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Instagram</a>
+                <a href="https://discord.gg/YUtnsA3pnp" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_discord.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Discord Support</a>
+                <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_gumroad.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>Gumroad Listing</a>
+                <a href="https://www.fairmarket.land/product/eternal-utility-toolbox" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_fairmarket.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>FairMarket Listing</a>
+                <a href="https://blendswap.com/blend/34071" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-brand-heading transition-colors"><img src="assets/logo_white_blendswap.png" alt="" width="14" height="14" class="w-3.5 h-3.5 opacity-75"/>BlendSwap Listing</a>
             </div>
         </div>
     </footer>
