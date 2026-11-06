@@ -8,12 +8,17 @@
 </p>
 
 <p align="center">
-  <img src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Toolbox banner" width="880"/>
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="assets/eternal_toolbox_banner_clean.png" alt="Eternal Toolbox banner, click to open the live product page" width="880"/></a>
+</p>
+
+<p align="center">
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Live%20Product%20Page-Visit-F0C040?style=for-the-badge&labelColor=26282e" alt="Live product page"></a>
 </p>
 
 <p align="center">
   <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-FFD700?style=for-the-badge&labelColor=26282e&logo=gumroad&logoColor=FFD700" alt="Get Eternal Toolbox on Gumroad"></a>
   <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-FFD700?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on FairMarket"></a>
+  <a href="https://blendswap.com/blend/34071"><img src="https://img.shields.io/badge/BlendSwap-Get%20it-FF5E00?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on BlendSwap"></a>
 </p>
 
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.30.0**
@@ -120,7 +125,7 @@ Capture every camera in your scene in one pass:
 
 ## Quick Start
 
-1. **Download** from [Gumroad](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox) or [FairMarket](https://www.fairmarket.land/product/eternal-utility-toolbox)
+1. **Download** from [Gumroad](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox), [FairMarket](https://www.fairmarket.land/product/eternal-utility-toolbox) or [BlendSwap](https://blendswap.com/blend/34071)
 2. In Blender: **Edit > Preferences > Add-ons > Install...** → select the `.zip`
 3. Enable **Eternal Utility Toolbox ◈**
 4. Press `N` in the 3D Viewport → open the **ETERNAL** tab
@@ -153,6 +158,7 @@ Full documentation with detailed feature explanations is available:
 The addon is available exclusively through authorized purchase channels:
 - [Gumroad](https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox)
 - [FairMarket](https://www.fairmarket.land/product/eternal-utility-toolbox)
+- [BlendSwap](https://blendswap.com/blend/34071)
 
 See [LICENSE](LICENSE) for full terms and restrictions.
 
