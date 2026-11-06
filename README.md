@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-26282e?style=for-the-badge&labelColor=F0C040&logo=gumroad&logoColor=white" alt="Get Eternal Toolbox on Gumroad"></a>
+  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-26282e?style=for-the-badge&labelColor=F0C040" alt="Get Eternal Toolbox on Gumroad"></a>
   <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-26282e?style=for-the-badge&labelColor=E2C9C4&logoColor=26282e" alt="Get Eternal Toolbox on FairMarket"></a>
   <a href="https://blendswap.com/blend/34071"><img src="https://img.shields.io/badge/BlendSwap-Get%20it-26282e?style=for-the-badge&labelColor=CC4B00&logoColor=white" alt="Get Eternal Toolbox on BlendSwap"></a>
 </p>
