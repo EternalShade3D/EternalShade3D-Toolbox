@@ -1,10 +1,9 @@
 # Eternal Toolbox ◈
 
 <p align="center">
-  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Docs-Guide-F0C040?style=for-the-badge&labelColor=26282e" alt="Eternal Toolbox documentation guide"></a>
-  <a href="https://github.com/EternalShade3D/EternalShade3D-Toolbox"><img src="https://img.shields.io/badge/Repo-About-F0C040?style=for-the-badge&labelColor=26282e&logo=github&logoColor=white" alt="Eternal Toolbox repository"></a>
-  <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-9D85FD?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="EternalShade3D Blender addon showcase on Instagram"></a>
-  <a href="https://discord.com/invite/DHMT6J6TmX"><img src="https://img.shields.io/badge/Discord-Join-7C5CFC?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
+  <a href="docs/documentation.md"><img src="https://img.shields.io/badge/Read-Documentation-480C97?style=for-the-badge&labelColor=26282e&logo=bookstack&logoColor=white" alt="Documentation guide"></a>
+  <a href="https://www.instagram.com/eternal.shade3d/"><img src="https://img.shields.io/badge/Instagram-Showcase-480C97?style=for-the-badge&labelColor=26282e&logo=instagram&logoColor=white" alt="EternalShade3D Blender addon showcase on Instagram"></a>
+  <a href="https://discord.com/invite/DHMT6J6TmX"><img src="https://img.shields.io/badge/Discord-Join-480C97?style=for-the-badge&labelColor=26282e&logo=discord&logoColor=white" alt="EternalShade3D Discord community"></a>
 </p>
 
 <p align="center">
@@ -12,13 +11,13 @@
 </p>
 
 <p align="center">
-  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Live%20Product%20Page-Visit-F0C040?style=for-the-badge&labelColor=26282e" alt="Live product page"></a>
+  <a href="https://eternalshade3d.github.io/EternalShade3D-Toolbox/"><img src="https://img.shields.io/badge/Live%20Product%20Page-Visit-480C97?style=for-the-badge&labelColor=26282e" alt="Live product page"></a>
 </p>
 
 <p align="center">
-  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/Gumroad-Get%20it-26282e?style=for-the-badge&labelColor=F0C040" alt="Get Eternal Toolbox on Gumroad"></a>
-  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/FairMarket-Get%20it-26282e?style=for-the-badge&labelColor=E2C9C4&logoColor=26282e" alt="Get Eternal Toolbox on FairMarket"></a>
-  <a href="https://blendswap.com/blend/34071"><img src="https://img.shields.io/badge/BlendSwap-Get%20it-26282e?style=for-the-badge&labelColor=CC4B00&logoColor=white" alt="Get Eternal Toolbox on BlendSwap"></a>
+  <a href="https://eternalshade3d.gumroad.com/l/eternal-utility-toolbox"><img src="https://img.shields.io/badge/-Gumroad-480C97?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on Gumroad"></a>
+  <a href="https://www.fairmarket.land/product/eternal-utility-toolbox"><img src="https://img.shields.io/badge/-FairMarket-480C97?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on FairMarket"></a>
+  <a href="https://blendswap.com/blend/34071"><img src="https://img.shields.io/badge/-BlendSwap-480C97?style=for-the-badge&labelColor=26282e" alt="Get Eternal Toolbox on BlendSwap"></a>
 </p>
 
 > **Precision Scaling and Evaluated Truth Dimensions for Blender — v1.30.0**
@@ -43,55 +42,15 @@ Blender is fantastic, but it leaves you blind to exact dimensions in **Edit Mode
 
 ## Features
 
-### 📐 Evaluated Truth Dimensions (Object Mode)
+| Screenshot | Panel | Use it for | Screenshot | Panel | Use it for |
+|---|---|---|---|---|---|
+| <img src="assets/panel_overview.png" width="220"> | **ETERNALSHADE3D 💎 TOOLBOX** | Opens one tab holding every module and shows which are switched on | <img src="assets/panel_global_dimensions.png" width="220"> | **GLOBAL DIMENSIONS** | Shows the REAL size after all modifiers, not the cage, and rounds the object to your step |
+| <img src="assets/panel_local_dimensions.png" width="220"> | **LOCAL DIMENSIONS *(sub-panel)*** | Measures and rounds only what you selected in Edit Mode, per axis | <img src="assets/panel_local_dimensions_edge_readout.png" width="220"> | **EDGE READOUT *(sub-panel of LOCAL DIMENSIONS)*** | Names each selected edge set by topology — Perimeter for closed loops, Segment Length for open chains |
+| <img src="assets/panel_smart_origin.png" width="220"> | **SMART ORIGIN** | Moves the origin to a precise point — compass grid, corner, center or cursor | <img src="assets/panel_camera_screenshots.png" width="220"> | **CAMERA SCREENSHOTS** | Captures every camera in the scene in one pass, straight to clipboard or folder |
+| <img src="assets/panel_color_utilities.png" width="220"> | **COLOR UTILITIES** | Paints random islands and UV islands to reveal loose parts and overlaps | <img src="assets/panel_scene_hygiene.png" width="220"> | **SCENE HYGIENE** | Removes orphan data, merges duplicate materials, maps objects to materials |
+| <img src="assets/panel_naming_engine.png" width="220"> | **NAMING ENGINE** | Names objects and collections from saved presets, e.g. 2026 04 - PRODUCT - CHAIR | — | **YOUR NEXT PANEL** | Idea slot — the space where users submit ideas and feedback for the panel that comes next |
 
-See the **real** dimensions of your object — not Blender's guess. The actual size after **ALL** modifiers (Subdivision, Displace, Bevel, Geometry Nodes) — updated in real-time with zero lag. Tested on heavy meshes with millions of verts.
-
-**Scale with precision.** Every operation respects your chosen **Transform Pivot Point** (Bounding Box, 3D Cursor, Individual Origins, Median Point, Active Element). What you see is what you scale.
-
-### ✏️ Edit Mode Selection Dimensions
-
-Now you can see and tweak object dimensions **while inside Edit Mode**. Select any geometry — faces, edges, vertices — and scale it to the exact dimension you want: 30 cm, 200 cm, 4.5 cm. Respects your Transform Pivot Point.
-
-### 🎯 Smart Origin Alignment
-
-Snap origins with mathematical precision:
-- **9-point compass grid** — any combination of Top/Center/Bottom, Left/Center/Right, Front/Center/Back
-- **Geometry median** — geometric center of all vertices
-- **Cursor position** — snap to 3D cursor
-- **Selection-based** — snap to center of Edit Mode selection
-- Uses a **Geometry Nodes hack** for instant bounding box calculation, even on 10M+ vertex meshes
-
-### 🏷️ Dynamic Naming Engine
-
-Systematic asset management with customizable presets:
-- Date prefixing: `2026 04 — PRODUCT — CHAIR — MODEL.001`
-- Category, Type, and Name tag system with save/load presets
-- Batch rename all selected objects or the active collection
-- External JSON preset storage
-
-### 🧹 Scene Hygiene
-
-Keep scenes clean and professional:
-- **Clean .001 Materials** — merge duplicates and remap all users
-- **Purge Orphans** — remove all orphaned data blocks recursively
-- **Obj Name ↔ Mat Name** — sync object and material names
-
-### 🎨 Color Utilities
-
-Visual debugging for complex meshes:
-- **Random Loose Parts** — assign distinct colors to separate mesh islands
-- **Random UV Islands** — color-code separate UV clusters
-- **Restore Base Material** — reset to original materials
-
-### 📸 Camera Screenshots
-
-Capture every camera in your scene in one pass:
-- **Batch capture** — render screenshots of all cameras (or a selected list) without manual viewport hopping
-- **Clean-shot toggle** — hide viewport overlays and gizmos for presentation-ready frames
-- **ESC to stop** — abort a long capture run at any time
-- **Shading modes** — AUTO / SOLID / MATERIAL / RENDERED per your needs
-- **Per-camera list** — look through any camera directly from the panel. Works in Blender 5.2.
+This table is just the quick map. The full guide explains every button one by one — read it here: [docs/documentation.md](docs/documentation.md).
 
 ---
 
